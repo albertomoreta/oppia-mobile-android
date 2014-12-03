@@ -1,0 +1,458 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .gitignore
+* .idea\
+* .idea\.name
+* .idea\compiler.xml
+* .idea\copyright\
+* .idea\copyright\profiles_settings.xml
+* .idea\encodings.xml
+* .idea\misc.xml
+* .idea\modules.xml
+* .idea\scopes\
+* .idea\scopes\scope_settings.xml
+* .idea\vcs.xml
+* .idea\workspace.xml
+* LICENSE.txt
+* README.md
+* app\
+* app\build.gradle
+* app\libs\
+* app\libs\bugsense-3.6.jar
+* app\libs\commons-io-2.4.jar
+* app\libs\httpclient-4.2.5.jar
+* app\libs\mquiz-0.16.jar
+* app\lint.xml
+* app\src\
+* app\src\main\
+* app\src\main\AndroidManifest.xml
+* app\src\main\assets\
+* app\src\main\assets\www\
+* app\src\main\assets\www\en\
+* app\src\main\assets\www\en\about.html
+* app\src\main\assets\www\en\help.html
+* app\src\main\assets\www\en\monitor_not_available.html
+* app\src\main\assets\www\en\privacy.html
+* app\src\main\assets\www\en\scorecard_not_available.html
+* app\src\main\assets\www\en\upgrade.txt
+* app\src\main\assets\www\en\webview_loading.html
+* app\src\main\assets\www\images\
+* app\src\main\assets\www\images\UK-AID-Standard-RGB.jpg
+* app\src\main\assets\www\images\mPoweringlogo.resized.jpg
+* app\src\main\assets\www\preload\
+* app\src\main\assets\www\preload\courses\
+* app\src\main\assets\www\preload\courses\README.txt
+* app\src\main\assets\www\preload\media\
+* app\src\main\assets\www\preload\media\README.txt
+* app\src\main\assets\www\style.css
+* app\src\main\java\
+* app\src\main\java\org\
+* app\src\main\java\org\digitalcampus\
+* app\src\main\java\org\digitalcampus\oppia\
+* app\src\main\java\org\digitalcampus\oppia\activity\
+* app\src\main\java\org\digitalcampus\oppia\activity\AboutActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\AppActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\CourseActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\CourseIndexActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\CourseMetaPageActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\DownloadActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\DownloadMediaActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\MonitorActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\OppiaMobileActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\PrefsActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\ScorecardActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\SearchActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\StartUpActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\TagSelectActivity.java
+* app\src\main\java\org\digitalcampus\oppia\activity\WelcomeActivity.java
+* app\src\main\java\org\digitalcampus\oppia\adapter\
+* app\src\main\java\org\digitalcampus\oppia\adapter\ActivityPagerAdapter.java
+* app\src\main\java\org\digitalcampus\oppia\adapter\BadgesListAdapter.java
+* app\src\main\java\org\digitalcampus\oppia\adapter\CourseListAdapter.java
+* app\src\main\java\org\digitalcampus\oppia\adapter\DownloadCourseListAdapter.java
+* app\src\main\java\org\digitalcampus\oppia\adapter\DownloadMediaListAdapter.java
+* app\src\main\java\org\digitalcampus\oppia\adapter\PointsListAdapter.java
+* app\src\main\java\org\digitalcampus\oppia\adapter\QuizFeedbackAdapter.java
+* app\src\main\java\org\digitalcampus\oppia\adapter\ScheduleReminderListAdapter.java
+* app\src\main\java\org\digitalcampus\oppia\adapter\SearchResultsListAdapter.java
+* app\src\main\java\org\digitalcampus\oppia\adapter\SectionListAdapter.java
+* app\src\main\java\org\digitalcampus\oppia\adapter\TagListAdapter.java
+* app\src\main\java\org\digitalcampus\oppia\application\
+* app\src\main\java\org\digitalcampus\oppia\application\DatabaseManager.java
+* app\src\main\java\org\digitalcampus\oppia\application\DbHelper.java
+* app\src\main\java\org\digitalcampus\oppia\application\MobileLearning.java
+* app\src\main\java\org\digitalcampus\oppia\application\ScheduleReminders.java
+* app\src\main\java\org\digitalcampus\oppia\application\Tracker.java
+* app\src\main\java\org\digitalcampus\oppia\exception\
+* app\src\main\java\org\digitalcampus\oppia\exception\CourseNotFoundException.java
+* app\src\main\java\org\digitalcampus\oppia\exception\InvalidXMLException.java
+* app\src\main\java\org\digitalcampus\oppia\fragments\
+* app\src\main\java\org\digitalcampus\oppia\fragments\AboutFragment.java
+* app\src\main\java\org\digitalcampus\oppia\fragments\BadgesFragment.java
+* app\src\main\java\org\digitalcampus\oppia\fragments\LoginFragment.java
+* app\src\main\java\org\digitalcampus\oppia\fragments\OppiaWebViewFragment.java
+* app\src\main\java\org\digitalcampus\oppia\fragments\PointsFragment.java
+* app\src\main\java\org\digitalcampus\oppia\fragments\RegisterFragment.java
+* app\src\main\java\org\digitalcampus\oppia\fragments\ResetFragment.java
+* app\src\main\java\org\digitalcampus\oppia\fragments\ScorecardFragment.java
+* app\src\main\java\org\digitalcampus\oppia\fragments\StatsFragment.java
+* app\src\main\java\org\digitalcampus\oppia\fragments\WelcomeFragment.java
+* app\src\main\java\org\digitalcampus\oppia\listener\
+* app\src\main\java\org\digitalcampus\oppia\listener\APIRequestListener.java
+* app\src\main\java\org\digitalcampus\oppia\listener\DownloadMediaListener.java
+* app\src\main\java\org\digitalcampus\oppia\listener\InstallCourseListener.java
+* app\src\main\java\org\digitalcampus\oppia\listener\MoveStorageListener.java
+* app\src\main\java\org\digitalcampus\oppia\listener\PostInstallListener.java
+* app\src\main\java\org\digitalcampus\oppia\listener\ScanMediaListener.java
+* app\src\main\java\org\digitalcampus\oppia\listener\SubmitListener.java
+* app\src\main\java\org\digitalcampus\oppia\listener\TrackerServiceListener.java
+* app\src\main\java\org\digitalcampus\oppia\listener\UpdateScheduleListener.java
+* app\src\main\java\org\digitalcampus\oppia\listener\UpgradeListener.java
+* app\src\main\java\org\digitalcampus\oppia\model\
+* app\src\main\java\org\digitalcampus\oppia\model\Activity.java
+* app\src\main\java\org\digitalcampus\oppia\model\ActivitySchedule.java
+* app\src\main\java\org\digitalcampus\oppia\model\Badges.java
+* app\src\main\java\org\digitalcampus\oppia\model\Course.java
+* app\src\main\java\org\digitalcampus\oppia\model\CourseMetaPage.java
+* app\src\main\java\org\digitalcampus\oppia\model\DownloadProgress.java
+* app\src\main\java\org\digitalcampus\oppia\model\Lang.java
+* app\src\main\java\org\digitalcampus\oppia\model\Media.java
+* app\src\main\java\org\digitalcampus\oppia\model\Points.java
+* app\src\main\java\org\digitalcampus\oppia\model\QuizFeedback.java
+* app\src\main\java\org\digitalcampus\oppia\model\SearchResult.java
+* app\src\main\java\org\digitalcampus\oppia\model\Section.java
+* app\src\main\java\org\digitalcampus\oppia\model\Tag.java
+* app\src\main\java\org\digitalcampus\oppia\model\TrackerLog.java
+* app\src\main\java\org\digitalcampus\oppia\model\User.java
+* app\src\main\java\org\digitalcampus\oppia\service\
+* app\src\main\java\org\digitalcampus\oppia\service\TrackerScheduleReceiver.java
+* app\src\main\java\org\digitalcampus\oppia\service\TrackerService.java
+* app\src\main\java\org\digitalcampus\oppia\service\TrackerStartServiceReceiver.java
+* app\src\main\java\org\digitalcampus\oppia\task\
+* app\src\main\java\org\digitalcampus\oppia\task\APIRequestTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\DownloadCourseTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\DownloadMediaTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\InstallDownloadedCoursesTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\LoginTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\MoveStorageLocationTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\Payload.java
+* app\src\main\java\org\digitalcampus\oppia\task\PostInstallTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\RegisterTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\ResetTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\ScanMediaTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\ScheduleUpdateTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\SubmitQuizTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\SubmitTrackerMultipleTask.java
+* app\src\main\java\org\digitalcampus\oppia\task\UpgradeManagerTask.java
+* app\src\main\java\org\digitalcampus\oppia\utils\
+* app\src\main\java\org\digitalcampus\oppia\utils\ConnectionUtils.java
+* app\src\main\java\org\digitalcampus\oppia\utils\CourseScheduleXMLReader.java
+* app\src\main\java\org\digitalcampus\oppia\utils\CourseTrackerXMLReader.java
+* app\src\main\java\org\digitalcampus\oppia\utils\CourseXMLReader.java
+* app\src\main\java\org\digitalcampus\oppia\utils\FileUtils.java
+* app\src\main\java\org\digitalcampus\oppia\utils\HTTPConnectionUtils.java
+* app\src\main\java\org\digitalcampus\oppia\utils\ImageUtils.java
+* app\src\main\java\org\digitalcampus\oppia\utils\MetaDataUtils.java
+* app\src\main\java\org\digitalcampus\oppia\utils\SearchUtils.java
+* app\src\main\java\org\digitalcampus\oppia\utils\StorageUtils.java
+* app\src\main\java\org\digitalcampus\oppia\utils\UIUtils.java
+* app\src\main\java\org\digitalcampus\oppia\utils\UpgradeUtils.java
+* app\src\main\java\org\digitalcampus\oppia\utils\lazylist\
+* app\src\main\java\org\digitalcampus\oppia\utils\lazylist\FileCache.java
+* app\src\main\java\org\digitalcampus\oppia\utils\lazylist\ImageLoader.java
+* app\src\main\java\org\digitalcampus\oppia\utils\lazylist\MemoryCache.java
+* app\src\main\java\org\digitalcampus\oppia\utils\lazylist\Utils.java
+* app\src\main\java\org\digitalcampus\oppia\utils\mediaplayer\
+* app\src\main\java\org\digitalcampus\oppia\utils\mediaplayer\VideoControllerView.java
+* app\src\main\java\org\digitalcampus\oppia\utils\mediaplayer\VideoPlayerActivity.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\
+* app\src\main\java\org\digitalcampus\oppia\widgets\FeedbackWidget.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\PageWidget.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\QuizWidget.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\ResourceWidget.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\WidgetFactory.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\quiz\
+* app\src\main\java\org\digitalcampus\oppia\widgets\quiz\DescriptionWidget.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\quiz\EssayWidget.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\quiz\MatchingWidget.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\quiz\MultiChoiceWidget.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\quiz\MultiSelectWidget.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\quiz\NumericalWidget.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\quiz\QuestionWidget.java
+* app\src\main\java\org\digitalcampus\oppia\widgets\quiz\ShortAnswerWidget.java
+* app\src\main\res\
+* app\src\main\res\anim\
+* app\src\main\res\anim\fade_in.xml
+* app\src\main\res\anim\fade_out.xml
+* app\src\main\res\drawable-hdpi\
+* app\src\main\res\drawable-hdpi\ab_bottom_solid_om.9.png
+* app\src\main\res\drawable-hdpi\ab_solid_om.9.png
+* app\src\main\res\drawable-hdpi\ab_stacked_solid_om.9.png
+* app\src\main\res\drawable-hdpi\ab_texture_tile_om.png
+* app\src\main\res\drawable-hdpi\ab_transparent_om.9.png
+* app\src\main\res\drawable-hdpi\btn_cab_done_default_om.9.png
+* app\src\main\res\drawable-hdpi\btn_cab_done_focused_om.9.png
+* app\src\main\res\drawable-hdpi\btn_cab_done_pressed_om.9.png
+* app\src\main\res\drawable-hdpi\cab_background_bottom_om.9.png
+* app\src\main\res\drawable-hdpi\cab_background_top_om.9.png
+* app\src\main\res\drawable-hdpi\dc_logo.png
+* app\src\main\res\drawable-hdpi\default_icon_activity.png
+* app\src\main\res\drawable-hdpi\default_icon_quiz.png
+* app\src\main\res\drawable-hdpi\ic_action_logout.png
+* app\src\main\res\drawable-hdpi\ic_stat_notification.png
+* app\src\main\res\drawable-hdpi\list_focused_om.9.png
+* app\src\main\res\drawable-hdpi\menu_dropdown_panel_om.9.png
+* app\src\main\res\drawable-hdpi\progress_bg_om.9.png
+* app\src\main\res\drawable-hdpi\progress_primary_om.9.png
+* app\src\main\res\drawable-hdpi\progress_secondary_om.9.png
+* app\src\main\res\drawable-hdpi\quiz_cross.png
+* app\src\main\res\drawable-hdpi\quiz_tick.png
+* app\src\main\res\drawable-hdpi\spinner_ab_default_om.9.png
+* app\src\main\res\drawable-hdpi\spinner_ab_disabled_om.9.png
+* app\src\main\res\drawable-hdpi\spinner_ab_focused_om.9.png
+* app\src\main\res\drawable-hdpi\spinner_ab_pressed_om.9.png
+* app\src\main\res\drawable-hdpi\tab_selected_focused_om.9.png
+* app\src\main\res\drawable-hdpi\tab_selected_om.9.png
+* app\src\main\res\drawable-hdpi\tab_selected_pressed_om.9.png
+* app\src\main\res\drawable-hdpi\tab_unselected_focused_om.9.png
+* app\src\main\res\drawable-hdpi\tab_unselected_om.9.png
+* app\src\main\res\drawable-hdpi\tab_unselected_pressed_om.9.png
+* app\src\main\res\drawable-hdpi\trophy.png
+* app\src\main\res\drawable-mdpi\
+* app\src\main\res\drawable-mdpi\ab_bottom_solid_om.9.png
+* app\src\main\res\drawable-mdpi\ab_solid_om.9.png
+* app\src\main\res\drawable-mdpi\ab_stacked_solid_om.9.png
+* app\src\main\res\drawable-mdpi\ab_texture_tile_om.png
+* app\src\main\res\drawable-mdpi\ab_transparent_om.9.png
+* app\src\main\res\drawable-mdpi\btn_cab_done_default_om.9.png
+* app\src\main\res\drawable-mdpi\btn_cab_done_focused_om.9.png
+* app\src\main\res\drawable-mdpi\btn_cab_done_pressed_om.9.png
+* app\src\main\res\drawable-mdpi\cab_background_bottom_om.9.png
+* app\src\main\res\drawable-mdpi\cab_background_top_om.9.png
+* app\src\main\res\drawable-mdpi\dc_logo.png
+* app\src\main\res\drawable-mdpi\default_icon_activity.png
+* app\src\main\res\drawable-mdpi\default_icon_quiz.png
+* app\src\main\res\drawable-mdpi\default_icon_video.png
+* app\src\main\res\drawable-mdpi\ic_action_logout.png
+* app\src\main\res\drawable-mdpi\ic_menu_start_conversation.png
+* app\src\main\res\drawable-mdpi\ic_stat_notification.png
+* app\src\main\res\drawable-mdpi\list_focused_om.9.png
+* app\src\main\res\drawable-mdpi\menu_dropdown_panel_om.9.png
+* app\src\main\res\drawable-mdpi\progress_bg_om.9.png
+* app\src\main\res\drawable-mdpi\progress_primary_om.9.png
+* app\src\main\res\drawable-mdpi\progress_secondary_om.9.png
+* app\src\main\res\drawable-mdpi\spinner_ab_default_om.9.png
+* app\src\main\res\drawable-mdpi\spinner_ab_disabled_om.9.png
+* app\src\main\res\drawable-mdpi\spinner_ab_focused_om.9.png
+* app\src\main\res\drawable-mdpi\spinner_ab_pressed_om.9.png
+* app\src\main\res\drawable-mdpi\tab_selected_focused_om.9.png
+* app\src\main\res\drawable-mdpi\tab_selected_om.9.png
+* app\src\main\res\drawable-mdpi\tab_selected_pressed_om.9.png
+* app\src\main\res\drawable-mdpi\tab_unselected_focused_om.9.png
+* app\src\main\res\drawable-mdpi\tab_unselected_om.9.png
+* app\src\main\res\drawable-mdpi\tab_unselected_pressed_om.9.png
+* app\src\main\res\drawable-mdpi\trophy.png
+* app\src\main\res\drawable-xhdpi\
+* app\src\main\res\drawable-xhdpi\ab_bottom_solid_om.9.png
+* app\src\main\res\drawable-xhdpi\ab_solid_om.9.png
+* app\src\main\res\drawable-xhdpi\ab_stacked_solid_om.9.png
+* app\src\main\res\drawable-xhdpi\ab_texture_tile_om.png
+* app\src\main\res\drawable-xhdpi\ab_transparent_om.9.png
+* app\src\main\res\drawable-xhdpi\btn_cab_done_default_om.9.png
+* app\src\main\res\drawable-xhdpi\btn_cab_done_focused_om.9.png
+* app\src\main\res\drawable-xhdpi\btn_cab_done_pressed_om.9.png
+* app\src\main\res\drawable-xhdpi\cab_background_bottom_om.9.png
+* app\src\main\res\drawable-xhdpi\cab_background_top_om.9.png
+* app\src\main\res\drawable-xhdpi\dc_logo.png
+* app\src\main\res\drawable-xhdpi\default_icon_activity.png
+* app\src\main\res\drawable-xhdpi\default_icon_quiz.png
+* app\src\main\res\drawable-xhdpi\ic_action_logout.png
+* app\src\main\res\drawable-xhdpi\ic_media_fullscreen_shrink.png
+* app\src\main\res\drawable-xhdpi\ic_media_fullscreen_stretch.png
+* app\src\main\res\drawable-xhdpi\ic_media_pause.png
+* app\src\main\res\drawable-xhdpi\ic_media_play.png
+* app\src\main\res\drawable-xhdpi\ic_stat_notification.png
+* app\src\main\res\drawable-xhdpi\list_focused_om.9.png
+* app\src\main\res\drawable-xhdpi\menu_dropdown_panel_om.9.png
+* app\src\main\res\drawable-xhdpi\progress_bg_om.9.png
+* app\src\main\res\drawable-xhdpi\progress_primary_om.9.png
+* app\src\main\res\drawable-xhdpi\progress_secondary_om.9.png
+* app\src\main\res\drawable-xhdpi\spinner_ab_default_om.9.png
+* app\src\main\res\drawable-xhdpi\spinner_ab_disabled_om.9.png
+* app\src\main\res\drawable-xhdpi\spinner_ab_focused_om.9.png
+* app\src\main\res\drawable-xhdpi\spinner_ab_pressed_om.9.png
+* app\src\main\res\drawable-xhdpi\tab_selected_focused_om.9.png
+* app\src\main\res\drawable-xhdpi\tab_selected_om.9.png
+* app\src\main\res\drawable-xhdpi\tab_selected_pressed_om.9.png
+* app\src\main\res\drawable-xhdpi\tab_unselected_focused_om.9.png
+* app\src\main\res\drawable-xhdpi\tab_unselected_om.9.png
+* app\src\main\res\drawable-xhdpi\tab_unselected_pressed_om.9.png
+* app\src\main\res\drawable-xhdpi\trophy.png
+* app\src\main\res\drawable\
+* app\src\main\res\drawable\ab_background_textured_om.xml
+* app\src\main\res\drawable\activity_background.xml
+* app\src\main\res\drawable\activity_background_completed.xml
+* app\src\main\res\drawable\activity_border.xml
+* app\src\main\res\drawable\activity_border_completed.xml
+* app\src\main\res\drawable\activity_border_selected.xml
+* app\src\main\res\drawable\activity_nav_button.xml
+* app\src\main\res\drawable\background_change_pressed.xml
+* app\src\main\res\drawable\btn_cab_done_om.xml
+* app\src\main\res\drawable\green_background_gradient.xml
+* app\src\main\res\drawable\message_background.xml
+* app\src\main\res\drawable\points_background.xml
+* app\src\main\res\drawable\pressed_background_om.xml
+* app\src\main\res\drawable\progress_bar.xml
+* app\src\main\res\drawable\progress_horizontal_om.xml
+* app\src\main\res\drawable\selectable_background_om.xml
+* app\src\main\res\drawable\spinner_background_ab_om.xml
+* app\src\main\res\drawable\tab_indicator_ab_om.xml
+* app\src\main\res\layout\
+* app\src\main\res\layout\activity_about.xml
+* app\src\main\res\layout\activity_course.xml
+* app\src\main\res\layout\activity_course_index.xml
+* app\src\main\res\layout\activity_course_metapage.xml
+* app\src\main\res\layout\activity_download.xml
+* app\src\main\res\layout\activity_download_media.xml
+* app\src\main\res\layout\activity_help.xml
+* app\src\main\res\layout\activity_main.xml
+* app\src\main\res\layout\activity_monitor.xml
+* app\src\main\res\layout\activity_scorecard.xml
+* app\src\main\res\layout\activity_search.xml
+* app\src\main\res\layout\activity_video_player.xml
+* app\src\main\res\layout\activity_welcome.xml
+* app\src\main\res\layout\course_download_row.xml
+* app\src\main\res\layout\course_list_row.xml
+* app\src\main\res\layout\fragment_about.xml
+* app\src\main\res\layout\fragment_badges.xml
+* app\src\main\res\layout\fragment_badges_list_row.xml
+* app\src\main\res\layout\fragment_login.xml
+* app\src\main\res\layout\fragment_points.xml
+* app\src\main\res\layout\fragment_points_list_row.xml
+* app\src\main\res\layout\fragment_register.xml
+* app\src\main\res\layout\fragment_reset.xml
+* app\src\main\res\layout\fragment_scorecard.xml
+* app\src\main\res\layout\fragment_stats.xml
+* app\src\main\res\layout\fragment_webview.xml
+* app\src\main\res\layout\fragment_welcome.xml
+* app\src\main\res\layout\media_controller.xml
+* app\src\main\res\layout\media_download_row.xml
+* app\src\main\res\layout\points.xml
+* app\src\main\res\layout\schedule_reminder.xml
+* app\src\main\res\layout\schedule_reminder_list_row.xml
+* app\src\main\res\layout\search_results_row.xml
+* app\src\main\res\layout\section_horizonal_item.xml
+* app\src\main\res\layout\section_list_row.xml
+* app\src\main\res\layout\start_up.xml
+* app\src\main\res\layout\tag_row.xml
+* app\src\main\res\layout\user_message.xml
+* app\src\main\res\layout\widget_feedback_results.xml
+* app\src\main\res\layout\widget_quiz.xml
+* app\src\main\res\layout\widget_quiz_essay.xml
+* app\src\main\res\layout\widget_quiz_feedback_row.xml
+* app\src\main\res\layout\widget_quiz_matching.xml
+* app\src\main\res\layout\widget_quiz_multichoice.xml
+* app\src\main\res\layout\widget_quiz_multiselect.xml
+* app\src\main\res\layout\widget_quiz_numerical.xml
+* app\src\main\res\layout\widget_quiz_results.xml
+* app\src\main\res\layout\widget_quiz_shortanswer.xml
+* app\src\main\res\layout\widget_quiz_unavailable.xml
+* app\src\main\res\layout\widget_resource.xml
+* app\src\main\res\menu\
+* app\src\main\res\menu\activity_course.xml
+* app\src\main\res\menu\activity_course_index.xml
+* app\src\main\res\menu\activity_main.xml
+* app\src\main\res\menu\activity_monitor.xml
+* app\src\main\res\menu\activity_register.xml
+* app\src\main\res\menu\activity_welcome.xml
+* app\src\main\res\menu\course_context_menu.xml
+* app\src\main\res\values-es\
+* app\src\main\res\values-es\arrays.xml
+* app\src\main\res\values-es\strings.xml
+* app\src\main\res\values-hi\
+* app\src\main\res\values-hi\strings.xml
+* app\src\main\res\values-v14\
+* app\src\main\res\values-v14\styles_oppia.xml
+* app\src\main\res\values\
+* app\src\main\res\values\arrays.xml
+* app\src\main\res\values\colors_oppia.xml
+* app\src\main\res\values\dimens.xml
+* app\src\main\res\values\items.xml
+* app\src\main\res\values\resources.xml
+* app\src\main\res\values\strings.xml
+* app\src\main\res\values\styles.xml
+* app\src\main\res\values\styles_oppia.xml
+* app\src\main\res\xml\
+* app\src\main\res\xml\prefs.xml
+* build.gradle
+* build.xml
+* gradle\
+* gradle\wrapper\
+* gradle\wrapper\gradle-wrapper.jar
+* gradle\wrapper\gradle-wrapper.properties
+* gradlew
+* gradlew.bat
+* ic_launcher-web.png
+* proguard-project.txt
+* settings.gradle
+
+Replaced Jars with Dependencies:
+--------------------------------
+The importer recognized the following .jar files as third party
+libraries and replaced them with Gradle dependencies instead. This has
+the advantage that more explicit version information is known, and the
+libraries can be updated automatically. However, it is possible that
+the .jar file in your project was of an older version than the
+dependency we picked, which could render the project not compileable.
+You can disable the jar replacement in the import wizard and try again:
+
+joda-time-2.2.jar => joda-time:joda-time:2.2
+
+Potentially Missing Dependency:
+-------------------------------
+When we replaced the following .jar files with a Gradle dependency, we
+inferred the dependency version number from the filename. This
+specific version may not actually be available from the repository.
+If you get a build error stating that the dependency is missing, edit
+the version number to for example "+" to pick up the latest version
+instead. (This may require you to update your code if the library APIs
+have changed.)
+
+joda-time-2.2.jar => version 2.2 in joda-time:joda-time:2.2
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => app\src\main\AndroidManifest.xml
+* assets\ => app\src\main\assets\
+* libs\bugsense-3.6.jar => app\libs\bugsense-3.6.jar
+* libs\commons-io-2.4.jar => app\libs\commons-io-2.4.jar
+* libs\httpclient-4.2.5.jar => app\libs\httpclient-4.2.5.jar
+* libs\mquiz-0.16.jar => app\libs\mquiz-0.16.jar
+* lint.xml => app\lint.xml
+* res\ => app\src\main\res\
+* src\ => app\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion "21.1.1"
+
+    defaultConfig {
+        applicationId "org.digitalcampus.mobile.learning"
+        minSdkVersion 8
+        targetSdkVersion 19
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'joda-time:joda-time:2.2'
+    compile files('libs/bugsense-3.6.jar')
+    compile files('libs/commons-io-2.4.jar')
+    compile files('libs/httpclient-4.2.5.jar')
+    compile files('libs/mquiz-0.16.jar')
+    compile 'com.android.support:support-v4:19.0.0'
+    compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+}
