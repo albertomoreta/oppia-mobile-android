@@ -3,3 +3,9 @@
 .project
 .settings
 /local.properties
+app/build/outputs/apk/app-debug-unaligned.apk
+app/build/outputs/apk/app-debug.apk
+app/build/intermediates/
+app/build/generated/source/buildConfig/debug/org/digitalcampus/mobile/learning/BuildConfig.java
+app/build/generated/source/buildConfig/test/debug/org/digitalcampus/mobile/learning/test/BuildConfig.java
+app/build/generated/source/r/debug/com/actionbarsherlock/R.java
