@@ -32,4 +32,4 @@
         android:layout_toRightOf="@id/badges_date"
         android:layout_centerVertical="true" />
 
-</RelativeLayout><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/layout/fragment_badges_list_row.xml -->
+</RelativeLayout><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/layout/fragment_badges_list_row.xml -->

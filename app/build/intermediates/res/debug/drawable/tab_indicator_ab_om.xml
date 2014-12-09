@@ -35,4 +35,4 @@
     <item android:state_focused="true" android:state_selected="false" android:state_pressed="true" android:drawable="@drawable/tab_unselected_pressed_om" />
     <item android:state_focused="true" android:state_selected="true"  android:state_pressed="true" android:drawable="@drawable/tab_selected_pressed_om" />
 </selector>
-<!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/drawable/tab_indicator_ab_om.xml -->
+<!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/drawable/tab_indicator_ab_om.xml -->

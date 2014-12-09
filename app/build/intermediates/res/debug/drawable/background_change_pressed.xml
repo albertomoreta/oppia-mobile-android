@@ -5,4 +5,4 @@
   <item android:state_focused="true"
         android:drawable="@drawable/green_background_gradient" />
 </selector>
-<!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/drawable/background_change_pressed.xml -->
+<!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/drawable/background_change_pressed.xml -->

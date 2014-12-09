@@ -32,4 +32,4 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/bottom_control_bar" />
 
-</RelativeLayout><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/layout/activity_download_media.xml -->
+</RelativeLayout><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/layout/activity_download_media.xml -->

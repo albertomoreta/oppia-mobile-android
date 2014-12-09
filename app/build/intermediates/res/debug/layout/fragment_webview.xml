@@ -3,4 +3,4 @@
     android:id="@+id/fragment_webview"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/background_light" /><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/layout/fragment_webview.xml -->
+    android:background="@color/background_light" /><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/layout/fragment_webview.xml -->

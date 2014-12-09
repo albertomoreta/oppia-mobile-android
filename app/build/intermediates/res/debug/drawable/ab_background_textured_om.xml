@@ -18,4 +18,4 @@
 
 <bitmap xmlns:android="http://schemas.android.com/apk/res/android"
     android:src="@drawable/ab_texture_tile_om"
-    android:tileMode="repeat" /><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/drawable/ab_background_textured_om.xml -->
+    android:tileMode="repeat" /><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/drawable/ab_background_textured_om.xml -->

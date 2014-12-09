@@ -37,4 +37,4 @@
         android:layout_below="@+id/section_title"
         android:layout_toRightOf="@+id/course_image" />
 
-</RelativeLayout><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/layout/search_results_row.xml -->
+</RelativeLayout><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/layout/search_results_row.xml -->

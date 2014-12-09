@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values-v14/styles_oppia.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values-v14/styles_oppia.xml -->
     <eat-comment/>
     <style name="ActionBar.Solid.Om" parent="@style/Widget.Sherlock.ActionBar.Solid">
         <item name="android:background">@drawable/green_background_gradient</item>
@@ -41,7 +41,7 @@
     <style name="Oppia.Theme.Dark" parent="@style/Oppia.Theme">
         <item name="android:windowBackground">@color/background_dark</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values-v14/values.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values-v14/values.xml -->
     <eat-comment/>
     <style name="Sherlock.__Theme" parent="android:Theme.Holo"/>
     <style name="Sherlock.__Theme.DarkActionBar" parent="android:Theme.Holo.Light.DarkActionBar">
@@ -72,13 +72,13 @@
     <style name="TextAppearance.Sherlock.Widget.PopupMenu" parent="android:TextAppearance.Holo.Widget.PopupMenu"/>
     <style name="TextAppearance.Sherlock.Widget.PopupMenu.Large" parent="android:TextAppearance.Holo.Widget.PopupMenu.Large"/>
     <style name="TextAppearance.Sherlock.Widget.PopupMenu.Small" parent="android:TextAppearance.Holo.Widget.PopupMenu.Small"/>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values-v14/styles_oppia.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values-v14/styles_oppia.xml -->
     <eat-comment/>
     <style name="Theme.Om.Widget" parent="@style/Theme.Sherlock">
         <item name="android:popupMenuStyle">@style/PopupMenu.Om</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Om</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values-v14/values.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values-v14/values.xml -->
     <eat-comment/>
     <style name="Theme.Sherlock.Light.NoActionBar">
         <item name="android:windowActionBar">false</item>

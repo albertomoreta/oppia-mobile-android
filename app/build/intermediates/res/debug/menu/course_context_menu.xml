@@ -12,4 +12,4 @@
         android:title="@string/course_context_delete"
         android:visible="true">
     </item>
-</menu><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/menu/course_context_menu.xml -->
+</menu><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/menu/course_context_menu.xml -->

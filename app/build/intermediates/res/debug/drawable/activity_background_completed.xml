@@ -6,4 +6,4 @@
         android:drawable="@drawable/activity_border_selected" />
   <item android:state_focused="true" android:state_selected="true"
         android:drawable="@drawable/activity_border_selected" />
-</selector><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/drawable/activity_background_completed.xml -->
+</selector><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/drawable/activity_background_completed.xml -->

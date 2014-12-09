@@ -7,4 +7,4 @@
 				android:textSize="20sp" 
 				android:id="@+id/responsetext"
 				android:inputType="numberDecimal"/>
-</LinearLayout><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/layout/widget_quiz_numerical.xml -->
+</LinearLayout><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/layout/widget_quiz_numerical.xml -->

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/arrays.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/arrays.xml -->
     <eat-comment/>
     <string-array name="NoScheduleReminders">
         <item name="1">1</item>
@@ -30,7 +30,7 @@
         <item name="18">18</item>
         <item name="20">20</item>
     </string-array>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference|color" name="background"/>
     <attr format="reference|color" name="backgroundSplit"/>
@@ -50,7 +50,7 @@
     <color name="abs__bright_foreground_disabled_holo_light">#ffb2b2b2</color>
     <color name="abs__bright_foreground_holo_dark">@color/abs__background_holo_light</color>
     <color name="abs__bright_foreground_holo_light">@color/abs__background_holo_dark</color>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/colors_oppia.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/colors_oppia.xml -->
     <eat-comment/>
     <color name="activity_icon_background">#ffffff</color>
     <color name="background_dark">#333333</color>
@@ -76,7 +76,7 @@
     <declare-styleable name="SherlockSpinner"><attr name="android:prompt"/><attr name="android:dropDownSelector"/><attr name="android:popupBackground"/><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/><attr name="android:dropDownWidth"/><attr name="android:popupPromptView"/><attr name="android:gravity"/></declare-styleable>
     <declare-styleable name="SherlockTheme"><attr format="reference" name="actionBarTabStyle"/><attr format="reference" name="actionBarTabBarStyle"/><attr format="reference" name="actionBarTabTextStyle"/><attr format="reference" name="actionOverflowButtonStyle"/><attr format="reference" name="actionBarStyle"/><attr format="reference" name="actionBarSplitStyle"/><attr format="reference" name="actionBarWidgetTheme"/><attr format="dimension" name="actionBarSize"><enum name="wrap_content" value="0"/></attr><attr format="reference" name="actionBarDivider"/><attr format="reference" name="actionBarItemBackground"/><attr format="reference" name="actionMenuTextAppearance"/><attr format="color|reference" name="actionMenuTextColor"/><attr format="reference" name="actionModeStyle"/><attr format="reference" name="actionModeCloseButtonStyle"/><attr format="reference" name="actionModeBackground"/><attr format="reference" name="actionModeSplitBackground"/><attr format="reference" name="actionModeCloseDrawable"/><attr format="reference" name="actionModeShareDrawable"/><attr format="reference" name="actionModePopupWindowStyle"/><attr format="reference" name="buttonStyleSmall"/><attr format="reference" name="selectableItemBackground"/><attr format="reference" name="windowContentOverlay"/><attr format="reference" name="textAppearanceLargePopupMenu"/><attr format="reference" name="textAppearanceSmallPopupMenu"/><attr format="reference" name="textAppearanceSmall"/><attr format="color" name="textColorPrimary"/><attr format="color" name="textColorPrimaryDisableOnly"/><attr format="color" name="textColorPrimaryInverse"/><attr format="reference" name="spinnerItemStyle"/><attr format="reference" name="spinnerDropDownItemStyle"/><attr format="reference" name="searchAutoCompleteTextView"/><attr format="reference" name="searchDropdownBackground"/><attr format="reference" name="searchViewCloseIcon"/><attr format="reference" name="searchViewGoIcon"/><attr format="reference" name="searchViewSearchIcon"/><attr format="reference" name="searchViewVoiceIcon"/><attr format="reference" name="searchViewEditQuery"/><attr format="reference" name="searchViewEditQueryBackground"/><attr format="reference" name="searchViewTextField"/><attr format="reference" name="searchViewTextFieldRight"/><attr format="reference|color" name="textColorSearchUrl"/><attr format="dimension" name="searchResultListItemHeight"/><attr format="reference" name="textAppearanceSearchResultTitle"/><attr format="reference" name="textAppearanceSearchResultSubtitle"/><attr format="dimension" name="listPreferredItemHeightSmall"/><attr format="dimension" name="listPreferredItemPaddingLeft"/><attr format="dimension" name="listPreferredItemPaddingRight"/><attr format="reference" name="textAppearanceListItemSmall"/><attr format="dimension" name="windowMinWidthMajor"/><attr format="dimension" name="windowMinWidthMinor"/><attr format="reference" name="dividerVertical"/><attr format="reference" name="actionDropDownStyle"/><attr format="reference" name="actionButtonStyle"/><attr format="reference" name="homeAsUpIndicator"/><attr format="reference" name="dropDownListViewStyle"/><attr format="reference" name="popupMenuStyle"/><attr format="dimension" name="dropdownListPreferredItemHeight"/><attr format="reference" name="actionSpinnerItemStyle"/><attr format="boolean" name="windowNoTitle"/><attr format="boolean" name="windowActionBar"/><attr format="boolean" name="windowActionBarOverlay"/><attr format="boolean" name="windowActionModeOverlay"/><attr format="boolean" name="windowSplitActionBar"/><attr format="reference" name="listPopupWindowStyle"/><attr format="reference" name="activityChooserViewStyle"/><attr format="reference" name="activatedBackgroundIndicator"/><attr format="reference" name="dropDownHintAppearance"/></declare-styleable>
     <declare-styleable name="SherlockView"><attr name="android:focusable"/></declare-styleable>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="abs__action_bar_default_height">48dip</dimen>
     <dimen name="abs__action_bar_icon_vertical_padding">8dip</dimen>
@@ -91,16 +91,16 @@
     <dimen name="abs__dropdownitem_text_padding_right">8dip</dimen>
     <dimen name="abs__search_view_preferred_width">320dip</dimen>
     <dimen name="abs__search_view_text_min_width">160dip</dimen>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="padding_medium">8dp</dimen>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/items.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/items.xml -->
     <eat-comment/>
     <item name="TAG_ACTIVITY_DIGEST" type="id"/>
     <item name="TAG_COURSE" type="id"/>
     <item name="TAG_PLACEHOLDER_ID" type="id"/>
     <item name="TAG_SECTION_ID" type="id"/>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
     <eat-comment/>
     <item name="abs__action_menu_divider" type="id"/>
     <item name="abs__action_menu_presenter" type="id"/>
@@ -109,11 +109,11 @@
     <item name="abs__progress_horizontal" type="id"/>
     <item name="abs__up" type="id"/>
     <integer name="abs__max_action_buttons">2</integer>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="about_logged_in">Logged in as: %1$s</string>
     <string name="about_not_logged_in">Not logged in</string>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
     <eat-comment/>
     <string name="abs__action_bar_home_description">Navigate home</string>
     <string name="abs__action_bar_up_description">Navigate up</string>
@@ -128,7 +128,7 @@
     <string name="abs__searchview_description_voice">Voice search</string>
     <string name="abs__shareactionprovider_share_with">Share with</string>
     <string name="abs__shareactionprovider_share_with_application">Share with <ns1:g example="Bluetooth" id="application_name">%s</ns1:g></string>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="alert_pretest">Pre-test</string>
     <string name="alert_pretest_summary">This course contains a pre-test which you need to complete before you can view the full course.</string>
@@ -238,22 +238,22 @@
     <string name="prefNoScheduleReminders">Number of suggested activities</string>
     <string name="prefNoScheduleReminders_summary">How many suggested activities to display</string>
     <string name="prefServer">Server</string>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/resources.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/resources.xml -->
     <eat-comment/>
     <string name="prefServerDefault">https://demo.oppia-mobile.org/</string>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="prefServerTimeoutConnection">Connection timeout</string>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/resources.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/resources.xml -->
     <eat-comment/>
     <string name="prefServerTimeoutConnectionDefault">60000</string>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="prefServerTimeoutResponse">Response timeout</string>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/resources.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/resources.xml -->
     <eat-comment/>
     <string name="prefServerTimeoutResponseDefault">60000</string>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="prefShowCourseDescription">Show course description</string>
     <string name="prefShowProgressBar">Show progress bar</string>
@@ -347,7 +347,7 @@
     <string name="widget_quiz_unavailable_section">You must complete all the previous activities in this section before this quiz becomes available to you.</string>
     <string name="widget_resource_open_file">Open \'%1$s\'</string>
     <string name="yes">Yes</string>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/styles_oppia.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/styles_oppia.xml -->
     <eat-comment/>
     <style name="ActionBar.Solid.Om" parent="@style/Widget.Sherlock.ActionBar.Solid">
         <item name="background">@drawable/ab_solid_om</item>
@@ -366,7 +366,7 @@
     <style name="ActionButton.CloseMode.Om" parent="@style/Widget.Sherlock.ActionButton.CloseMode">
         <item name="android:background">@drawable/btn_cab_done_om</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="ButtonText">
         <item name="android:textSize">18sp</item>
@@ -378,7 +378,7 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/text_dark</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/styles_oppia.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/styles_oppia.xml -->
     <eat-comment/>
     <style name="DropDownListView.Om" parent="@style/Widget.Sherlock.ListView.DropDown">
         <item name="android:listSelector">@drawable/selectable_background_om</item>
@@ -395,7 +395,7 @@
         <item name="android:textColor">@color/text_dark</item>
         <item name="android:textAllCaps">true</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="FieldLabelText">
         <item name="android:textSize">18sp</item>
@@ -438,7 +438,7 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/text_dark</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/styles_oppia.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/styles_oppia.xml -->
     <eat-comment/>
     <style name="OM.Light.TabText.Style" parent="@style/Widget.Sherlock.ActionBar.TabText">
         <item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
@@ -468,7 +468,7 @@
     <style name="Oppia.Theme.Dark" parent="@style/Oppia.Theme">
         <item name="android:windowBackground">@color/background_dark</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="PageHeadingText">
         <item name="android:textSize">18sp</item>
@@ -480,7 +480,7 @@
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/text_light</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/styles_oppia.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/styles_oppia.xml -->
     <eat-comment/>
     <style name="PopupMenu.Om" parent="@style/Widget.Sherlock.ListPopupWindow">
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_om</item>
@@ -489,7 +489,7 @@
     <style name="ProgressBar.Om" parent="@style/Widget.Sherlock.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_horizontal_om</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Sherlock.__TextAppearance.Small" parent="Widget">
         <item name="android:textSize">14sp</item>
@@ -555,7 +555,7 @@
         <item name="android:completionThreshold">2</item>
         <item name="android:dropDownWidth">wrap_content</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="SmallTextDark">
         <item name="android:textSize">12sp</item>
@@ -577,7 +577,7 @@
         <item name="android:textStyle">italic</item>
         <item name="android:textColor">@color/text_light</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
     <eat-comment/>
     <style name="TextAppearance.Sherlock" parent="@android:style/TextAppearance"/>
     <style name="TextAppearance.Sherlock.Light.SearchResult" parent="TextAppearance.Sherlock.SearchResult"/>
@@ -665,13 +665,13 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">normal</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values/styles_oppia.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values/styles_oppia.xml -->
     <eat-comment/>
     <style name="Theme.Om.Widget" parent="@style/Theme.Sherlock">
         <item name="popupMenuStyle">@style/PopupMenu.Om</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Om</item>
     </style>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/build/intermediates/exploded-aar/com.actionbarsherlock/actionbarsherlock/4.4.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Theme.Sherlock" parent="Sherlock.__Theme">
 

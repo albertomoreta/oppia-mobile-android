@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-android/app/src/main/res/values-hi/strings.xml -->
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values-hi/strings.xml -->
     <eat-comment/>
     <string name="alert_pretest">पूर्व परिक्षण </string>
     <string name="alert_pretest_summary">This course contains a pre-test which you need to complete before you can view the full course.</string>
