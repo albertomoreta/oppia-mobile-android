@@ -132,7 +132,7 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 		} catch (JSONException e) {
             // error in the json so just get the list again
         }
-        tasksController = (DownloadTasksController) savedInstanceState.getSerializable("tasksProgress");
+        tasksController = (DownloadTasksController) savedInstanceState.getParcelable("tasksProgress");
 	}
 
 	@Override
@@ -145,7 +145,7 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 
             if (tasksController != null){
                 tasksController.setOnDownloadCompleteListener(null);
-                savedInstanceState.putSerializable("tasksProgress", tasksController);
+                savedInstanceState.putParcelable("tasksProgress", tasksController);
             }
         }
 

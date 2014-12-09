@@ -3,6 +3,8 @@ package org.digitalcampus.oppia.task;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import org.digitalcampus.mobile.learning.R;
@@ -14,7 +16,7 @@ import org.digitalcampus.oppia.model.DownloadProgress;
 
 import java.io.Serializable;
 
-public class DownloadTasksController implements Serializable, InstallCourseListener, UpdateScheduleListener {
+public class DownloadTasksController implements Parcelable, InstallCourseListener, UpdateScheduleListener {
 
     private Context ctx;
     private DownloadCompleteListener onDownloadCompleteListener;
@@ -167,4 +169,31 @@ public class DownloadTasksController implements Serializable, InstallCourseListe
         updateDialogMessage();
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeValue(currentProgress);
+        parcel.writeByte((byte) (taskInProgress ? 0x01 : 0x00));
+        //parcel.writeValue(progressDialog);
+    }
+
+    public DownloadTasksController(Parcel in) {
+        currentProgress = (DownloadProgress) in.readValue(DownloadProgress.class.getClassLoader());
+        taskInProgress = in.readByte() != 0x00;
+        //progressDialog = (ProgressDialog) in.readValue(ProgressDialog.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public DownloadTasksController createFromParcel(Parcel in) {
+            return new DownloadTasksController(in);
+        }
+
+        public DownloadTasksController[] newArray(int size) {
+            return new DownloadTasksController[size];
+        }
+    };
 }
