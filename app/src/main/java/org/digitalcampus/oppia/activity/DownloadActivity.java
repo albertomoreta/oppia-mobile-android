@@ -29,7 +29,7 @@ import org.digitalcampus.oppia.application.DbHelper;
 import org.digitalcampus.oppia.application.MobileLearning;
 import org.digitalcampus.oppia.listener.APIRequestListener;
 import org.digitalcampus.oppia.listener.DownloadCompleteListener;
-import org.digitalcampus.oppia.listener.DownloadCourseOnClickListener;
+import org.digitalcampus.oppia.listener.ListInnerBtnOnClickListener;
 import org.digitalcampus.oppia.model.Lang;
 import org.digitalcampus.oppia.model.Course;
 import org.digitalcampus.oppia.model.Tag;
@@ -119,6 +119,13 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
         }
 		super.onPause();
 	}
+
+    @Override
+    public void onDestroy(){
+        tasksController.setOnDownloadCompleteListener(null);
+        tasksController.setCtx(null);
+        super.onDestroy();
+    }
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -267,11 +274,11 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 	}
 
     @Override
-    public void onComplete() {
+    public void onComplete(Payload p) {
         refreshCourseList();
     }
 
-    private class CourseListListener implements DownloadCourseOnClickListener {
+    private class CourseListListener implements ListInnerBtnOnClickListener {
         @Override
         public void onClick(int position) {
             Log.d("course-download", "Clicked " + position);
@@ -282,12 +289,14 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
                 Payload p = new Payload(data);
 
                 if(!courseSelected.isInstalled() || courseSelected.isToUpdate()){
+                    tasksController.setTaskInProgress(true);
                     tasksController.showDialog();
                     DownloadCourseTask downloadTask = new DownloadCourseTask(DownloadActivity.this);
                     downloadTask.setInstallerListener(tasksController);
                     downloadTask.execute(p);
                 }
                 else if(courseSelected.isToUpdateSchedule()){
+                    tasksController.setTaskInProgress(true);
                     tasksController.showDialog();
                     ScheduleUpdateTask updateTask = new ScheduleUpdateTask(DownloadActivity.this);
                     updateTask.setUpdateListener(tasksController);
