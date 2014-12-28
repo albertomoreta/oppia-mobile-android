@@ -13,3 +13,4 @@ build/intermediates/
 .gradle/
 .idea/
 app/app.iml
+app/build/
