@@ -48,6 +48,7 @@
         <activity
             android:name="org.digitalcampus.oppia.activity.CourseActivity"
             android:label="@string/title_activity_course"
+            android:theme="@style/Oppia.Theme.DarkLandscapeDropdown"
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <activity

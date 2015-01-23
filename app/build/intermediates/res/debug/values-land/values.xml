@@ -8,4 +8,13 @@
     <dimen name="abs__action_bar_subtitle_text_size">12dp</dimen>
     <dimen name="abs__action_bar_subtitle_top_margin">-2dp</dimen>
     <dimen name="abs__action_bar_title_text_size">16dp</dimen>
+    <!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/values-land/styles_oppia.xml -->
+    <eat-comment/>
+    <style name="OM.Light.TabText.Style.Dark" parent="@style/Widget.Sherlock.ActionBar.TabText">
+        <item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
 </resources>
