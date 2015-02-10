@@ -1,5 +1,5 @@
 /* 
- * This file is part of OppiaMobile - http://oppia-mobile.org/
+ * This file is part of OppiaMobile - https://digital-campus.org/
  * 
  * OppiaMobile is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,9 @@ import org.digitalcampus.oppia.application.Tracker;
 import org.digitalcampus.oppia.model.Activity;
 import org.digitalcampus.oppia.model.Course;
 import org.digitalcampus.oppia.model.QuizFeedback;
+import org.digitalcampus.oppia.utils.storage.FileUtils;
 import org.digitalcampus.oppia.utils.MetaDataUtils;
+import org.digitalcampus.oppia.utils.mediaplayer.VideoPlayerActivity;
 import org.digitalcampus.oppia.widgets.quiz.DescriptionWidget;
 import org.digitalcampus.oppia.widgets.quiz.MatchingWidget;
 import org.digitalcampus.oppia.widgets.quiz.MultiChoiceWidget;
@@ -66,6 +68,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -225,9 +228,20 @@ public class QuizWidget extends WidgetFactory {
 			ImageView iv = (ImageView) getView().findViewById(R.id.question_image_image);
 			iv.setImageBitmap(myBitmap);
 			iv.setTag(file);
-			OnImageClickListener oicl = new OnImageClickListener(super.getActivity(), "image/*");
-			iv.setOnClickListener(oicl);
-			questionImage.setVisibility(View.VISIBLE);
+			if (q.getProp("media") == null){
+				OnImageClickListener oicl = new OnImageClickListener(super.getActivity(), "image/*");
+				iv.setOnClickListener(oicl);
+				TextView tv = (TextView) getView().findViewById(R.id.question_image_caption);
+				tv.setText(R.string.widget_quiz_image_caption);
+				questionImage.setVisibility(View.VISIBLE);
+			} else {
+				TextView tv = (TextView) getView().findViewById(R.id.question_image_caption);
+				tv.setText(R.string.widget_quiz_media_caption);
+				OnMediaClickListener omcl = new OnMediaClickListener(q.getProp("media"));
+				iv.setOnClickListener(omcl);
+				questionImage.setVisibility(View.VISIBLE);
+			}
+			
 		}
 
 		if (q instanceof MultiChoice) {
@@ -375,7 +389,6 @@ public class QuizWidget extends WidgetFactory {
 
 		// log the activity as complete
 		isOnResultsPage = true;
-		this.saveTracker();
 
 		// save results ready to send back to the quiz server
 		String data = quiz.getResultObject().toString();
@@ -471,11 +484,13 @@ public class QuizWidget extends WidgetFactory {
 	@Override
 	protected boolean getActivityCompleted() {
 		int passThreshold;
+		Log.d(TAG, "Threshold:" + quiz.getPassThreshold() );
 		if (quiz.getPassThreshold() != 0){
 			passThreshold = quiz.getPassThreshold();
 		} else {
 			passThreshold = Quiz.QUIZ_DEFAULT_PASS_THRESHOLD;
 		}
+		Log.d(TAG, "Percent:" + this.getPercent() );
 		if (isOnResultsPage && this.getPercent() >= passThreshold) {
 			return true;
 		} else {
@@ -599,6 +614,40 @@ public class QuizWidget extends WidgetFactory {
 				Toast.makeText(this.ctx,this.ctx.getString(R.string.error_resource_app_not_found,file.getName()), Toast.LENGTH_LONG).show();
 			}
 			return;
+		}
+		
+	}
+	
+	private class OnMediaClickListener implements OnClickListener{
+
+		private String mediaFileName;
+		
+		public OnMediaClickListener(String mediaFileName){
+			this.mediaFileName = mediaFileName;
+		}
+
+		public void onClick(View v) {
+			// check video file exists
+			boolean exists = FileUtils.mediaFileExists(QuizWidget.super.getActivity(), mediaFileName);
+			if (!exists) {
+				Toast.makeText(QuizWidget.super.getActivity(), QuizWidget.super.getActivity().getString(R.string.error_media_not_found, mediaFileName),
+						Toast.LENGTH_LONG).show();
+			}
+
+			String mimeType = FileUtils.getMimeType(FileUtils.getMediaPath(QuizWidget.super.getActivity()) + mediaFileName);
+
+			if (!FileUtils.supportedMediafileType(mimeType)) {
+				Toast.makeText(QuizWidget.super.getActivity(), QuizWidget.super.getActivity().getString(R.string.error_media_unsupported, mediaFileName),
+						Toast.LENGTH_LONG).show();
+			}
+			
+			Intent intent = new Intent(QuizWidget.super.getActivity(), VideoPlayerActivity.class);
+			Bundle tb = new Bundle();
+			tb.putSerializable(VideoPlayerActivity.MEDIA_TAG, mediaFileName);
+			tb.putSerializable(Activity.TAG, activity);
+			tb.putSerializable(Course.TAG, course);
+			intent.putExtras(tb);
+			startActivity(intent);
 		}
 		
 	}

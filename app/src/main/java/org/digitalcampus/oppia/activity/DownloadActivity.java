@@ -1,5 +1,5 @@
 /* 
- * This file is part of OppiaMobile - http://oppia-mobile.org/
+ * This file is part of OppiaMobile - https://digital-campus.org/
  * 
  * OppiaMobile is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -145,16 +145,16 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 	@Override
 	protected void onSaveInstanceState(Bundle savedInstanceState) {
 		super.onSaveInstanceState(savedInstanceState);
-	    if (json != null){
-            //Only save the instance if the request has been proccessed already
-            savedInstanceState.putString("json", json.toString());
-            savedInstanceState.putSerializable("courses", courses);
+            if (json != null){
+                //Only save the instance if the request has been proccessed already
+                savedInstanceState.putString("json", json.toString());
+                savedInstanceState.putSerializable("courses", courses);
 
-            if (tasksController != null){
-                tasksController.setOnDownloadCompleteListener(null);
-                savedInstanceState.putParcelable("tasksProgress", tasksController);
+                if (tasksController != null){
+                    tasksController.setOnDownloadCompleteListener(null);
+                    savedInstanceState.putParcelable("tasksProgress", tasksController);
+                }
             }
-        }
 
 	}
 	
@@ -236,11 +236,8 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 
 		} catch (Exception e) {
 			db.close();
-			if(!MobileLearning.DEVELOPER_MODE){
-				BugSenseHandler.sendException(e);
-			} else {
-				e.printStackTrace();
-			}
+			BugSenseHandler.sendException(e);
+			e.printStackTrace();
 			UIUtils.showAlert(this, R.string.loading, R.string.error_processing_response);
 		}
 		DatabaseManager.getInstance().closeDatabase();
@@ -255,11 +252,8 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 				json = new JSONObject(response.getResultResponse());
 				refreshCourseList();
 			} catch (JSONException e) {
-				if(!MobileLearning.DEVELOPER_MODE){
-					BugSenseHandler.sendException(e);
-				} else {
-					e.printStackTrace();
-				}
+				BugSenseHandler.sendException(e);
+				e.printStackTrace();
 				UIUtils.showAlert(this, R.string.loading, R.string.error_connection);
 				
 			}
@@ -273,13 +267,13 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 		}
 	}
 
-    @Override
+    //@Override
     public void onComplete(Payload p) {
         refreshCourseList();
     }
 
     private class CourseListListener implements ListInnerBtnOnClickListener {
-        @Override
+        //@Override
         public void onClick(int position) {
             Log.d("course-download", "Clicked " + position);
             Course courseSelected = courses.get(position);

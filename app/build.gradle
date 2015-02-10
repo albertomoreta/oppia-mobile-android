@@ -31,4 +31,5 @@ dependencies {
     compile files('libs/mquiz-0.16.jar')
     compile 'com.android.support:support-v4:19.0.0'
     compile 'com.actionbarsherlock:actionbarsherlock:4.4.0@aar'
+    compile "com.androidplot:androidplot-core:0.6.1"
 }
