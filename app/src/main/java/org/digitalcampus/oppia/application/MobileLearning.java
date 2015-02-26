@@ -60,7 +60,7 @@ public class MobileLearning extends Application {
 	public static final String SERVER_COURSES_NAME = "courses";
 	
 	// general other settings
-	public static final String BUGSENSE_API_KEY = "84d61fd0";
+	public static final String BUGSENSE_API_KEY = "26c9c657";
 	public static final int DOWNLOAD_COURSES_DISPLAY = 1; //this no of courses must be displayed for the 'download more courses' option to disappear
 	public static final int PASSWORD_MIN_LENGTH = 6;
 	public static final int PAGE_READ_TIME = 3;
@@ -111,17 +111,23 @@ public class MobileLearning extends Application {
         Context ctx = getApplicationContext();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         String storageOption = prefs.getString(PrefsActivity.PREF_STORAGE_OPTION, "");
+        StorageAccessStrategy strategy;
+
         if ( (storageOption == null) || (storageOption.trim().equals("")) ){
             //If there is not storage option set, set the default option
             storageOption = DEFAULT_STORAGE_OPTION;
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString(PrefsActivity.PREF_STORAGE_OPTION, storageOption);
             editor.commit();
+
+            strategy = StorageAccessStrategyFactory.createStrategy(storageOption);
+            strategy.updateStorageLocation(ctx);
+        }
+        else{
+            strategy = StorageAccessStrategyFactory.createStrategy(storageOption);
         }
 
         Log.d(TAG, "Storage option: " + storageOption);
-        StorageAccessStrategy strategy = StorageAccessStrategyFactory.createStrategy(storageOption);
-        strategy.updateStorageLocation(ctx);
         FileUtils.setStorageStrategy(strategy);
 
     }

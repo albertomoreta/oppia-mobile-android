@@ -10,9 +10,4 @@ public final class BuildConfig {
   public static final String FLAVOR = "";
   public static final int VERSION_CODE = 49;
   public static final String VERSION_NAME = "";
-  /**
-   * @deprecated Use {@link #APPLICATION_ID}
-   */
-  @Deprecated
-  public static final String PACKAGE_NAME = "org.digitalcampus.mobile.learning";
 }
