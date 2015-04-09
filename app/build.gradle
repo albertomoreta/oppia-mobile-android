@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 18
-    buildToolsVersion "21.1.1"
+    buildToolsVersion "21.1.2"
 
     defaultConfig {
         applicationId "org.digitalcampus.mobile.learning"
@@ -31,4 +31,6 @@ dependencies {
     compile files('libs/mquiz-0.16.jar')
     compile 'com.android.support:support-v4:19.0.0'
     compile "com.androidplot:androidplot-core:0.6.1"
+
+    compile 'org.lucasr.twowayview:twowayview:0.1.4'
 }
