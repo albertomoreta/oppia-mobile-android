@@ -31,6 +31,6 @@ dependencies {
     compile files('libs/mquiz-0.16.jar')
     compile 'com.android.support:support-v4:19.0.0'
     compile "com.androidplot:androidplot-core:0.6.1"
-
+    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'org.lucasr.twowayview:twowayview:0.1.4'
 }
