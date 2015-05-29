@@ -36,5 +36,4 @@
         android:id="@+id/menu_logout"
         android:icon="@drawable/ic_action_logout"
         android:title="@string/menu_logout"/>
-
 </menu><!-- From: file:/C:/Users/Joseba/Documents/Oppia/oppia-mobile-androidstudio/app/src/main/res/menu/activity_main.xml -->
