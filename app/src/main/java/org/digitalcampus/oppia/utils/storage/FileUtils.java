@@ -71,7 +71,7 @@ public class FileUtils {
             return false;
         }
 
-        BUFFER_SIZE_CONFIG = 21;
+        //BUFFER_SIZE_CONFIG = 21;
 
 		String[] dirs = { FileUtils.getCoursesPath(ctx), FileUtils.getMediaPath(ctx), FileUtils.getDownloadPath(ctx) };
 
@@ -89,6 +89,8 @@ public class FileUtils {
 				}
 			}
 		}
+		//After creating the necessary folders, we create the .nomedia file
+		createNoMediaFile(ctx);
 		
 		return true;
 	}
@@ -173,13 +175,11 @@ public class FileUtils {
 					// this counter is a hack to prevent getting stuck when
 					// installing corrupted or not fully downloaded course
 					// packages
-					// it will prevent any course being installed with files
-					// larger than around 500kb
 					int counter = 0;
 					while ((count = zis.read(data, 0, BUFFER_SIZE)) != -1) {
 						dest.write(data, 0, count);
 						counter++;
-						if (counter > 5000) {
+						if (counter > 11000) {
 							dest.flush();
 							dest.close();
 							return false;
@@ -265,6 +265,21 @@ public class FileUtils {
         return 0;
     }
 
+	public static void createNoMediaFile(Context ctx){
+		String storagePath = storageStrategy.getStorageLocation(ctx);
+		File dir = new File(storagePath);
+		File nomedia = new File(dir, ".nomedia");
+		if (!nomedia.exists()){
+			boolean fileCreated = false;
+			try {
+				fileCreated = nomedia.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Log.d(TAG, (fileCreated ? "File .nomedia created in " : "Failed creating .nomedia file in ") + dir.getAbsolutePath());
+		}
+	}
+
     public static long getAvailableStorageSize(Context ctx){
         String path = getStorageLocationRoot(ctx);
         StatFs stat = new StatFs(path);
@@ -273,7 +288,7 @@ public class FileUtils {
             bytesAvailable = stat.getBlockSizeLong() * stat.getAvailableBlocksLong();
         }
         else{
-            bytesAvailable = stat.getBlockSize() * stat.getAvailableBlocks();
+            bytesAvailable = (long)stat.getBlockSize() * (long)stat.getAvailableBlocks();
         }
         return bytesAvailable;
     }

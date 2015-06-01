@@ -25,7 +25,6 @@ import android.util.Log;
 
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.activity.PrefsActivity;
-import org.digitalcampus.oppia.listener.InstallCourseListener;
 import org.digitalcampus.oppia.listener.MoveStorageListener;
 import org.digitalcampus.oppia.model.DownloadProgress;
 import org.digitalcampus.oppia.utils.storage.FileUtils;
@@ -72,19 +71,28 @@ public class ChangeStorageOptionTask extends AsyncTask<Payload, DownloadProgress
             long currentSize = FileUtils.getTotalStorageUsed(ctx);
 
             newStrategy.updateStorageLocation(ctx, location);
+            Log.d(TAG,"newStrategy.updateStorageLocation");
             String destPath = newStrategy.getStorageLocation(ctx);
+            Log.d(TAG,destPath);
             FileUtils.setStorageStrategy(newStrategy);
+            Log.d(TAG,"FileUtils.setStorageStrategy");
 
             long availableDestSize;
             try{
                 File destDir = new File(destPath);
+                Log.d(TAG,"destDir created: " + destDir.getAbsolutePath());
                 if (destDir.exists()){
-                    FileUtils.cleanDir(destDir);
+                	Log.d(TAG,"cleaning courses dir" );
+                    File coursesDir = new File(FileUtils.getCoursesPath(ctx));
+                    FileUtils.cleanDir(coursesDir);
+                    Log.d(TAG,"courses dir cleaned" );
                 }
                 else{
                     boolean makeDirs = destDir.mkdirs();
                     if (!makeDirs){ throw new Exception("No file created!"); }
                 }
+                FileUtils.createNoMediaFile(ctx);
+
                 availableDestSize = FileUtils.getAvailableStorageSize(ctx);
                 Log.d(TAG, "Needed (source):" + currentSize + " - Available(destination): " + availableDestSize);
             }
@@ -122,44 +130,31 @@ public class ChangeStorageOptionTask extends AsyncTask<Payload, DownloadProgress
         return payload;
     }
 
+    private boolean copyDirectory(String sourcePath, String destPath){
+
+        try {
+            File source = new File(sourcePath);
+            File dest = new File(destPath);
+            org.apache.commons.io.FileUtils.copyDirectoryToDirectory(source, dest);
+            FileUtils.deleteDir(source);
+            Log.d(TAG,"Copying " + sourcePath + " completed");
+        } catch (IOException e) {
+            Log.d(TAG,"Copying " + sourcePath + " to " + destPath + " failed");
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     private boolean moveStorageDirs(String sourcePath, String destinationPath){
 
-        File destination = new File(destinationPath);
         String downloadPath = sourcePath + File.separator + FileUtils.APP_DOWNLOAD_DIR_NAME;
         String mediaPath = sourcePath + File.separator + FileUtils.APP_MEDIA_DIR_NAME;
         String coursePath = sourcePath + File.separator + FileUtils.APP_COURSES_DIR_NAME;
 
-        try {
-            File downloadSource = new File(downloadPath);
-            org.apache.commons.io.FileUtils.moveDirectoryToDirectory(downloadSource,destination,true);
-            Log.d(TAG,"Copying " + downloadPath + " completed");
-        } catch (IOException e) {
-            Log.d(TAG,"Copying " + downloadPath + " to " + destination + " failed");
-            e.printStackTrace();
-            return false;
-        }
-
-        try {
-            File mediaSource = new File(mediaPath);
-            org.apache.commons.io.FileUtils.moveDirectoryToDirectory(mediaSource,destination,true);
-            Log.d(TAG,"Copying " + mediaPath + " completed");
-        } catch (IOException e) {
-            Log.d(TAG,"Copying " + mediaPath + " to " + destination + " failed");
-            e.printStackTrace();
-            return false;
-        }
-
-        try {
-            File courseSource = new File(coursePath);
-            org.apache.commons.io.FileUtils.moveDirectoryToDirectory(courseSource,destination,true);
-            Log.d(TAG,"Copying " + coursePath + " completed");
-        } catch (IOException e) {
-            Log.d(TAG,"Copying " + coursePath + " to " + destination + " failed");
-            e.printStackTrace();
-            return false;
-        }
-
-        return true;
+        return (copyDirectory(downloadPath, destinationPath) &&
+                copyDirectory(mediaPath, destinationPath) &&
+                copyDirectory(coursePath, destinationPath));
     }
 
     private void resetStrategy(StorageAccessStrategy previousStrategy, String previousLocation){

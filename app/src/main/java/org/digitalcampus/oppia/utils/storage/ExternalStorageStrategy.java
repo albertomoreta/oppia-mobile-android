@@ -27,6 +27,8 @@ import android.util.Log;
 import org.digitalcampus.oppia.activity.PrefsActivity;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ExternalStorageStrategy implements StorageAccessStrategy{
@@ -34,17 +36,29 @@ public class ExternalStorageStrategy implements StorageAccessStrategy{
     public static final String TAG = FileUtils.class.getSimpleName();
     private static String internalPath;
 
-    @Override
+    //@Override
     public void updateStorageLocation(Context ctx){
+
+        String location = null;
         //If no mount argument passed, we set the default external mount
-        File[] dirs = ContextCompat.getExternalFilesDirs(ctx, null);
-        if (dirs.length > 0){
-            String location = dirs[dirs.length-1].toString();
+        DeviceFile external = StorageUtils.getExternalMemoryDrive();
+        if (external != null && external.canWrite()){
+            location = external.getPath();
+        }
+        else{
+            DeviceFile internal = StorageUtils.getInternalMemoryDrive();
+            if (internal != null && internal.canWrite()){
+                location = internal.getPath();
+
+            }
+        }
+        if (location != null){
+            location += getInternalBasePath(ctx);
             updateLocationPreference(ctx, location);
         }
     }
 
-    @Override
+    //@Override
     public void updateStorageLocation(Context ctx, String mount) {
 
         if ((mount == null ) || mount.equals("")){
@@ -58,7 +72,7 @@ public class ExternalStorageStrategy implements StorageAccessStrategy{
         updateLocationPreference(ctx, location);
     }
 
-    @Override
+    //@Override
     public String getStorageLocation(Context ctx){
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
@@ -73,7 +87,7 @@ public class ExternalStorageStrategy implements StorageAccessStrategy{
         return location;
     }
 
-    @Override
+    //@Override
     public boolean isStorageAvailable(Context ctx) {
         String cardStatus = Environment.getExternalStorageState();
         if (cardStatus.equals(Environment.MEDIA_REMOVED)
@@ -89,7 +103,7 @@ public class ExternalStorageStrategy implements StorageAccessStrategy{
         }
     }
 
-    @Override
+    //@Override
     public String getStorageType() {
         return PrefsActivity.STORAGE_OPTION_EXTERNAL;
     }
