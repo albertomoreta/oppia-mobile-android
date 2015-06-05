@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="mquiz-0.16">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/mquiz-0.16.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

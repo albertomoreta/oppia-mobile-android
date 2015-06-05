@@ -1,5 +1,11 @@
 apply plugin: 'com.android.application'
 
+repositories {
+    maven {
+        url "https://mint.splunk.com/gradle/"
+    }
+}
+
 android {
     compileSdkVersion 18
     buildToolsVersion "21.1.2"
@@ -32,4 +38,5 @@ dependencies {
     compile 'com.android.support:support-v4:19.0.0'
     compile "com.androidplot:androidplot-core:0.6.1"
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile "com.splunk.mint:mint:4.2"
 }
