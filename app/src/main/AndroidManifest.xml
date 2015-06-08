@@ -90,6 +90,11 @@
             android:icon="@drawable/dc_logo"
             android:label="@string/service_tracker" >
         </service>
+
+        <service
+            android:name="org.digitalcampus.oppia.service.DownloadService"
+            android:icon="@drawable/dc_logo"
+            android:exported="false"/>
         
 		<receiver android:name="org.digitalcampus.oppia.service.TrackerScheduleReceiver" >
             <intent-filter>                
