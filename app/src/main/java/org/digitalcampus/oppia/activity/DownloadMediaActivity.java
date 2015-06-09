@@ -62,6 +62,8 @@ public class DownloadMediaActivity extends AppActivity implements DownloadMediaL
     private SharedPreferences prefs;
     private ArrayList<Media> missingMedia;
 	private DownloadMediaListAdapter dmla;
+
+    private DownloadTasksController tasksController;
     private DownloadBroadcastReceiver receiver;
 	
 	@SuppressWarnings("unchecked")
