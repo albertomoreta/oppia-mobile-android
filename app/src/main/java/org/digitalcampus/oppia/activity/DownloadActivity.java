@@ -23,12 +23,12 @@ import java.util.Iterator;
 import java.util.concurrent.Callable;
 
 import org.digitalcampus.mobile.learning.R;
+import org.digitalcampus.oppia.adapter.CourseIntallViewAdapter;
 import org.digitalcampus.oppia.adapter.DownloadCourseListAdapter;
 import org.digitalcampus.oppia.application.DatabaseManager;
 import org.digitalcampus.oppia.application.DbHelper;
 import org.digitalcampus.oppia.application.MobileLearning;
 import org.digitalcampus.oppia.listener.APIRequestListener;
-import org.digitalcampus.oppia.listener.DownloadCompleteListener;
 import org.digitalcampus.oppia.listener.ListInnerBtnOnClickListener;
 import org.digitalcampus.oppia.model.Lang;
 import org.digitalcampus.oppia.model.Course;
@@ -44,6 +44,7 @@ import org.json.JSONObject;
 
 import com.splunk.mint.Mint;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -52,7 +53,7 @@ import android.util.Log;
 import android.widget.ListView;
 
 
-public class DownloadActivity extends AppActivity implements APIRequestListener, DownloadCompleteListener {
+public class DownloadActivity extends AppActivity implements APIRequestListener {
 	
 	public static final String TAG = DownloadActivity.class.getSimpleName();
 	
@@ -61,7 +62,7 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 	private JSONObject json;
 	private DownloadCourseListAdapter dla;
 	private String url;
-	private ArrayList<Course> courses;
+	private ArrayList<CourseIntallViewAdapter> courses;
 	private boolean showUpdatesOnly = false;
 
 	private DownloadTasksController tasksController;
@@ -70,8 +71,11 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_download);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+        }
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         
 		Bundle bundle = this.getIntent().getExtras(); 
@@ -83,7 +87,7 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
         	this.showUpdatesOnly = true;
         }
 
-        courses = new ArrayList<Course>();
+        courses = new ArrayList<CourseIntallViewAdapter>();
         dla = new DownloadCourseListAdapter(this, courses);
         dla.setOnClickListener(new CourseListListener());
         ListView listView = (ListView) findViewById(R.id.tag_list);
@@ -105,11 +109,6 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 	        refreshCourseList();
 		}
 
-        if (tasksController == null){
-            tasksController = new DownloadTasksController(this, prefs);
-        }
-        tasksController.setOnDownloadCompleteListener(this);
-        tasksController.setCtx(this);
 	}
 
 	@Override
@@ -123,8 +122,6 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 
     @Override
     public void onDestroy(){
-        tasksController.setOnDownloadCompleteListener(null);
-        tasksController.setCtx(null);
         super.onDestroy();
     }
 	
@@ -135,12 +132,11 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 
 	    try {
 			this.json = new JSONObject(savedInstanceState.getString("json"));
-            ArrayList<Course> savedCourses = (ArrayList<Course>) savedInstanceState.getSerializable("courses");
+            ArrayList<CourseIntallViewAdapter> savedCourses = (ArrayList<CourseIntallViewAdapter>) savedInstanceState.getSerializable("courses");
             this.courses.addAll(savedCourses);
 		} catch (Exception e) {
             // error in the json so just get the list again
         }
-        tasksController = (DownloadTasksController) savedInstanceState.getParcelable("tasksProgress");
 	}
 
 	@Override
@@ -150,13 +146,7 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
                 //Only save the instance if the request has been proccessed already
                 savedInstanceState.putString("json", json.toString());
                 savedInstanceState.putSerializable("courses", courses);
-
-                if (tasksController != null){
-                    tasksController.setOnDownloadCompleteListener(null);
-                    savedInstanceState.putParcelable("tasksProgress", tasksController);
-                }
             }
-
 	}
 	
 	private void getCourseList() {
@@ -164,7 +154,7 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 		progressDialog = new ProgressDialog(this);
 		progressDialog.setTitle(R.string.loading);
 		progressDialog.setMessage(getString(R.string.loading));
-		progressDialog.setCancelable(true);
+		progressDialog.setCancelable(false);
 		progressDialog.show();
 
 		APIRequestTask task = new APIRequestTask(this);
@@ -183,7 +173,7 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 			
 			for (int i = 0; i < (json.getJSONArray(MobileLearning.SERVER_COURSES_NAME).length()); i++) {
 				JSONObject json_obj = (JSONObject) json.getJSONArray(MobileLearning.SERVER_COURSES_NAME).get(i);
-				Course dc = new Course(prefs.getString(PrefsActivity.PREF_STORAGE_LOCATION, ""));
+                CourseIntallViewAdapter dc = new CourseIntallViewAdapter(prefs.getString(PrefsActivity.PREF_STORAGE_LOCATION, ""));
 				
 				ArrayList<Lang> titles = new ArrayList<Lang>();
 				JSONObject jsonTitles = json_obj.getJSONObject("title");
@@ -232,7 +222,6 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 					this.courses.add(dc);
 				} 
 			}
-
             dla.notifyDataSetChanged();
 
 		} catch (Exception e) {
@@ -245,7 +234,6 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 	}
 	
 	public void apiRequestComplete(Payload response) {
-		// close dialog and process results
 		progressDialog.dismiss();
 	
 		if(response.isResult()){
@@ -256,28 +244,23 @@ public class DownloadActivity extends AppActivity implements APIRequestListener,
 				Mint.logException(e);
 				e.printStackTrace();
 				UIUtils.showAlert(this, R.string.loading, R.string.error_connection);
-				
 			}
 		} else {
 			UIUtils.showAlert(this, R.string.error, R.string.error_connection_required, new Callable<Boolean>() {
 				public Boolean call() throws Exception {
-					DownloadActivity.this.finish();
-					return true;
+                DownloadActivity.this.finish();
+                return true;
 				}
 			});
 		}
 	}
-
-    //@Override
-    public void onComplete(Payload p) {
-        refreshCourseList();
-    }
 
     private class CourseListListener implements ListInnerBtnOnClickListener {
         //@Override
         public void onClick(int position) {
             Log.d("course-download", "Clicked " + position);
             Course courseSelected = courses.get(position);
+
             if (!tasksController.isTaskInProgress()){
                 ArrayList<Object> data = new ArrayList<Object>();
                 data.add(courseSelected);

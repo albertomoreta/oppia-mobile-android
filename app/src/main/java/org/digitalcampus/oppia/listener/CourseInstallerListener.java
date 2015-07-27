@@ -20,6 +20,6 @@ package org.digitalcampus.oppia.listener;
 public interface CourseInstallerListener {
     void onDownloadProgress(String fileUrl, int progress);
     void onInstallProgress(String fileUrl, int progress);
-    void onInstallailed(String fileUrl, String message);
+    void onInstallFailed(String fileUrl, String message);
     void onInstallComplete(String fileUrl);
 }
