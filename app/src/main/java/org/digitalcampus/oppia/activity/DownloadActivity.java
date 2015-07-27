@@ -29,10 +29,16 @@ import org.digitalcampus.oppia.application.DatabaseManager;
 import org.digitalcampus.oppia.application.DbHelper;
 import org.digitalcampus.oppia.application.MobileLearning;
 import org.digitalcampus.oppia.listener.APIRequestListener;
+import org.digitalcampus.oppia.listener.CourseInstallerListener;
 import org.digitalcampus.oppia.listener.ListInnerBtnOnClickListener;
 import org.digitalcampus.oppia.model.Lang;
 import org.digitalcampus.oppia.model.Course;
+import org.digitalcampus.oppia.model.Media;
 import org.digitalcampus.oppia.model.Tag;
+import org.digitalcampus.oppia.service.CourseIntallerService;
+import org.digitalcampus.oppia.service.DownloadBroadcastReceiver;
+import org.digitalcampus.oppia.service.DownloadService;
+import org.digitalcampus.oppia.service.InstallerBroadcastReceiver;
 import org.digitalcampus.oppia.task.APIRequestTask;
 import org.digitalcampus.oppia.task.DownloadCourseTask;
 import org.digitalcampus.oppia.task.DownloadTasksController;
@@ -46,14 +52,17 @@ import com.splunk.mint.Mint;
 
 import android.app.ActionBar;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
-public class DownloadActivity extends AppActivity implements APIRequestListener {
+public class DownloadActivity extends AppActivity implements APIRequestListener, CourseInstallerListener {
 	
 	public static final String TAG = DownloadActivity.class.getSimpleName();
 	
@@ -65,7 +74,7 @@ public class DownloadActivity extends AppActivity implements APIRequestListener 
 	private ArrayList<CourseIntallViewAdapter> courses;
 	private boolean showUpdatesOnly = false;
 
-	private DownloadTasksController tasksController;
+    private InstallerBroadcastReceiver receiver;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -108,6 +117,11 @@ public class DownloadActivity extends AppActivity implements APIRequestListener 
             //The JSON is downloaded but course list is not
 	        refreshCourseList();
 		}
+        receiver = new InstallerBroadcastReceiver();
+        receiver.setCourseInstallerListener(this);
+        IntentFilter broadcastFilter = new IntentFilter(CourseIntallerService.BROADCAST_ACTION);
+        broadcastFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        registerReceiver(receiver, broadcastFilter);
 
 	}
 
@@ -118,6 +132,7 @@ public class DownloadActivity extends AppActivity implements APIRequestListener 
             progressDialog.dismiss();
         }
 		super.onPause();
+        unregisterReceiver(receiver);
 	}
 
     @Override
@@ -255,12 +270,104 @@ public class DownloadActivity extends AppActivity implements APIRequestListener 
 		}
 	}
 
+    @Override
+    public void onDownloadProgress(String fileUrl, int progress) {
+        CourseIntallViewAdapter course = findCourse(fileUrl);
+        if (course != null){
+            course.setDownloading(true);
+            course.setInstalling(false);
+            course.setProgress(progress);
+            dla.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onInstallProgress(String fileUrl, int progress) {
+        CourseIntallViewAdapter course = findCourse(fileUrl);
+        if (course != null){
+            course.setDownloading(false);
+            course.setInstalling(true);
+            course.setProgress(progress);
+            dla.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onInstallFailed(String fileUrl, String message) {
+        CourseIntallViewAdapter course = findCourse(fileUrl);
+        if (course != null){
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            course.setInstalling(false);
+            course.setDownloading(false);
+            dla.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onInstallComplete(String fileUrl) {
+        CourseIntallViewAdapter course = findCourse(fileUrl);
+        if (course != null){
+            Toast.makeText(this, this.getString(R.string.install_course_complete, course.getShortname()), Toast.LENGTH_LONG).show();
+            course.setInstalled(true);
+            course.setInstalling(false);
+            course.setDownloading(false);
+            dla.notifyDataSetChanged();
+        }
+    }
+
+    private CourseIntallViewAdapter findCourse(String fileUrl){
+        if ( courses.size()>0){
+            for (CourseIntallViewAdapter course : courses){
+                if (course.getDownloadUrl().equals(fileUrl)){
+                    return course;
+                }
+            }
+        }
+        return null;
+    }
+
     private class CourseListListener implements ListInnerBtnOnClickListener {
         //@Override
         public void onClick(int position) {
             Log.d("course-download", "Clicked " + position);
-            Course courseSelected = courses.get(position);
+            CourseIntallViewAdapter courseSelected = courses.get(position);
 
+            //When installing, don't do anything on click
+            if (courseSelected.isInstalling()) return;
+
+            if (!courseSelected.isDownloading()){
+                if(!courseSelected.isInstalled() || courseSelected.isToUpdate()){
+                    Intent mServiceIntent = new Intent(DownloadActivity.this, CourseIntallerService.class);
+                    mServiceIntent.putExtra(CourseIntallerService.SERVICE_ACTION, CourseIntallerService.ACTION_DOWNLOAD);
+                    mServiceIntent.putExtra(CourseIntallerService.SERVICE_URL, courseSelected.getDownloadUrl());
+                    mServiceIntent.putExtra(CourseIntallerService.SERVICE_VERSIONID, courseSelected.getVersionId());
+                    mServiceIntent.putExtra(CourseIntallerService.SERVICE_SHORTNAME, courseSelected.getShortname());
+                    DownloadActivity.this.startService(mServiceIntent);
+
+                    courseSelected.setDownloading(true);
+                    courseSelected.setInstalling(false);
+                    courseSelected.setProgress(0);
+                    dla.notifyDataSetChanged();
+                }
+                else if(courseSelected.isToUpdateSchedule()){
+
+                }
+            }
+            else{
+                //If it's already downloading, send an intent to cancel the task
+                Intent mServiceIntent = new Intent(DownloadActivity.this, CourseIntallerService.class);
+                mServiceIntent.putExtra(CourseIntallerService.SERVICE_ACTION, CourseIntallerService.ACTION_CANCEL);
+                mServiceIntent.putExtra(CourseIntallerService.SERVICE_URL, courseSelected.getDownloadUrl());
+                DownloadActivity.this.startService(mServiceIntent);
+
+                courseSelected.setDownloading(false);
+                courseSelected.setInstalling(false);
+                courseSelected.setProgress(0);
+
+                dla.notifyDataSetChanged();
+            }
+
+            /*
             if (!tasksController.isTaskInProgress()){
                 ArrayList<Object> data = new ArrayList<Object>();
                 data.add(courseSelected);
@@ -280,7 +387,7 @@ public class DownloadActivity extends AppActivity implements APIRequestListener 
                     updateTask.setUpdateListener(tasksController);
                     updateTask.execute(p);
                 }
-            }
+            }*/
         }
     }
 
