@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.splunk.mint.Mint;
 
@@ -169,6 +170,7 @@ public class CourseIntallerService extends IntentService {
         File zipFile = new File(FileUtils.getDownloadPath(this), filename);
         tempdir.mkdirs();
 
+        long startTime = System.currentTimeMillis();
         sendBroadcast(fileUrl, ACTION_INSTALL, ""+1);
         boolean unzipResult = FileUtils.unzipFiles(FileUtils.getDownloadPath(this), filename, tempdir.getAbsolutePath());
 
@@ -268,6 +270,9 @@ public class CourseIntallerService extends IntentService {
 
         // delete zip file from download dir
         deleteFile(zipFile);
+
+        long estimatedTime = System.currentTimeMillis() - startTime;
+        Log.d(TAG, "MeasureTime - " + c.getShortname() + ": " + estimatedTime + "ms");
 
         Log.d(TAG, fileUrl + " succesfully downloaded");
         removeDownloading(fileUrl);
