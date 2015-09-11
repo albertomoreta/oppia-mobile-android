@@ -20,7 +20,7 @@ package org.digitalcampus.oppia.application;
 
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.activity.PrefsActivity;
-import org.digitalcampus.oppia.task.SubmitQuizTask;
+import org.digitalcampus.oppia.task.SubmitQuizAttemptsTask;
 import org.digitalcampus.oppia.task.SubmitTrackerMultipleTask;
 import org.digitalcampus.oppia.utils.storage.FileUtils;
 import org.digitalcampus.oppia.utils.storage.StorageAccessStrategy;
@@ -58,6 +58,7 @@ public class MobileLearning extends Application {
 	public static final String SERVER_POINTS_PATH = OPPIAMOBILE_API + "points/";
 	public static final String SERVER_AWARDS_PATH = OPPIAMOBILE_API + "awards/";
 	public static final String SERVER_COURSES_NAME = "courses";
+	public static final String COURSE_ACTIVITY_PATH = SERVER_COURSES_PATH + "%s/activity/";
 	
 	// general other settings
 	public static final String MINT_API_KEY = "26c9c657";
@@ -86,15 +87,14 @@ public class MobileLearning extends Application {
 	// for tracking if SubmitTrackerMultipleTask is already running
 	public SubmitTrackerMultipleTask omSubmitTrackerMultipleTask = null;
 	
-	// for tracking if SubmitQuizTask is already running
-	public SubmitQuizTask omSubmitQuizTask = null;
+	// for tracking if SubmitQuizAttemptsTask is already running
+	public SubmitQuizAttemptsTask omSubmitQuizAttemptsTask = null;
 	
 	
 	public static boolean isLoggedIn(Context ctx) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
 		String username = prefs.getString(PrefsActivity.PREF_USER_NAME, "");
-		String apiKey = prefs.getString(PrefsActivity.PREF_API_KEY, "");
-		if ((username == null) || (apiKey == null) || username.trim().equals("") || apiKey.trim().equals("")) {
+		if ((username == null) || username.trim().equals("")) {
 			return false;
 		} else {
 			return true;

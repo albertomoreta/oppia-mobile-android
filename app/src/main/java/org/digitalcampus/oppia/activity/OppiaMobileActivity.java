@@ -52,21 +52,25 @@ import org.digitalcampus.oppia.application.MobileLearning;
 import org.digitalcampus.oppia.listener.CourseInstallerListener;
 import org.digitalcampus.oppia.listener.DeleteCourseListener;
 import org.digitalcampus.oppia.listener.ScanMediaListener;
+import org.digitalcampus.oppia.listener.UpdateActivityListener;
 import org.digitalcampus.oppia.model.Activity;
 import org.digitalcampus.oppia.model.Course;
+import org.digitalcampus.oppia.model.DownloadProgress;
 import org.digitalcampus.oppia.model.Lang;
 import org.digitalcampus.oppia.service.CourseIntallerService;
 import org.digitalcampus.oppia.service.InstallerBroadcastReceiver;
 import org.digitalcampus.oppia.task.DeleteCourseTask;
 import org.digitalcampus.oppia.task.Payload;
 import org.digitalcampus.oppia.task.ScanMediaTask;
+import org.digitalcampus.oppia.task.UpdateCourseActivityTask;
 import org.digitalcampus.oppia.utils.UIUtils;
+import org.digitalcampus.oppia.utils.ui.CourseContextMenuCustom;
 
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.concurrent.Callable;
 
-public class OppiaMobileActivity extends AppActivity implements OnSharedPreferenceChangeListener, ScanMediaListener, DeleteCourseListener, CourseInstallerListener {
+public class OppiaMobileActivity extends AppActivity implements OnSharedPreferenceChangeListener, ScanMediaListener, DeleteCourseListener, CourseInstallerListener, UpdateActivityListener, CourseContextMenuCustom.OnContextMenuListener {
 
 	public static final String TAG = OppiaMobileActivity.class.getSimpleName();
 	private SharedPreferences prefs;
@@ -109,7 +113,10 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
         courseListAdapter = new CourseListAdapter(this, courses);
         courseList = (ListView) findViewById(R.id.course_list);
         courseList.setAdapter(courseListAdapter);
-        registerForContextMenu(courseList);
+
+        CourseContextMenuCustom courseMenu = new CourseContextMenuCustom(this);
+        courseMenu.registerForContextMenu(courseList, this);
+        //registerForContextMenu(courseList);
 
         courseList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -233,7 +240,7 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
-		Log.d(TAG,"selected:" + item.getItemId());
+		Log.d(TAG, "selected:" + item.getItemId());
 		int itemId = item.getItemId();
 		if (itemId == R.id.menu_about) {
 			startActivity(new Intent(this, AboutActivity.class));
@@ -296,9 +303,6 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
 				// wipe user prefs
 				Editor editor = prefs.edit();
 				editor.putString(PrefsActivity.PREF_USER_NAME, "");
-				editor.putString(PrefsActivity.PREF_API_KEY, "");
-				editor.putInt(PrefsActivity.PREF_BADGES, 0);
-				editor.putInt(PrefsActivity.PREF_POINTS, 0);
 				editor.commit();
 
 				// restart the app
@@ -333,9 +337,28 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
 		} else if (itemId == R.id.course_context_reset) {
 			confirmCourseReset();
 			return true;
+		} else if (itemId == R.id.course_context_update_activity){
+			confirmCourseUpdateActivity();
+			return true;
 		}
 		return true;
 	}
+
+    @Override
+    public void onContextMenuItemSelected(int position, int itemId) {
+        tempCourse = courses.get(position);
+        if (itemId == R.id.course_context_delete) {
+            if (prefs.getBoolean(PrefsActivity.PREF_DELETE_COURSE_ENABLED, true)){
+                confirmCourseDelete();
+            } else {
+                Toast.makeText(this, this.getString(R.string.warning_delete_disabled), Toast.LENGTH_LONG).show();
+            }
+        } else if (itemId == R.id.course_context_reset) {
+            confirmCourseReset();
+        } else if (itemId == R.id.course_context_update_activity){
+            confirmCourseUpdateActivity();
+        }
+    }
 
 	private void confirmCourseDelete() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -372,20 +395,34 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
 		builder.setTitle(R.string.course_context_reset);
 		builder.setMessage(R.string.course_context_reset_confirm);
 		builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				DbHelper db = new DbHelper(OppiaMobileActivity.this);
-				long userId = db.getUserId(prefs.getString(PrefsActivity.PREF_USER_NAME, ""));
-				db.resetCourse(tempCourse.getCourseId(),userId);
-				DatabaseManager.getInstance().closeDatabase();
-				displayCourses(userId);
-			}
-		});
+            public void onClick(DialogInterface dialog, int which) {
+                DbHelper db = new DbHelper(OppiaMobileActivity.this);
+                db.resetCourse(tempCourse.getCourseId(), OppiaMobileActivity.this.userId);
+                DatabaseManager.getInstance().closeDatabase();
+                displayCourses(userId);
+            }
+        });
 		builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				tempCourse = null;
-			}
-		});
+            public void onClick(DialogInterface dialog, int which) {
+                tempCourse = null;
+            }
+        });
 		builder.show();
+	}
+	
+	private void confirmCourseUpdateActivity(){
+		UpdateCourseActivityTask task = new UpdateCourseActivityTask(OppiaMobileActivity.this, this.userId);
+	     ArrayList<Object> payloadData = new ArrayList<Object>();
+	     payloadData.add(tempCourse);
+	     Payload p = new Payload(payloadData);
+	     task.setUpdateActivityListener(OppiaMobileActivity.this);
+	     task.execute(p);
+	
+	     progressDialog = new ProgressDialog(OppiaMobileActivity.this);
+	     progressDialog.setMessage("Updating activity...");
+	     progressDialog.setCancelable(false);
+	     progressDialog.setCanceledOnTouchOutside(false);
+	     progressDialog.show();
 	}
 
     private void animateTopMessage(){
@@ -420,15 +457,15 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
 		if(key.equalsIgnoreCase(PrefsActivity.PREF_SHOW_SCHEDULE_REMINDERS) || key.equalsIgnoreCase(PrefsActivity.PREF_NO_SCHEDULE_REMINDERS)){
 			displayCourses(userId);
 		}
-		
-		if(key.equalsIgnoreCase(PrefsActivity.PREF_POINTS)
-				|| key.equalsIgnoreCase(PrefsActivity.PREF_BADGES)){
-			supportInvalidateOptionsMenu();
-		}
 
 		if(key.equalsIgnoreCase(PrefsActivity.PREF_DOWNLOAD_VIA_CELLULAR_ENABLED)){
 			boolean newPref = sharedPreferences.getBoolean(PrefsActivity.PREF_DOWNLOAD_VIA_CELLULAR_ENABLED, false);
 			Log.d(TAG, "PREF_DOWNLOAD_VIA_CELLULAR_ENABLED" + newPref);
+		}
+		
+		// update the points/badges by invalidating the menu
+		if(key.equalsIgnoreCase(PrefsActivity.PREF_TRIGGER_POINTS_REFRESH)){
+			supportInvalidateOptionsMenu();
 		}
 	}
 
@@ -476,7 +513,7 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
 		}
 	}
 
-    @Override
+    //@Override
     public void onCourseDeletionComplete(Payload response) {
         if (response.isResult()){
             Editor e = prefs.edit();
@@ -491,7 +528,7 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
 
 
     /* CourseInstallerListener implementation */
-    @Override
+    // @Override
     public void onInstallComplete(String fileUrl) {
         Toast.makeText(this, this.getString(R.string.install_complete), Toast.LENGTH_LONG).show();
         displayCourses(userId);
@@ -499,4 +536,19 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
     public void onDownloadProgress(String fileUrl, int progress) {}
     public void onInstallProgress(String fileUrl, int progress) {}
     public void onInstallFailed(String fileUrl, String message) {}
+
+	public void updateActivityComplete(Payload response) {
+        if (progressDialog != null){
+            progressDialog.dismiss();
+        }
+        displayCourses(userId);
+		
+	}
+
+	public void updateActivityProgressUpdate(DownloadProgress dp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }

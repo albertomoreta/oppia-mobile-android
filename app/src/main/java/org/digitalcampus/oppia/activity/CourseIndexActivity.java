@@ -31,9 +31,9 @@ import org.digitalcampus.oppia.model.CourseMetaPage;
 import org.digitalcampus.oppia.model.Section;
 import org.digitalcampus.oppia.service.TrackerService;
 import org.digitalcampus.oppia.task.ParseCourseXMLTask;
-import org.digitalcampus.oppia.utils.xmlreaders.CourseXMLReader;
 import org.digitalcampus.oppia.utils.ImageUtils;
 import org.digitalcampus.oppia.utils.UIUtils;
+import org.digitalcampus.oppia.utils.xmlreaders.CourseXMLReader;
 
 import android.animation.ValueAnimator;
 import android.app.AlertDialog;
@@ -43,7 +43,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -91,7 +90,7 @@ public class CourseIndexActivity extends AppActivity implements OnSharedPreferen
                 boolean baselineCompleted = isBaselineCompleted();
                 if (baselineCompleted) {
                     course.setMetaPages(cxr.getMetaPages());
-                    sections = cxr.getSections(course.getCourseId());
+                    sections = cxr.getSections();
                     for (Section section : sections) {
                         for (int i = 0; i < section.getActivities().size(); i++) {
                             Activity act = section.getActivities().get(i);
@@ -110,7 +109,7 @@ public class CourseIndexActivity extends AppActivity implements OnSharedPreferen
                     initializeCourseIndex(false);
                 }
                 else{
-                    sections = cxr.getSections(course.getCourseId());
+                    sections = cxr.getSections();
                     initializeCourseIndex(false);
                     showBaselineMessage();
                 }
@@ -237,7 +236,7 @@ public class CourseIndexActivity extends AppActivity implements OnSharedPreferen
 	}
 
 	private boolean isBaselineCompleted() {
-		ArrayList<Activity> baselineActs = cxr.getBaselineActivities(course.getCourseId());
+		ArrayList<Activity> baselineActs = cxr.getBaselineActivities();
 		// TODO how to handle if more than one baseline activity
 		for (Activity a : baselineActs) {
 			if (!a.isAttempted()) {
@@ -320,17 +319,17 @@ public class CourseIndexActivity extends AppActivity implements OnSharedPreferen
     }
 
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-		if (key.equalsIgnoreCase(PrefsActivity.PREF_POINTS)
-				|| key.equalsIgnoreCase(PrefsActivity.PREF_BADGES)) {
+		// update the points/badges by invalidating the menu
+		if(key.equalsIgnoreCase(PrefsActivity.PREF_TRIGGER_POINTS_REFRESH)){
 			supportInvalidateOptionsMenu();
 		}
 	}
 
-    @Override
+    //@Override
     public void onParseComplete(CourseXMLReader parsed) {
         cxr = parsed;
         course.setMetaPages(cxr.getMetaPages());
-        sections = cxr.getSections(course.getCourseId());
+        sections = cxr.getSections();
 
         boolean baselineCompleted = isBaselineCompleted();
         if (!baselineCompleted){
@@ -340,6 +339,6 @@ public class CourseIndexActivity extends AppActivity implements OnSharedPreferen
         invalidateOptionsMenu();
     }
 
-    @Override
+    //@Override
     public void onParseError() { showErrorMessage(); }
 }
