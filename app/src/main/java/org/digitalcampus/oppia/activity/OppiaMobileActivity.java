@@ -49,6 +49,7 @@ import org.digitalcampus.oppia.adapter.CourseListAdapter;
 import org.digitalcampus.oppia.application.DatabaseManager;
 import org.digitalcampus.oppia.application.DbHelper;
 import org.digitalcampus.oppia.application.MobileLearning;
+import org.digitalcampus.oppia.fragments.PasswordDialogFragment;
 import org.digitalcampus.oppia.listener.CourseInstallerListener;
 import org.digitalcampus.oppia.listener.DeleteCourseListener;
 import org.digitalcampus.oppia.listener.ScanMediaListener;
@@ -77,10 +78,13 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
 	private ArrayList<Course> courses;
 	private Course tempCourse;
 	private long userId = 0;
+    private int initialCourseListPadding = 0;
 
     private TextView messageText;
     private Button messageButton;
     private View messageContainer;
+
+    LinearLayout llNone;
 
     private CourseListAdapter courseListAdapter;
     private ListView courseList;
@@ -130,6 +134,8 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
             }
         });
 
+        llNone = (LinearLayout) this.findViewById(R.id.no_courses);
+        initialCourseListPadding = courseList.getPaddingTop();
 	}
 
 	@Override
@@ -169,20 +175,9 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
 		
 		LinearLayout llLoading = (LinearLayout) this.findViewById(R.id.loading_courses);
 		llLoading.setVisibility(View.GONE);
-		LinearLayout llNone = (LinearLayout) this.findViewById(R.id.no_courses);
 		
 		if (courses.size() < MobileLearning.DOWNLOAD_COURSES_DISPLAY){
-			llNone.setVisibility(View.VISIBLE);
-			Button manageBtn = (Button) this.findViewById(R.id.manage_courses_btn);
-            if (courses.size() > 0){
-                TextView tv = (TextView) this.findViewById(R.id.manage_courses_text);
-                tv.setText(R.string.more_courses);
-            }
-			manageBtn.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-					startActivity(new Intent(OppiaMobileActivity.this, TagSelectActivity.class));
-				}
-			});
+			displayDownloadSection();
 		} else {
 			TextView tv = (TextView) this.findViewById(R.id.manage_courses_text);
 			tv.setText(R.string.no_courses);
@@ -229,43 +224,82 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
 	public boolean onOptionsItemSelected(MenuItem item) {
 		// Handle item selection
 		Log.d(TAG, "Menu item selected: " + item.getTitle());
-		int itemId = item.getItemId();
-		if (itemId == R.id.menu_about) {
-			startActivity(new Intent(this, AboutActivity.class));
-			return true;
-		} else if (itemId == R.id.menu_download) {
-			startActivity(new Intent(this, TagSelectActivity.class));
-			return true;
-		} else if (itemId == R.id.menu_settings) {
-			Intent i = new Intent(this, PrefsActivity.class);
-			Bundle tb = new Bundle();
-			ArrayList<Lang> langs = new ArrayList<Lang>();
-			for(Course m: courses){
-				langs.addAll(m.getLangs());
-			}
-			tb.putSerializable("langs", langs);
-			i.putExtras(tb);
-			startActivity(i);
-			return true;
-		} else if (itemId == R.id.menu_language) {
-			createLanguageDialog();
-			return true;
-		} else if (itemId == R.id.menu_monitor) {
-			startActivity(new Intent(this, MonitorActivity.class));
-			return true;
-		} else if (itemId == R.id.menu_scorecard) {
-			startActivity(new Intent(this, ScorecardActivity.class));
-			return true;
-		} else if (itemId == R.id.menu_search) {
-			startActivity(new Intent(this, SearchActivity.class));
-			return true;
-		} else if (itemId == R.id.menu_logout) {
-			logout();
-			return true;
-		}
-		return true;
+
+        int groupID = item.getGroupId();
+        final int itemId = item.getItemId();
+
+        if (groupID == R.id.menu_admin_options){
+            PasswordDialogFragment passDialog = new PasswordDialogFragment();
+            passDialog.setListener(new PasswordDialogFragment.PasswordDialogListener() {
+                @Override
+                public void onPasswordSuccess() {
+                    if (itemId == R.id.menu_download) {
+                        startActivity(new Intent(OppiaMobileActivity.this, TagSelectActivity.class));
+                    } else if (itemId == R.id.menu_settings) {
+                        startPrefsActivity();
+                    }
+                }
+            });
+            passDialog.show(getFragmentManager(), TAG);
+            return true;
+        }
+        else{
+            if (itemId == R.id.menu_about) {
+                startActivity(new Intent(this, AboutActivity.class));
+                return true;
+            } else if (itemId == R.id.menu_language) {
+                createLanguageDialog();
+                return true;
+            } else if (itemId == R.id.menu_monitor) {
+                startActivity(new Intent(this, MonitorActivity.class));
+                return true;
+            } else if (itemId == R.id.menu_scorecard) {
+                startActivity(new Intent(this, ScorecardActivity.class));
+                return true;
+            } else if (itemId == R.id.menu_search) {
+                startActivity(new Intent(this, SearchActivity.class));
+                return true;
+            } else if (itemId == R.id.menu_logout) {
+                logout();
+                return true;
+            }
+            return true;
+        }
+
 	}
 
+    private void startPrefsActivity(){
+        Intent i = new Intent(OppiaMobileActivity.this, PrefsActivity.class);
+        Bundle tb = new Bundle();
+        ArrayList<Lang> langs = new ArrayList<Lang>();
+        for(Course m: courses){
+            langs.addAll(m.getLangs());
+        }
+        tb.putSerializable("langs", langs);
+        i.putExtras(tb);
+        startActivity(i);
+    }
+
+    private void displayDownloadSection(){
+        llNone.setVisibility(View.VISIBLE);
+
+        TextView tv = (TextView) this.findViewById(R.id.manage_courses_text);
+        tv.setText((courses.size() > 0)? R.string.more_courses : R.string.no_courses);
+
+        Button manageBtn = (Button) this.findViewById(R.id.manage_courses_btn);
+        manageBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                PasswordDialogFragment passDialog = new PasswordDialogFragment();
+                passDialog.setListener(new PasswordDialogFragment.PasswordDialogListener() {
+                    @Override
+                    public void onPasswordSuccess() {
+                        startActivity(new Intent(OppiaMobileActivity.this, TagSelectActivity.class));
+                    }
+                });
+                passDialog.show(getFragmentManager(), TAG);
+            }
+        });
+    }
 	private void createLanguageDialog() {
 		ArrayList<Lang> langs = new ArrayList<Lang>();
 		for(Course m: courses){
@@ -436,7 +470,7 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
         anim.setDuration(900);
         messageContainer.startAnimation(anim);
 
-        ValueAnimator animator = ValueAnimator.ofInt(courseList.getPaddingTop(), 90);
+        ValueAnimator animator = ValueAnimator.ofInt(initialCourseListPadding, 90);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             //@Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -451,7 +485,7 @@ public class OppiaMobileActivity extends AppActivity implements OnSharedPreferen
 
     private void hideScanMediaMessage(){
         messageContainer.setVisibility(View.GONE);
-        courseList.setPadding(0, 0, 0, 0);
+        courseList.setPadding(0, initialCourseListPadding, 0, 0);
     }
 
     //Implementation of ScanMediaListener
