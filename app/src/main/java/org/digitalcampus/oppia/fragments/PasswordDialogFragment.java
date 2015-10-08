@@ -32,7 +32,7 @@ import org.digitalcampus.oppia.utils.ui.SimpleAnimator;
 public class PasswordDialogFragment extends DialogFragment {
 
         public interface PasswordDialogListener{
-            void onPasswordSuccess();
+            void onPermissionGranted();
         }
 
         private PasswordDialogListener listener;
@@ -71,7 +71,7 @@ public class PasswordDialogFragment extends DialogFragment {
                     if(passwordCorrect) {
                         d.dismiss();
                         if (listener != null) {
-                            listener.onPasswordSuccess();
+                            listener.onPermissionGranted();
                         }
                     }
                     else{
