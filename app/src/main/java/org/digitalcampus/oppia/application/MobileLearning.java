@@ -75,13 +75,18 @@ public class MobileLearning extends Application {
 	public static final int RESOURCE_READ_TIME = 3;
 	public static final int URL_READ_TIME = 5;
 	public static final String USER_AGENT = "OppiaMobile Android: ";
-    public static final String DEFAULT_STORAGE_OPTION = PrefsActivity.STORAGE_OPTION_EXTERNAL;
+    public static final String DEFAULT_STORAGE_OPTION = PrefsActivity.STORAGE_OPTION_INTERNAL;
 
     public static final int SCORECARD_ANIM_DURATION = 800;
     public static final long MEDIA_SCAN_TIME_LIMIT = 3600;
 
 	public static final boolean DEFAULT_DISPLAY_COMPLETED = true;
 	public static final boolean DEFAULT_DISPLAY_PROGRESS_BAR = true;
+	
+	public static final boolean MENU_ALLOW_COURSE_DOWNLOAD = true;
+	public static final boolean MENU_ALLOW_SETTINGS = true;
+	public static final boolean MENU_ALLOW_MONITOR = true;
+	public static final boolean MENU_ALLOW_LOGOUT = true;
 	
 	public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
 	public static final DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd");
