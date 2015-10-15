@@ -27,6 +27,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    //Needed for >23 versions, Apache HTTP library is deprecated
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
