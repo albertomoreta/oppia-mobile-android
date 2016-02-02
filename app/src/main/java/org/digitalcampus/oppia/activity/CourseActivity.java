@@ -42,9 +42,6 @@ import org.digitalcampus.oppia.widgets.ResourceWidget;
 import org.digitalcampus.oppia.widgets.UrlWidget;
 import org.digitalcampus.oppia.widgets.WidgetFactory;
 
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
@@ -56,7 +53,9 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -91,7 +90,7 @@ public class CourseActivity extends AppActivity implements ActionBar.TabListener
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_course);
-		actionBar = getActionBar();
+		actionBar = getSupportActionBar();
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		viewPager = (ViewPager) findViewById(R.id.activity_widget_pager);
 
@@ -107,11 +106,9 @@ public class CourseActivity extends AppActivity implements ActionBar.TabListener
 			}
 			// set image
 			BitmapDrawable bm = ImageUtils.LoadBMPsdcard(course.getImageFileFromRoot(), this.getResources(), MobileLearning.APP_LOGO);
-			actionBar.setIcon(bm);
+			//actionBar.setIcon(bm);
+            actionBar.setHomeAsUpIndicator(bm);
 			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-			actionBar.setDisplayHomeAsUpEnabled(true);
-			actionBar.setHomeButtonEnabled(true);
-			
 		}
         loadActivities();
 	}
@@ -301,16 +298,16 @@ public class CourseActivity extends AppActivity implements ActionBar.TabListener
 
 	private void createLanguageDialog() {
         UIUtils.createLanguageDialog(this, course.getLangs(), prefs, new Callable<Boolean>() {
-			public Boolean call() throws Exception {
-				CourseActivity.this.loadActivities();
-				return true;
-			}
-		});
+            public Boolean call() throws Exception {
+                CourseActivity.this.loadActivities();
+                return true;
+            }
+        });
 	}
 
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {}
+	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {}
 
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
         int tabSelected = tab.getPosition();
         Log.d(TAG, "Tab selected " + tabSelected + " current act " + currentActivityNo);
 
@@ -335,7 +332,7 @@ public class CourseActivity extends AppActivity implements ActionBar.TabListener
         }
     }
 
-    public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
         ((WidgetFactory) apAdapter.getItem(currentActivityNo)).saveTracker();
 	}
 

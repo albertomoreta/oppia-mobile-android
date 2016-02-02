@@ -17,15 +17,14 @@
 
 package org.digitalcampus.oppia.activity;
 
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import org.digitalcampus.mobile.learning.R;
@@ -61,7 +60,7 @@ public class AboutActivity extends AppActivity implements ActionBar.TabListener 
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_about);
-		actionBar = getActionBar();
+		actionBar = getSupportActionBar();
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		viewPager = (ViewPager) findViewById(R.id.activity_about_pager);
 		
@@ -97,7 +96,6 @@ public class AboutActivity extends AppActivity implements ActionBar.TabListener 
 		
 		Fragment fStats = StatsFragment.newInstance();
 		fragments.add(fStats);
-		
 		
 		apAdapter = new ActivityPagerAdapter(getSupportFragmentManager(), fragments);
 		viewPager.setAdapter(apAdapter);
@@ -146,18 +144,18 @@ public class AboutActivity extends AppActivity implements ActionBar.TabListener 
 		});
 	}
 
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
 		viewPager.setCurrentItem(tab.getPosition());
 		this.currentTab = tab.getPosition();
 		
 	}
 
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+	public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+	public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 		// TODO Auto-generated method stub
 		
 	}

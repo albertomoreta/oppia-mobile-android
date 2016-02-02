@@ -27,6 +27,9 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import android.view.Menu;
@@ -142,6 +145,33 @@ public class OppiaMobileActivity
 
         llNone = (LinearLayout) this.findViewById(R.id.no_courses);
         initialCourseListPadding = courseList.getPaddingTop();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Initializing Drawer Layout and ActionBarToggle
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open, R.string.close){
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+
+                super.onDrawerOpened(drawerView);
+            }
+        };
+
+        //Setting the actionbarToggle to drawer layout
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        //calling sync state is necessay or else your hamburger icon wont show up
+        actionBarDrawerToggle.syncState();
 	}
 
 	@Override
@@ -212,7 +242,7 @@ public class OppiaMobileActivity
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
@@ -303,7 +333,7 @@ public class OppiaMobileActivity
 	}
 
 	private void logout() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Oppia_AlertDialogStyle);
 		builder.setCancelable(false);
 		builder.setTitle(R.string.logout);
 		builder.setMessage(R.string.logout_confirm);
@@ -337,7 +367,7 @@ public class OppiaMobileActivity
     }
 
 	private void confirmCourseDelete() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Oppia_AlertDialogStyle);
 		builder.setCancelable(false);
 		builder.setTitle(R.string.course_context_delete);
 		builder.setMessage(R.string.course_context_delete_confirm);
@@ -366,7 +396,7 @@ public class OppiaMobileActivity
 	}
 
 	private void confirmCourseReset() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Oppia_AlertDialogStyle);
 		builder.setCancelable(false);
 		builder.setTitle(R.string.course_context_reset);
 		builder.setMessage(R.string.course_context_reset_confirm);
@@ -394,7 +424,7 @@ public class OppiaMobileActivity
         task.setUpdateActivityListener(OppiaMobileActivity.this);
         task.execute(p);
 
-        progressDialog = new ProgressDialog(OppiaMobileActivity.this);
+        progressDialog = new ProgressDialog(OppiaMobileActivity.this, R.style.Oppia_AlertDialogStyle);
         progressDialog.setMessage(getString(R.string.course_updating));
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);

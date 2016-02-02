@@ -28,14 +28,12 @@ import org.digitalcampus.oppia.fragments.ResetFragment;
 import org.digitalcampus.oppia.fragments.WelcomeFragment;
 import org.digitalcampus.oppia.model.Lang;
 
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -51,7 +49,7 @@ public class WelcomeActivity extends AppActivity implements ActionBar.TabListene
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_about);
-		actionBar = getActionBar();
+		actionBar = getSupportActionBar();
 		viewPager = (ViewPager) findViewById(R.id.activity_about_pager);
 		
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -101,21 +99,19 @@ public class WelcomeActivity extends AppActivity implements ActionBar.TabListene
 		});
 	}
 
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
 		viewPager.setCurrentItem(tab.getPosition());
 		this.currentTab = tab.getPosition();
 		
 	}
 
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
+
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+    }
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

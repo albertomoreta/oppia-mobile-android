@@ -29,15 +29,14 @@ import org.digitalcampus.oppia.fragments.CourseScorecardFragment;
 import org.digitalcampus.oppia.model.Course;
 import org.digitalcampus.oppia.utils.ImageUtils;
 
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
 import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 
@@ -48,7 +47,7 @@ public class ScorecardActivity extends AppActivity implements ActionBar.TabListe
     public static final String TAB_TARGET_POINTS = "tab_points";
     public static final String TAB_TARGET_BADGES = "tab_badges";
 
-	private ActionBar actionBar;
+        private ActionBar actionBar;
 	private ViewPager viewPager;
 	private ActivityPagerAdapter apAdapter;
 	private int currentTab = 0;
@@ -62,7 +61,7 @@ public class ScorecardActivity extends AppActivity implements ActionBar.TabListe
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_scorecard);
-		actionBar = getActionBar();
+		actionBar = getSupportActionBar();
 		viewPager = (ViewPager) findViewById(R.id.activity_scorecard_pager);
 
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -90,7 +89,8 @@ public class ScorecardActivity extends AppActivity implements ActionBar.TabListe
 			fScorecard = CourseScorecardFragment.newInstance(course);
             if (course.getImageFile() != null) {
                 BitmapDrawable bm = ImageUtils.LoadBMPsdcard(course.getImageFileFromRoot(), this.getResources(), R.drawable.dc_logo);
-                actionBar.setIcon(bm);
+                //actionBar.setIcon(bm);
+                actionBar.setHomeAsUpIndicator(bm);
             }
 		} else {
 			fScorecard = GlobalScorecardFragment.newInstance();
@@ -127,28 +127,14 @@ public class ScorecardActivity extends AppActivity implements ActionBar.TabListe
 		viewPager.setCurrentItem(currentTab);
         actionBar.setSelectedNavigationItem(currentTab);
 		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            public void onPageScrollStateChanged(int arg0) {
-            }
-
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
-
+            public void onPageScrollStateChanged(int arg0) {}
+            public void onPageScrolled(int arg0, float arg1, int arg2) {}
             public void onPageSelected(int arg0) {
                 actionBar.setSelectedNavigationItem(arg0);
             }
 
         });
 	}
-
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		viewPager.setCurrentItem(tab.getPosition());
-		this.currentTab = tab.getPosition();
-
-	}
-
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) { }
-
-	public void onTabReselected(Tab tab, FragmentTransaction ft) { }
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
@@ -160,4 +146,16 @@ public class ScorecardActivity extends AppActivity implements ActionBar.TabListe
 		}
 		return true;
 	}
+
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+        viewPager.setCurrentItem(tab.getPosition());
+        this.currentTab = tab.getPosition();
+    }
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {}
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {}
 }
