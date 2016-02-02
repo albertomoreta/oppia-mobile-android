@@ -39,6 +39,10 @@
         <item name="actionBarTabTextStyle">@style/OM.Light.TabText.Style</item>
         <item name="actionDropDownStyle">@style/DropDownNav.Om</item>
         <item name="actionBarStyle">@style/ActionBar.Solid.Om</item>
+
+        <item name="colorPrimary">@color/highlight_light</item>
+        <item name="colorPrimaryDark">@color/highlight_dark</item>
+        <item name="colorAccent">@color/highlight_secondary</item>
     </style>
     
     <style name="Oppia.Theme.Dark" parent="@style/Oppia.Theme">

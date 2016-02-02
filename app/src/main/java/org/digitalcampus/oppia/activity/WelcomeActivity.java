@@ -61,24 +61,29 @@ public class WelcomeActivity extends AppActivity implements ActionBar.TabListene
 
 		actionBar.removeAllTabs();
 		List<Fragment> fragments = new ArrayList<Fragment>();
+        List<String> tabTitles = new ArrayList<>();
 		
 		Fragment fWelcome = WelcomeFragment.newInstance();
 		fragments.add(fWelcome);
+        tabTitles.add(this.getString(R.string.tab_title_welcome));
 		actionBar.addTab(actionBar.newTab().setText(this.getString(R.string.tab_title_welcome)).setTabListener(this), true);
 
 		Fragment fLogin = LoginFragment.newInstance();
 		fragments.add(fLogin);
+        tabTitles.add(this.getString(R.string.tab_title_login));
 		actionBar.addTab(actionBar.newTab().setText(this.getString(R.string.tab_title_login)).setTabListener(this), false);
 
 		Fragment fRegister = RegisterFragment.newInstance();
 		fragments.add(fRegister);
+        tabTitles.add(this.getString(R.string.tab_title_register));
 		actionBar.addTab(actionBar.newTab().setText(this.getString(R.string.tab_title_register)).setTabListener(this), false);
 
 		Fragment fReset = ResetFragment.newInstance();
 		fragments.add(fReset);
+        tabTitles.add(this.getString(R.string.tab_title_reset));
 		actionBar.addTab(actionBar.newTab().setText(this.getString(R.string.tab_title_reset)).setTabListener(this), false);
 
-        ActivityPagerAdapter apAdapter = new ActivityPagerAdapter(getSupportFragmentManager(), fragments);
+        ActivityPagerAdapter apAdapter = new ActivityPagerAdapter(this, getSupportFragmentManager(), fragments, tabTitles);
 		viewPager.setAdapter(apAdapter);
 
 		viewPager.setCurrentItem(currentTab);

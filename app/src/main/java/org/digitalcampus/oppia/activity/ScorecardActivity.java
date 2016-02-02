@@ -33,24 +33,26 @@ import android.content.SharedPreferences;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 
-public class ScorecardActivity extends AppActivity implements ActionBar.TabListener {
+public class ScorecardActivity extends AppActivity {
 
 	public static final String TAG = ScorecardActivity.class.getSimpleName();
     public static final String TAB_TARGET = "target";
     public static final String TAB_TARGET_POINTS = "tab_points";
     public static final String TAB_TARGET_BADGES = "tab_badges";
 
-        private ActionBar actionBar;
+    private ActionBar actionBar;
+    private TabLayout tabs;
 	private ViewPager viewPager;
 	private ActivityPagerAdapter apAdapter;
-	private int currentTab = 0;
 	private SharedPreferences prefs;
 	private Course course = null;
 
@@ -61,10 +63,13 @@ public class ScorecardActivity extends AppActivity implements ActionBar.TabListe
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_scorecard);
-		actionBar = getSupportActionBar();
+
 		viewPager = (ViewPager) findViewById(R.id.activity_scorecard_pager);
 
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        tabs = (TabLayout) findViewById(R.id.tabs_toolbar);
+
+        setSupportActionBar( (Toolbar)findViewById(R.id.toolbar) );
+        actionBar = getSupportActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 
@@ -81,8 +86,8 @@ public class ScorecardActivity extends AppActivity implements ActionBar.TabListe
 	public void onStart() {
 		super.onStart();
 
-		actionBar.removeAllTabs();
 		List<Fragment> fragments = new ArrayList<Fragment>();
+        List<String> tabTitles = new ArrayList<>();
 
 		Fragment fScorecard;
 		if(this.course != null){
@@ -95,27 +100,30 @@ public class ScorecardActivity extends AppActivity implements ActionBar.TabListe
 		} else {
 			fScorecard = GlobalScorecardFragment.newInstance();
 		}
-
 		fragments.add(fScorecard);
-		actionBar.addTab(actionBar.newTab().setText(this.getString(R.string.tab_title_scorecard)).setTabListener(this), true);
+        tabTitles.add(this.getString(R.string.tab_title_scorecard));
 
 		boolean scoringEnabled = prefs.getBoolean(PrefsActivity.PREF_SCORING_ENABLED, true);
 		if (scoringEnabled) {
 			Fragment fPoints = PointsFragment.newInstance();
 			fragments.add(fPoints);
-			actionBar.addTab(actionBar.newTab().setText(this.getString(R.string.tab_title_points)).setTabListener(this), false);
-		}
+            tabTitles.add(this.getString(R.string.tab_title_points));
+        }
 
 		boolean badgingEnabled = prefs.getBoolean(PrefsActivity.PREF_BADGING_ENABLED, true);
 		if (badgingEnabled) {
 			Fragment fBadges= BadgesFragment.newInstance();
 			fragments.add(fBadges);
-			actionBar.addTab(actionBar.newTab().setText(this.getString(R.string.tab_title_badges)).setTabListener(this), false);
-		}
+            tabTitles.add(this.getString(R.string.tab_title_badges));
+        }
 
-		apAdapter = new ActivityPagerAdapter(getSupportFragmentManager(), fragments);
+		apAdapter = new ActivityPagerAdapter(this, getSupportFragmentManager(), fragments, tabTitles);
 		viewPager.setAdapter(apAdapter);
+        tabs.setupWithViewPager(viewPager);
+        tabs.setTabMode(TabLayout.MODE_FIXED);
+        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        int currentTab = 0;
         if ( targetTabOnLoad != null){
             if (targetTabOnLoad.equals(TAB_TARGET_POINTS) && scoringEnabled) {
                 currentTab = 1;
@@ -125,15 +133,7 @@ public class ScorecardActivity extends AppActivity implements ActionBar.TabListe
             }
         }
 		viewPager.setCurrentItem(currentTab);
-        actionBar.setSelectedNavigationItem(currentTab);
-		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            public void onPageScrollStateChanged(int arg0) {}
-            public void onPageScrolled(int arg0, float arg1, int arg2) {}
-            public void onPageSelected(int arg0) {
-                actionBar.setSelectedNavigationItem(arg0);
-            }
-
-        });
+        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 	}
 
 	@Override
@@ -147,15 +147,4 @@ public class ScorecardActivity extends AppActivity implements ActionBar.TabListe
 		return true;
 	}
 
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-        viewPager.setCurrentItem(tab.getPosition());
-        this.currentTab = tab.getPosition();
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {}
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {}
 }

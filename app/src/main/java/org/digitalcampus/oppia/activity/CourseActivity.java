@@ -52,10 +52,12 @@ import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.UtteranceProgressListener;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -82,6 +84,7 @@ public class CourseActivity extends AppActivity implements ActionBar.TabListener
 	private static TextToSpeech myTTS;
 	private boolean ttsRunning = false;
 
+    TabLayout tabs;
 	private ViewPager viewPager;
 	private ActivityPagerAdapter apAdapter;
 
@@ -90,6 +93,7 @@ public class CourseActivity extends AppActivity implements ActionBar.TabListener
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_course);
+        setSupportActionBar( (Toolbar)findViewById(R.id.toolbar) );
 		actionBar = getSupportActionBar();
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		viewPager = (ViewPager) findViewById(R.id.activity_widget_pager);
@@ -108,15 +112,20 @@ public class CourseActivity extends AppActivity implements ActionBar.TabListener
 			BitmapDrawable bm = ImageUtils.LoadBMPsdcard(course.getImageFileFromRoot(), this.getResources(), MobileLearning.APP_LOGO);
 			//actionBar.setIcon(bm);
             actionBar.setHomeAsUpIndicator(bm);
-			actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+			//actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		}
+        tabs = (TabLayout) findViewById(R.id.tabs_toolbar);
+        tabs.setTabMode(TabLayout.MODE_SCROLLABLE);
         loadActivities();
 	}
 	
 	@Override
 	public void onStart() {
 		super.onStart();
-
+        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             public void onPageScrollStateChanged(int arg0) {
@@ -128,8 +137,8 @@ public class CourseActivity extends AppActivity implements ActionBar.TabListener
             }
 
             public void onPageSelected(int numPage) {
-                Log.d(TAG, "Page selected " + numPage  + " current act " + currentActivityNo);
-                actionBar.setSelectedNavigationItem(numPage);
+                Log.d(TAG, "Page selected " + numPage + " current act " + currentActivityNo);
+                //actionBar.setSelectedNavigationItem(numPage);
             }
 
         });
@@ -249,8 +258,9 @@ public class CourseActivity extends AppActivity implements ActionBar.TabListener
         } else if (isBaseline) {
             setTitle(getString(R.string.title_baseline));
         }
-        actionBar.removeAllTabs();
-        List<Fragment> fragments = new ArrayList<Fragment>();
+        //actionBar.removeAllTabs();
+        List<Fragment> fragments = new ArrayList<>();
+        List<String> titles = new ArrayList<>();
 
         for (int i = 0; i < activities.size(); i++) {
             Activity activity = activities.get(i);
@@ -278,20 +288,28 @@ public class CourseActivity extends AppActivity implements ActionBar.TabListener
             }  else if (activities.get(i).getActType().equalsIgnoreCase("url")) {
                 UrlWidget f = UrlWidget.newInstance(activities.get(i), course, isBaseline);
                 fragments.add(f);
-            } 
+            }
+            titles.add(activity.getTitle(currentLang));
         }
 
-        apAdapter = new ActivityPagerAdapter(getSupportFragmentManager(), fragments);
+        apAdapter = new ActivityPagerAdapter(this, getSupportFragmentManager(), fragments, titles);
         viewPager.setAdapter(apAdapter);
+        tabs.setupWithViewPager(viewPager);
+
+
+        for (int i = 0; i < tabs.getTabCount(); i++) {
+            TabLayout.Tab tab = tabs.getTabAt(i);
+            tab.setCustomView(apAdapter.getTabView(i));
+        }
 
         //Tab creation
         for (int i=0; i<activities.size(); i++){
             Activity activity = activities.get(i);
             String title = activity.getTitle(currentLang);
-            actionBar.addTab(
-                    actionBar.newTab().setText(title).setTabListener(this),
-                    (currentActivityNo == i) //Set the current active activity as active tab
-            );
+            //actionBar.addTab(
+            //        actionBar.newTab().setText(title).setTabListener(this),
+            //        (currentActivityNo == i) //Set the current active activity as active tab
+            //);
         }
         viewPager.setCurrentItem(currentActivityNo);
     }

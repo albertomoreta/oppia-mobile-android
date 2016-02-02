@@ -42,7 +42,8 @@
         </activity>
         <activity
             android:name="org.digitalcampus.oppia.activity.CourseActivity"
-            android:label="@string/title_activity_course" 
+            android:label="@string/title_activity_course"
+            android:theme="@style/Oppia.ToolbarTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name="org.digitalcampus.oppia.activity.DownloadActivity"
@@ -57,6 +58,7 @@
             android:label="@string/title_prefs"/>
         <activity
             android:name="org.digitalcampus.oppia.activity.AboutActivity"
+            android:theme="@style/Oppia.ToolbarTheme"
             android:label="@string/title_about" />
         <activity
             android:name="org.digitalcampus.oppia.activity.WelcomeActivity"
@@ -73,6 +75,7 @@
             android:label="@string/title_download_media" />
          <activity
             android:name="org.digitalcampus.oppia.activity.ScorecardActivity"
+            android:theme="@style/Oppia.ToolbarTheme"
             android:label="@string/title_scorecard" />
          <activity
             android:name="org.digitalcampus.oppia.activity.SearchActivity"
