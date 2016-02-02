@@ -62,6 +62,7 @@
             android:label="@string/title_about" />
         <activity
             android:name="org.digitalcampus.oppia.activity.WelcomeActivity"
+            android:theme="@style/Oppia.ToolbarTheme"
             android:label="@string/title_welcome" />
          <activity
             android:name="org.digitalcampus.oppia.activity.MonitorActivity"

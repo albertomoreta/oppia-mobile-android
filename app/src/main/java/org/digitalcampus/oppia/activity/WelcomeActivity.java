@@ -30,18 +30,21 @@ import org.digitalcampus.oppia.model.Lang;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class WelcomeActivity extends AppActivity implements ActionBar.TabListener  {
+public class WelcomeActivity extends AppActivity {
 
 	public static final String TAG = WelcomeActivity.class.getSimpleName();
 	private ActionBar actionBar;
 	private ViewPager viewPager;
+    private TabLayout tabs;
     private int currentTab = 0;
 	
 	@Override
@@ -49,74 +52,49 @@ public class WelcomeActivity extends AppActivity implements ActionBar.TabListene
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_about);
-		actionBar = getSupportActionBar();
+
+        tabs = (TabLayout) findViewById(R.id.tabs_toolbar);
+
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
 		viewPager = (ViewPager) findViewById(R.id.activity_about_pager);
-		
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
 	}
 	
 	@Override
 	public void onStart() {
 		super.onStart();
-
-		actionBar.removeAllTabs();
 		List<Fragment> fragments = new ArrayList<Fragment>();
         List<String> tabTitles = new ArrayList<>();
 		
 		Fragment fWelcome = WelcomeFragment.newInstance();
 		fragments.add(fWelcome);
         tabTitles.add(this.getString(R.string.tab_title_welcome));
-		actionBar.addTab(actionBar.newTab().setText(this.getString(R.string.tab_title_welcome)).setTabListener(this), true);
 
 		Fragment fLogin = LoginFragment.newInstance();
 		fragments.add(fLogin);
         tabTitles.add(this.getString(R.string.tab_title_login));
-		actionBar.addTab(actionBar.newTab().setText(this.getString(R.string.tab_title_login)).setTabListener(this), false);
 
 		Fragment fRegister = RegisterFragment.newInstance();
 		fragments.add(fRegister);
         tabTitles.add(this.getString(R.string.tab_title_register));
-		actionBar.addTab(actionBar.newTab().setText(this.getString(R.string.tab_title_register)).setTabListener(this), false);
 
 		Fragment fReset = ResetFragment.newInstance();
 		fragments.add(fReset);
         tabTitles.add(this.getString(R.string.tab_title_reset));
-		actionBar.addTab(actionBar.newTab().setText(this.getString(R.string.tab_title_reset)).setTabListener(this), false);
 
         ActivityPagerAdapter apAdapter = new ActivityPagerAdapter(this, getSupportFragmentManager(), fragments, tabTitles);
 		viewPager.setAdapter(apAdapter);
+        tabs.setupWithViewPager(viewPager);
+        tabs.setTabMode(TabLayout.MODE_FIXED);
+        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
 
 		viewPager.setCurrentItem(currentTab);
-		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
-			public void onPageScrollStateChanged(int arg0) {
-				// do nothing
-			}
-
-			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				// do nothing
-			}
-
-			public void onPageSelected(int arg0) {
-				actionBar.setSelectedNavigationItem(arg0);
-			}
-
-		});
+        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 	}
-
-	public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-		viewPager.setCurrentItem(tab.getPosition());
-		this.currentTab = tab.getPosition();
-		
-	}
-
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-    }
-
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
-
-    }
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

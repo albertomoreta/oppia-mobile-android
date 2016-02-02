@@ -73,6 +73,7 @@ public class AboutActivity extends AppActivity {
         actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(true);
 		
 		Bundle bundle = this.getIntent().getExtras();
 		if (bundle != null) {

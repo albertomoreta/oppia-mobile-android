@@ -27,6 +27,7 @@
             android:background="@color/highlight_label"
             android:layout_height="wrap_content"
             style="@style/Oppia.ToolbarTheme.AppTabLayout"
+            app:tabGravity="fill"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
     </android.support.design.widget.AppBarLayout>
 
