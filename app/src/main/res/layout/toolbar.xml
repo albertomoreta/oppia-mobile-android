@@ -8,5 +8,6 @@
     app:theme="@style/Oppia.Theme.Dark"
     android:elevation="4dp"
     style="@style/ActionBar.Solid.Om"
+    android:paddingTop="@dimen/tool_bar_top_padding"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 </android.support.v7.widget.Toolbar>

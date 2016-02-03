@@ -3,11 +3,15 @@
 
     <style name="Oppia.ToolbarTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:colorPrimary">@color/highlight_light</item>
-        <item name="android:colorPrimaryDark">@color/highlight_dark</item>
+        <item name="android:colorPrimaryDark">@color/highlight_shadow</item>
         <item name="android:colorAccent">@color/highlight_secondary</item>
         <item name="colorPrimary">@color/highlight_light</item>
-        <item name="colorPrimaryDark">@color/highlight_dark</item>
+        <item name="colorPrimaryDark">@color/highlight_shadow</item>
         <item name="colorAccent">@color/highlight_secondary</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
     <style name="Oppia.ToolbarTheme.Dark" parent="@style/Oppia.ToolbarTheme">

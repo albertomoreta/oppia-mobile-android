@@ -6,7 +6,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:maxWidth="100dp"
+        android:maxWidth="130dp"
         style="@style/Oppia.ToolbarTheme.AppTabTextAppearance"
         android:id="@+id/tabTitle"
         android:layout_gravity="center"

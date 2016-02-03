@@ -31,7 +31,7 @@
         <item name="windowActionBar">true</item>
 
         <item name="colorPrimary">@color/highlight_light</item>
-        <item name="colorPrimaryDark">@color/highlight_dark</item>
+        <item name="colorPrimaryDark">@color/highlight_shadow</item>
         <item name="colorAccent">@color/highlight_secondary</item>
         <item name="alertDialogTheme">@style/Oppia.AlertDialogStyle</item>
     </style>
