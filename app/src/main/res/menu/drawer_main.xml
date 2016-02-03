@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single" android:id="@+id/drawer_menu_main">
         <item
             android:id="@+id/menu_download"
             android:icon="@android:drawable/ic_menu_add"
@@ -16,14 +16,16 @@
             android:title="@string/menu_language"/>
         <item
             android:id="@+id/menu_scorecard"
-            android:icon="@drawable/ic_menu_start_conversation"
+            android:icon="@drawable/ic_scorecard"
             android:title="@string/menu_scorecard"/>
         <item
             android:id="@+id/menu_monitor"
+            android:icon="@drawable/default_icon_quiz"
             android:title="@string/menu_monitor"/>
 
     </group>
-    <group>
+
+    <group android:id="@+id/drawer_menu_secondary">
         <item
             android:id="@+id/menu_settings"
             android:icon="@android:drawable/ic_menu_preferences"
