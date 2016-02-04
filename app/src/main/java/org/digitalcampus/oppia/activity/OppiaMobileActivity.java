@@ -27,6 +27,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -94,6 +95,7 @@ public class OppiaMobileActivity
     private TextView messageText;
     private Button messageButton;
     private View messageContainer;
+    private NavigationView navigationView;
 
     LinearLayout llNone;
 
@@ -127,9 +129,9 @@ public class OppiaMobileActivity
         courseList = (ListView) findViewById(R.id.course_list);
         courseList.setAdapter(courseListAdapter);
 
+        //the alternative of registerForContextMenu(courseList);
         CourseContextMenuCustom courseMenu = new CourseContextMenuCustom(this);
         courseMenu.registerForContextMenu(courseList, this);
-        //the alternative of registerForContextMenu(courseList);
 
         courseList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -150,27 +152,35 @@ public class OppiaMobileActivity
         setSupportActionBar(toolbar);
 
         // Initializing Drawer Layout and ActionBarToggle
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open, R.string.close){
+        final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        ((TextView) navigationView.getHeaderView(0).findViewById(R.id.drawer_user_fullname)).setText(SessionManager.getUserDisplayName(this));
+        ((TextView) navigationView.getHeaderView(0).findViewById(R.id.drawer_username)).setText(SessionManager.getUsername(this));
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                boolean result = onOptionsItemSelected(menuItem);
+                menuItem.setChecked(false);
+                drawerLayout.closeDrawers();
+                return result;
+            }
+        });
 
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open, R.string.close){
             @Override
             public void onDrawerClosed(View drawerView) {
                 // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
                 super.onDrawerClosed(drawerView);
             }
-
             @Override
             public void onDrawerOpened(View drawerView) {
                 // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
-
                 super.onDrawerOpened(drawerView);
             }
         };
 
         //Setting the actionbarToggle to drawer layout
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
-
-        //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
 	}
 
@@ -248,11 +258,12 @@ public class OppiaMobileActivity
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		UIUtils.showUserData(menu, this, null);
-		
-		MenuItem itemLogout = menu.findItem(R.id.menu_logout);
-        MenuItem itemSettings = menu.findItem(R.id.menu_settings);
-        MenuItem itemMonitor = menu.findItem(R.id.menu_monitor);
-        MenuItem itemCourseDownload = menu.findItem(R.id.menu_download);
+
+        Menu drawerMenu = navigationView.getMenu();
+		MenuItem itemLogout = drawerMenu.findItem(R.id.menu_logout);
+        MenuItem itemSettings = drawerMenu.findItem(R.id.menu_settings);
+        MenuItem itemMonitor = drawerMenu.findItem(R.id.menu_monitor);
+        MenuItem itemCourseDownload = drawerMenu.findItem(R.id.menu_download);
 
 		itemLogout.setVisible(prefs.getBoolean(PrefsActivity.PREF_LOGOUT_ENABLED, MobileLearning.MENU_ALLOW_LOGOUT));
 		itemSettings.setVisible(MobileLearning.MENU_ALLOW_SETTINGS);

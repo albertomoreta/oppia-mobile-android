@@ -5,7 +5,7 @@
         oppiamobile:actionLayout="@layout/points"
         oppiamobile:showAsAction="always"
         android:title=""/>
-    <item
+    <!--<item
         android:id="@+id/menu_download"
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/menu_download"/>
@@ -35,5 +35,5 @@
     <item
         android:id="@+id/menu_logout"
         android:icon="@drawable/ic_action_logout"
-        android:title="@string/menu_logout"/>
+        android:title="@string/menu_logout"/>-->
 </menu>
