@@ -47,7 +47,6 @@ public class LoginFragment extends Fragment implements SubmitListener {
 
 
 	public static final String TAG = LoginFragment.class.getSimpleName();
-	private SharedPreferences prefs;
 	private EditText usernameField;
 	private EditText passwordField;
 	private ProgressDialog pDialog;
