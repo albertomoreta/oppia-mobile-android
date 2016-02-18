@@ -61,7 +61,6 @@ public class LoginFragment extends Fragment implements SubmitListener {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		prefs = PreferenceManager.getDefaultSharedPreferences(super.getActivity());
 		View vv = super.getLayoutInflater(savedInstanceState).inflate(R.layout.fragment_login, null);
 		LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		vv.setLayoutParams(lp);
@@ -72,7 +71,6 @@ public class LoginFragment extends Fragment implements SubmitListener {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		prefs = PreferenceManager.getDefaultSharedPreferences(super.getActivity());
 		usernameField = (EditText) super.getActivity().findViewById(R.id.login_username_field);
         passwordField = (EditText) super.getActivity().findViewById(R.id.login_password_field);
         Button loginButton = (Button) super.getActivity().findViewById(R.id.login_btn);
