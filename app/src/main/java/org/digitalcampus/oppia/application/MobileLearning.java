@@ -88,7 +88,7 @@ public class MobileLearning extends Application {
 	public static final boolean MENU_ALLOW_MONITOR = true;
 	public static final boolean MENU_ALLOW_LOGOUT = true;
 
-    public static final boolean SESSION_EXPIRATION_ENABLED = true; // whether to force users to be logged out after inactivity
+    public static final boolean SESSION_EXPIRATION_ENABLED = false; // whether to force users to be logged out after inactivity
     public static final int SESSION_EXPIRATION_TIMEOUT = 15; // no seconds before user is logged out for inactivity
 	
 	public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
@@ -96,7 +96,11 @@ public class MobileLearning extends Application {
 	public static final DateTimeFormatter TIME_FORMAT = DateTimeFormat.forPattern("HH:mm:ss");
 	public static final int MAX_TRACKER_SUBMIT = 10;
 	public static final String[] SUPPORTED_ACTIVITY_TYPES = {"page","quiz","resource","feedback","url"};
-	
+
+    public static final String DEVICEADMIN_API_URL = "http://www.chaotic-kingdoms.com/oppia/";
+    public static final String DEVICEADMIN_ADD_PATH = "new.php";
+    public static final boolean DEVICEADMIN_ENABLED = false;
+
 	// only used in case a course doesn't have any lang specified
 	public static final String DEFAULT_LANG = "en";
 	
