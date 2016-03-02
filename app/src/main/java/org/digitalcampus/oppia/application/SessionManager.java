@@ -55,16 +55,13 @@ public class SessionManager {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
         String username = getUsernameFromPrefs(prefs);
 
-        DbHelper db = new DbHelper(ctx);
+        DbHelper db = DbHelper.getInstance(ctx);
         try {
             User u = db.getUser(username);
             return u.getDisplayName();
         } catch (UserNotFoundException e) {
             e.printStackTrace();
             return null;
-        }
-        finally {
-            DatabaseManager.getInstance().closeDatabase();
         }
 
     }
@@ -128,23 +125,20 @@ public class SessionManager {
             }
         }
 
-        DbHelper db = new DbHelper(ctx);
+        DbHelper db = DbHelper.getInstance(ctx);
         db.insertUserPreferences(username, userPrefs);
-        DatabaseManager.getInstance().closeDatabase();
 
     }
 
     //Warning: this method doesn't call prefs.apply()
     private static void loadUserPrefs(Context ctx, String username, SharedPreferences.Editor prefsEditor){
 
-        DbHelper db = new DbHelper(ctx);
+        DbHelper db = DbHelper.getInstance(ctx);
         List<Pair<String, String>> userPrefs = db.getUserPreferences(username);
 
         ArrayList<String> prefsToSave = new ArrayList<>();
         prefsToSave.addAll(PrefsActivity.USER_BOOLEAN_PREFS);
         prefsToSave.addAll(PrefsActivity.USER_STRING_PREFS);
-
-        DatabaseManager.getInstance().closeDatabase();
 
         for (Pair<String, String> pref : userPrefs){
             String prefKey = pref.first;

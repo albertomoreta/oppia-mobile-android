@@ -20,14 +20,12 @@ package org.digitalcampus.oppia.activity;
 import java.util.ArrayList;
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.adapter.SearchResultsListAdapter;
-import org.digitalcampus.oppia.application.DatabaseManager;
 import org.digitalcampus.oppia.application.DbHelper;
 import org.digitalcampus.oppia.listener.DBListener;
 import org.digitalcampus.oppia.model.Course;
 import org.digitalcampus.oppia.model.SearchResult;
 import org.digitalcampus.oppia.utils.ui.SimpleAnimator;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -91,9 +89,8 @@ public class SearchActivity extends AppActivity {
 	@Override
 	public void onStart(){
 		super.onStart();
-		DbHelper db = new DbHelper(this);
+		DbHelper db = DbHelper.getInstance(this);
 		userId = db.getUserId(prefs.getString("preUsername", ""));
-		DatabaseManager.getInstance().closeDatabase();
 		
 		searchText = (EditText) findViewById(R.id.search_string);
         searchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -179,9 +176,8 @@ public class SearchActivity extends AppActivity {
         @Override
         protected ArrayList<SearchResult> doInBackground(String... urls) {
             Log.d(TAG, "Starting search...");
-            DbHelper db = new DbHelper(SearchActivity.this);
+            DbHelper db = DbHelper.getInstance(SearchActivity.this);
             ArrayList<SearchResult> searchResults = db.search(currentSearch, 100, userId, SearchActivity.this, this);
-            DatabaseManager.getInstance().closeDatabase();
 
             return searchResults;
         }
