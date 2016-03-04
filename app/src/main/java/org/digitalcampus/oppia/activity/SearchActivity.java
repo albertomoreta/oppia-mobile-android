@@ -18,13 +18,19 @@
 package org.digitalcampus.oppia.activity;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.adapter.SearchResultsListAdapter;
 import org.digitalcampus.oppia.application.DbHelper;
+import org.digitalcampus.oppia.application.Tracker;
 import org.digitalcampus.oppia.listener.DBListener;
 import org.digitalcampus.oppia.model.Course;
 import org.digitalcampus.oppia.model.SearchResult;
+import org.digitalcampus.oppia.utils.MetaDataUtils;
 import org.digitalcampus.oppia.utils.ui.SimpleAnimator;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.Intent;
@@ -178,6 +184,22 @@ public class SearchActivity extends AppActivity {
             Log.d(TAG, "Starting search...");
             DbHelper db = DbHelper.getInstance(SearchActivity.this);
             ArrayList<SearchResult> searchResults = db.search(currentSearch, 100, userId, SearchActivity.this, this);
+
+            //Save the search tracker
+            Tracker t = new Tracker(SearchActivity.this);
+            JSONObject obj = new JSONObject();
+
+            try {
+                MetaDataUtils mdu = new MetaDataUtils(SearchActivity.this);
+                obj = mdu.getMetaData(obj);
+                String lang = prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage());
+                obj.put("lang", lang);
+                obj.put("search_term", currentSearch);
+                obj.put("num_results", searchResults.size());
+                t.saveTracker(obj);
+            } catch (JSONException | NullPointerException e) {
+                // Do nothing (sometimes get null pointer exception for the MetaDataUtils if the screen is rotated rapidly)
+            }
 
             return searchResults;
         }

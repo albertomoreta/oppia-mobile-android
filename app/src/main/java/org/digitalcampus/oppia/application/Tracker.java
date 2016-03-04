@@ -43,7 +43,10 @@ public class Tracker {
 		}
 		DbHelper db = DbHelper.getInstance(this.ctx);
 		db.insertTracker(courseId, digest, data.toString(), completed);
-
 	}
+
+    public void saveTracker(JSONObject data){
+        saveTracker(0, "", data, true);
+    }
 
 }
