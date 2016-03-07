@@ -95,9 +95,8 @@ public class PreloadAccountsTask extends AsyncTask<Payload, DownloadProgress, Pa
                     }
                     User csvUser = new User();
                     csvUser.setUsername(rowData[usernameColumn]);
-                    csvUser.setPasswordEncrypted(rowData[passwordColumn]);
+                    csvUser.setPassword(rowData[passwordColumn]);
                     csvUser.setApiKey(rowData[apikeyColumn]);
-
                     db.addOrUpdateUser(csvUser);
                     usersAdded++;
                 }
