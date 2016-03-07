@@ -984,20 +984,27 @@ public class DbHelper extends SQLiteOpenHelper {
 		c.moveToFirst();
 
 		ArrayList<Object> sl = new ArrayList<Object>();
-		while (c.isAfterLast() == false) {
+		while (!c.isAfterLast()) {
 			TrackerLog so = new TrackerLog();
+			String digest = c.getString(c.getColumnIndex(TRACKER_LOG_C_ACTIVITYDIGEST));
 			so.setId(c.getLong(c.getColumnIndex(TRACKER_LOG_C_ID)));
-			so.setDigest(c.getString(c.getColumnIndex(TRACKER_LOG_C_ACTIVITYDIGEST)));
+			so.setDigest(digest);
 			String content = "";
 			try {
 				JSONObject json = new JSONObject();
 				json.put("data", c.getString(c.getColumnIndex(TRACKER_LOG_C_DATA)));
 				json.put("tracker_date", c.getString(c.getColumnIndex(TRACKER_LOG_C_DATETIME)));
-				json.put("digest", c.getString(c.getColumnIndex(TRACKER_LOG_C_ACTIVITYDIGEST)));
 				json.put("completed", c.getInt(c.getColumnIndex(TRACKER_LOG_C_COMPLETED)));
 				Course m = this.getCourse(c.getLong(c.getColumnIndex(TRACKER_LOG_C_COURSEID)), userId);
 				if (m != null){
 					json.put("course", m.getShortname());
+				}
+				else if (Tracker.SEARCH_DIGEST.equals(digest)){
+					json.put("digest", "");
+					json.put("type", "search");
+				}
+				else{
+					json.put("digest", digest);
 				}
 				content = json.toString();
 			} catch (JSONException e) {

@@ -26,7 +26,9 @@ import android.content.Context;
 
 public class Tracker {
 
-	public static final String TAG = Tracker.class.getSimpleName(); 
+	public static final String TAG = Tracker.class.getSimpleName();
+	public static final String SEARCH_DIGEST = "search_performed";
+
 	private final Context ctx;
 	
 	public Tracker(Context context){
@@ -45,8 +47,8 @@ public class Tracker {
 		db.insertTracker(courseId, digest, data.toString(), completed);
 	}
 
-    public void saveTracker(JSONObject data){
-        saveTracker(0, "", data, true);
+    public void saveSearchTracker(JSONObject data){
+        saveTracker(0,SEARCH_DIGEST, data, true);
     }
 
 }

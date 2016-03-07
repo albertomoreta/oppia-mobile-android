@@ -190,13 +190,12 @@ public class SearchActivity extends AppActivity {
             JSONObject obj = new JSONObject();
 
             try {
-                MetaDataUtils mdu = new MetaDataUtils(SearchActivity.this);
-                obj = mdu.getMetaData(obj);
+                obj = new MetaDataUtils(SearchActivity.this).getMetaData(obj);
                 String lang = prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage());
                 obj.put("lang", lang);
-                obj.put("search_term", currentSearch);
-                obj.put("num_results", searchResults.size());
-                t.saveTracker(obj);
+                obj.put("query", currentSearch);
+                obj.put("results_count", searchResults.size());
+                t.saveSearchTracker(obj);
             } catch (JSONException | NullPointerException e) {
                 // Do nothing (sometimes get null pointer exception for the MetaDataUtils if the screen is rotated rapidly)
             }
