@@ -3,6 +3,7 @@ package org.digitalcampus.oppia.task;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -10,7 +11,11 @@ import com.splunk.mint.Mint;
 
 import org.apache.http.client.ClientProtocolException;
 import org.digitalcampus.oppia.activity.PrefsActivity;
+import org.digitalcampus.oppia.application.DbHelper;
 import org.digitalcampus.oppia.application.MobileLearning;
+import org.digitalcampus.oppia.application.SessionManager;
+import org.digitalcampus.oppia.exception.UserNotFoundException;
+import org.digitalcampus.oppia.model.User;
 import org.digitalcampus.oppia.utils.HTTPClientUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,7 +52,7 @@ public class RegisterDeviceRemoteAdminTask extends AsyncTask<Payload, Void, Payl
     public static boolean registerDevice(Context ctx, SharedPreferences prefs){
 
         Log.d(TAG, "Checking if is needed to send the token");
-        String username = prefs.getString(PrefsActivity.PREF_USER_NAME, "");
+        String username = SessionManager.getUsername(ctx);
         boolean tokenSent = prefs.getBoolean(PrefsActivity.GCM_TOKEN_SENT, false);
         //If there is no user logged in or the token has already been sent, we exit the task
         if (tokenSent || username.equals("")){
@@ -55,20 +60,27 @@ public class RegisterDeviceRemoteAdminTask extends AsyncTask<Payload, Void, Payl
         }
 
         String token = prefs.getString(PrefsActivity.GCM_TOKEN_ID, "");
-        String deviceModel = android.os.Build.BRAND + " " + android.os.Build.MODEL;
+        String deviceName = Build.MANUFACTURER + " - " + Build.DEVICE;
+        String deviceModel = Build.BRAND + " " + Build.MODEL;
         String deviceID = Settings.Secure.getString(ctx.getContentResolver(), Settings.Secure.ANDROID_ID);
 
         Log.d(TAG, "Registering device in remote admin list");
         try {
+
+            DbHelper db = DbHelper.getInstance(ctx);
+            User u = db.getUser(username);
+
             JSONObject json = new JSONObject();
             json.put("dev_id", deviceID);
             json.put("reg_id", token);
-            json.put("user", username);
+            json.put("name", deviceName);
             json.put("model_name", deviceModel);
 
             OkHttpClient client = HTTPClientUtils.getClient(ctx);
             Request request = new Request.Builder()
                     .url(HTTPClientUtils.getFullURL(ctx, MobileLearning.DEVICEADMIN_ADD_PATH))
+                    .addHeader(HTTPClientUtils.HEADER_AUTH,
+                        HTTPClientUtils.getAuthHeaderValue(u.getUsername(), u.getApiKey()))
                     .post(RequestBody.create(HTTPClientUtils.MEDIA_TYPE_JSON, json.toString()))
                     .build();
 
@@ -83,7 +95,7 @@ public class RegisterDeviceRemoteAdminTask extends AsyncTask<Payload, Void, Payl
                 return false;
             }
 
-        } catch (UnsupportedEncodingException | ClientProtocolException e) {
+        } catch (UnsupportedEncodingException | ClientProtocolException | UserNotFoundException e) {
             e.printStackTrace();
             Log.d(TAG, e.toString());
         } catch (IOException | JSONException e) {
