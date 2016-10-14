@@ -20,15 +20,13 @@ android:
 
 
 before_script:   
-  - chmod a+x start_emulator.sh
+  - chmod +x start_emulator.sh
   - ./start_emulator.sh
   - chmod +x gradlew
-  - adb shell pm grant org.digitalcampus.mobile.learning android.permission.READ_PHONE_STATE
-  - adb shell pm grant org.digitalcampus.mobile.learning android.permission.READ_EXTERNAL_STORAGE
-  - adb shell pm grant org.digitalcampus.mobile.learning android.permission.WRITE_EXTERNAL_STORAGE
  
 script:
   - ./gradlew $TEST_SUITE --stacktrace
 
 after_success:
-  - ./gradlew createDebugCoverageReport --stacktrace
+  - chmod +x start_testcoverage.sh
+  - ./start_testcoverage.sh
