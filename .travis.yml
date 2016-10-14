@@ -20,8 +20,9 @@ android:
 
 
 before_script:   
-  - ./start_emulator.sh
   - chmod +x gradlew
+  - chmod a+x start_emulator.sh
+  - ./start_emulator.sh
   - adb shell pm grant org.digitalcampus.mobile.learning android.permission.READ_PHONE_STATE
   - adb shell pm grant org.digitalcampus.mobile.learning android.permission.READ_EXTERNAL_STORAGE
   - adb shell pm grant org.digitalcampus.mobile.learning android.permission.WRITE_EXTERNAL_STORAGE
