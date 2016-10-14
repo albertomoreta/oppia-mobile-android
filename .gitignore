@@ -11,8 +11,7 @@
 /gradle
 *.iml
 .gradle
-gradle.properties
-gradlew
+gradle.properties 
 gradlew.bat
 app/app-release.apk
 custom.properties
