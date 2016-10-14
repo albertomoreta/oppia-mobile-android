@@ -21,7 +21,9 @@ android:
 
 before_script:   
   - chmod a+x start_emulator.sh
-  - if [ "${TEST_SUITE}" = "connectedAndroidTest" ] then sh ./start_emulator.sh fi
+  if [ "${TEST_SUITE}" = "connectedAndroidTest" ]; then 
+    sh ./start_emulator.sh 
+  fi
   - chmod +x gradlew
   - adb shell pm grant org.digitalcampus.mobile.learning android.permission.READ_PHONE_STATE
   - adb shell pm grant org.digitalcampus.mobile.learning android.permission.READ_EXTERNAL_STORAGE
