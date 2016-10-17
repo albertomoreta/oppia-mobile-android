@@ -245,6 +245,8 @@
     <string name="error_resource_not_found">File: \'%1$s\' not found.</string>
     <string name="error_preloading_accounts">Error preloading accounts from CSV file</string>
     <string name="error_reset">Username or email not found\nPlease try again</string>
+    <string name="no_title_set">No title set</string>
+    <string name="no_description_set">No description set</string>
 
     <string name="error_insufficient_storage_available">Insufficient storage available</string>
     <string name="error_sdcard">Your SD card is not available - please restart this app when the SD card is available.\nThe app will now close.</string>
@@ -319,7 +321,8 @@
     <string name="sequencing.course.message">You must complete all the previous activities in the course before this one becomes available to you.</string>
     <string name="empty_state_courses">There aren\'t any courses currently available to you on this server.</string>
     <string name="empty_state_media">Great! You now have all the media content for your courses downloaded onto your device.</string>
-
+	<string name="empty_state_scorecard">You don\'t have any courses installed yet. \nOnce you install a course, you will see your progress here.</string>
+	
     <string name="permissions.title">OppiaMobile needs the following permissions to function properly:</string>
     <string name="permissions.storage.title">read and modify contents of the SD card</string>
     <string name="permissions.storage.description">OppiaMobile needs access to the SD card to be able to store the downloaded media contents for the courses</string>
