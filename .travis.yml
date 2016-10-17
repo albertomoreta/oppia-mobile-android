@@ -2,13 +2,16 @@ language: android
 jdk: oraclejdk8
 sudo: required
 
-env:
-  global:
-    - TEST_SUITE=test
-    - TEST_SUITE=connectedAndroidTest
-  matrix:
+matrix:
+  include:
     - ANDROID_TARGET=android-23 ANDROID_ABI=armeabi-v7a
+      env:
+        - TEST_SUITE=test
+        - TEST_SUITE=connectedAndroidTest
     - ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
+      env:
+        - TEST_SUITE=test
+        - TEST_SUITE=connectedAndroidTest
 
 android:
   components: 
