@@ -127,7 +127,7 @@ dependencies {
 }
 apply plugin: 'com.google.gms.google-services'
 
-task grantPermissions << {
+task grantPermissions (type: Exec) {
     def adb = android.getAdbExe().toString()
 
     println "Granting permissions on device"
@@ -137,10 +137,6 @@ task grantPermissions << {
 
 }
 
-afterEvaluate {
-    tasks.each { task ->
-        if (task.name.startsWith('assembleDebugAndroidTest')) {
-            task.dependsOn grantPermissions
-        }
-    }
+project.afterEvaluate {
+    connectedAndroidTest.dependsOn grantPermissions
 }
