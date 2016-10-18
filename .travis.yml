@@ -42,7 +42,7 @@ script:
 
 after_failure:
   - chmod +x scripts/imgurbash.sh
-  - adb shell screencap -p | sed 's/\r$//' &gt; screen.png
+  - adb shell screencap -p | sed 's/\r$//' > screen.png
   - sh scripts/imgurbash.sh screen.png
 
 after_success:
