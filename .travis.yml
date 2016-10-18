@@ -43,7 +43,7 @@ script:
 after_failure:
   - wget http://imgur.com/tools/imgurbash.sh
   - chmod a+x imgurbash.sh
-  - adb shell screencap -p | sed 's/\r$//' &gt; screen.png
+  - adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > screen.png
   - ./imgurbash.sh screen.png
 
 after_success:
