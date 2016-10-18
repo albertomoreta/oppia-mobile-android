@@ -131,9 +131,12 @@ task grantPermissions (type: Exec) {
     def adb = android.getAdbExe().toString()
 
     println "Granting permissions on device"
-    "${adb} shell pm grant org.digitalcampus.mobile.learning android.permission.READ_PHONE_STATE".execute()
-    "${adb} shell pm grant org.digitalcampus.mobile.learning android.permission.READ_EXTERNAL_STORAGE".execute()
-    "${adb} shell pm grant org.digitalcampus.mobile.learning android.permission.WRITE_EXTERNAL_STORAGE".execute()
+    println "Granting READ_PHONE_STATE permission..."
+    commandLine "$adb shell pm grant org.digitalcampus.mobile.learning android.permission.READ_PHONE_STATE".split(' ')
+    println "Granting READ_EXTERNAL_STORAGE permission..."
+    commandLine "$adb shell pm grant org.digitalcampus.mobile.learning android.permission.READ_EXTERNAL_STORAGE".split(' ')
+    println "Granting WRITE_EXTERNAL_STORAGE permission..."
+    commandLine "$adb shell pm grant org.digitalcampus.mobile.learning android.permission.WRITE_EXTERNAL_STORAGE".split(' ')
 
 }
 
