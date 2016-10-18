@@ -41,9 +41,10 @@ script:
   - ./gradlew $TEST_SUITE --continue --stacktrace
 
 after_failure:
-  - chmod +x scripts/imgurbash.sh
+  - wget http://imgur.com/tools/imgurbash.sh
+  - chmod +x imgurbash.sh
   - adb shell screencap -p | sed 's/\r$//' > screen.png
-  - sh scripts/imgurbash.sh screen.png
+  - ./imgurbash.sh screen.png
 
 after_success:
   - chmod +x scripts/start_testcoverage.sh
