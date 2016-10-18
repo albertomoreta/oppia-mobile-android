@@ -38,7 +38,12 @@ before_script:
   - chmod +x gradlew
  
 script:
-  - ./gradlew $TEST_SUITE --stacktrace
+  - ./gradlew $TEST_SUITE --continue --stacktrace
+
+after_failure:
+  - chmod +x scripts/imgurbash.sh
+  - adb shell screencap -p | sed 's/\r$//' &gt; screen.png
+  - sh scripts/imgurbash.sh screen.png
 
 after_success:
   - chmod +x scripts/start_testcoverage.sh
