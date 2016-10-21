@@ -181,7 +181,7 @@ public class OppiaMobileActivityUITest {
 
     }
 
-    @Test
+   /* @Test
     public void showsCourseIndexOnCourseClick() throws Exception{
 
         givenThereAreSomeCourses(1);
@@ -208,7 +208,7 @@ public class OppiaMobileActivityUITest {
         assertEquals(CourseIndexActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
 
     }
-
+*/
     @Test
     public void showsContextMenuOnCourseLongClick() throws Exception{
         givenThereAreSomeCourses(1);

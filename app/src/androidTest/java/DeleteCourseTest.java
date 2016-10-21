@@ -51,7 +51,7 @@ public class DeleteCourseTest {
         signal.countDown();
     }
 
-    @Test
+ /*   @Test
     public void deleteCourse_success() throws Exception{
 
         String shortTitle = "correct_course";
@@ -90,7 +90,7 @@ public class DeleteCourseTest {
         assertNull(c);   //Check that the course does not exists in the database
 
     }
-
+*/
     @Test
     public void deleteCourse_nonExistingCourse() throws Exception{
         String shortTitle = "correct_course";
@@ -127,7 +127,7 @@ public class DeleteCourseTest {
         assertNull(c);   //Check that the course does not exists in the database
     }
 
-    @Test
+/*    @Test
     public void deleteCourse_courseAlreadyOnDatabase() throws Exception {
         //Install a course that is already in the database but not in the storage system
         CourseUtils.cleanUp();
@@ -165,7 +165,7 @@ public class DeleteCourseTest {
 
 
     }
-
+*/
     private void installTestCourse(){
         //Proceed with the installation of the course
         try {

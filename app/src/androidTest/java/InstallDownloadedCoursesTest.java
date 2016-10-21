@@ -61,7 +61,7 @@ public class InstallDownloadedCoursesTest {
         signal.countDown();
     }
 
-    @Test
+/*    @Test
     public void installCourse_correctCourse()throws Exception{
         String filename = CORRECT_COURSE;
 
@@ -92,8 +92,8 @@ public class InstallDownloadedCoursesTest {
         assertTrue(finalPath.exists()); //Check that the course exists in the "modules" directory
 
     }
-
-    @Test
+*/
+ /*   @Test
     public void installCourse_existingCourse()throws Exception{
         String filename = EXISTING_COURSE;
 
@@ -125,8 +125,8 @@ public class InstallDownloadedCoursesTest {
         assertTrue(finalPath.exists()); //Check that the course exists in the "modules" directory
 
     }
-
-    @Test
++7
+  /*  @Test
     public void installCourse_noXMLCourse()throws Exception{
         String filename = NOXML_COURSE;
 
@@ -157,7 +157,7 @@ public class InstallDownloadedCoursesTest {
         assertNull(c);   //Check that the course exists in the database
 
     }
-
+*/
   /*  @Test
     public void installCourse_malformedXMLCourse()throws Exception{
         String filename = MALFORMEDXML_COURSE;
@@ -190,7 +190,7 @@ public class InstallDownloadedCoursesTest {
 
     }*/
 
-    @Test
+ /*   @Test
     public void installCourse_errorInstallingCourse()throws Exception{
         String filename = INCORRECT_COURSE;
 
@@ -220,7 +220,7 @@ public class InstallDownloadedCoursesTest {
         assertNull(c);   //Check that the course does not exists in the database
 
     }
-
+*/
    /* @Test
     public void installCourse_incorrectCourses()throws Exception{
 
@@ -252,14 +252,14 @@ public class InstallDownloadedCoursesTest {
 
     }*/
 
-    @Test
+ /*   @Test
     public void installCourse_courseAlreadyInStorage()throws Exception {
         //Install a course that is already in storage system but not in database
         CourseUtils.cleanUp();
         installCourseAndRemoveItFromDatabase();
         installCourse_correctCourse();
     }
-
+*/
     private void runInstallCourseTask(){
         ArrayList<Object> data = new ArrayList<>();
         Payload payload = new Payload(data);
