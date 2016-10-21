@@ -34,7 +34,7 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
-
+/*
 @RunWith(AndroidJUnit4.class)
 public class InstallDownloadedCoursesTest {
     private final String CORRECT_COURSE = "Correct_Course.zip";
@@ -61,7 +61,7 @@ public class InstallDownloadedCoursesTest {
         signal.countDown();
     }
 
-/*    @Test
+    @Test
     public void installCourse_correctCourse()throws Exception{
         String filename = CORRECT_COURSE;
 
@@ -92,8 +92,8 @@ public class InstallDownloadedCoursesTest {
         assertTrue(finalPath.exists()); //Check that the course exists in the "modules" directory
 
     }
-*/
- /*   @Test
+
+    @Test
     public void installCourse_existingCourse()throws Exception{
         String filename = EXISTING_COURSE;
 
@@ -125,8 +125,8 @@ public class InstallDownloadedCoursesTest {
         assertTrue(finalPath.exists()); //Check that the course exists in the "modules" directory
 
     }
-+7
-  /*  @Test
+
+    @Test
     public void installCourse_noXMLCourse()throws Exception{
         String filename = NOXML_COURSE;
 
@@ -157,7 +157,7 @@ public class InstallDownloadedCoursesTest {
         assertNull(c);   //Check that the course exists in the database
 
     }
-*/
+
   /*  @Test
     public void installCourse_malformedXMLCourse()throws Exception{
         String filename = MALFORMEDXML_COURSE;
@@ -188,9 +188,9 @@ public class InstallDownloadedCoursesTest {
         Course c = db.getCourse(courseId, userId);
         assertNull(c);   //Check that the course exists in the database
 
-    }*/
+    }
 
- /*   @Test
+    @Test
     public void installCourse_errorInstallingCourse()throws Exception{
         String filename = INCORRECT_COURSE;
 
@@ -220,8 +220,8 @@ public class InstallDownloadedCoursesTest {
         assertNull(c);   //Check that the course does not exists in the database
 
     }
-*/
-   /* @Test
+
+    @Test
     public void installCourse_incorrectCourses()throws Exception{
 
         CourseUtils.cleanUp();
@@ -250,16 +250,16 @@ public class InstallDownloadedCoursesTest {
         children = finalPath.list();
         assertEquals(0, children.length);
 
-    }*/
+    }
 
- /*   @Test
+    @Test
     public void installCourse_courseAlreadyInStorage()throws Exception {
         //Install a course that is already in storage system but not in database
         CourseUtils.cleanUp();
         installCourseAndRemoveItFromDatabase();
         installCourse_correctCourse();
     }
-*/
+
     private void runInstallCourseTask(){
         ArrayList<Object> data = new ArrayList<>();
         Payload payload = new Payload(data);
@@ -307,3 +307,4 @@ public class InstallDownloadedCoursesTest {
         signal = new CountDownLatch(1);
     }
 }
+*/
