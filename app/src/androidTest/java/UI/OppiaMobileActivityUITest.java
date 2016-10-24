@@ -252,7 +252,7 @@ public class OppiaMobileActivityUITest {
 
     }
 
-    @Test
+   /* @Test
     public void showsWelcomeActivityOnLogoutClickYes() throws Exception{
 
         when(prefs.getBoolean(eq(PrefsActivity.PREF_LOGOUT_ENABLED), anyBoolean())).thenReturn(true);
@@ -271,7 +271,7 @@ public class OppiaMobileActivityUITest {
         assertEquals(WelcomeActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
 
 
-    }
+    }*/
 
     @Test
     public void doesNotShowLogoutItemOnPrefsValueFalse() throws Exception{

@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
 import android.os.BatteryManager;
 import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
@@ -43,8 +44,11 @@ public class MetaDataUtils {
 		this.ctx = ctx;
 		TelephonyManager manager = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
 		networkProvider = manager.getNetworkOperatorName();
-		deviceId = manager.getDeviceId();
-		simSerial = manager.getSimSerialNumber();
+		String permission = "android.permission.READ_PHONE_STATE";
+		deviceId = ctx.checkCallingOrSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
+					? manager.getDeviceId() : "";
+		simSerial = ctx.checkCallingOrSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
+					? manager.getSimSerialNumber() : "";
 	}
 	
 	private String getNetworkProvider() {
