@@ -1,11 +1,15 @@
 package UI;
 
+import android.app.Activity;
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.test.UiThreadTest;
+import android.view.WindowManager;
 
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.activity.DownloadActivity;
@@ -21,6 +25,7 @@ import org.digitalcampus.oppia.service.CourseInstallerServiceDelegate;
 import org.digitalcampus.oppia.service.CourseIntallerService;
 import org.digitalcampus.oppia.task.Payload;
 import org.json.JSONObject;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +39,7 @@ import Utils.CourseUtils;
 import it.cosenonjaviste.daggermock.DaggerMockRule;
 
 import static Matchers.EspressoTestsMatchers.withDrawable;
+import static android.content.Context.KEYGUARD_SERVICE;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.doesNotExist;
@@ -77,6 +83,31 @@ public class DownloadActivityUITest {
 
     @Mock CourseInstallRepository courseInstallRepository;
     @Mock CourseInstallerServiceDelegate courseInstallerServiceDelegate;
+
+    @UiThreadTest
+    @Before
+    public void setUp() throws Exception {
+        final Activity activity = tagSelectActivityTestRule.getActivity();
+        try {
+            tagSelectActivityTestRule.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    KeyguardManager mKG = (KeyguardManager) activity.getSystemService(KEYGUARD_SERVICE);
+                    KeyguardManager.KeyguardLock mLock = mKG.newKeyguardLock(KEYGUARD_SERVICE);
+                    mLock.disableKeyguard();
+
+                    //turn the screen on
+                    activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                            | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                            | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                            | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+                            | WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON);
+                }
+            });
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
 
     private void givenThereAreSomeCourses(final int numberOfCourses, final CourseIntallViewAdapter course) throws Exception{
 
