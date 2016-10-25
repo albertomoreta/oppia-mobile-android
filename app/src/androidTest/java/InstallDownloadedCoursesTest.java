@@ -34,7 +34,7 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
-/*
+
 @RunWith(AndroidJUnit4.class)
 public class InstallDownloadedCoursesTest {
     private final String CORRECT_COURSE = "Correct_Course.zip";
@@ -189,7 +189,7 @@ public class InstallDownloadedCoursesTest {
         assertNull(c);   //Check that the course exists in the database
 
     }
-
+    */
     @Test
     public void installCourse_errorInstallingCourse()throws Exception{
         String filename = INCORRECT_COURSE;
@@ -221,7 +221,7 @@ public class InstallDownloadedCoursesTest {
 
     }
 
-    @Test
+   /* @Test
     public void installCourse_incorrectCourses()throws Exception{
 
         CourseUtils.cleanUp();
@@ -250,7 +250,7 @@ public class InstallDownloadedCoursesTest {
         children = finalPath.list();
         assertEquals(0, children.length);
 
-    }
+    }*/
 
     @Test
     public void installCourse_courseAlreadyInStorage()throws Exception {
@@ -307,4 +307,3 @@ public class InstallDownloadedCoursesTest {
         signal = new CountDownLatch(1);
     }
 }
-*/
