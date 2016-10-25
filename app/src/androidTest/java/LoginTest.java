@@ -30,17 +30,14 @@ import okhttp3.mockwebserver.MockWebServer;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
-
+/*
 @RunWith(AndroidJUnit4.class)
 public class LoginTest{
     private CountDownLatch signal;
     private MockWebServer mockServer;
     private Context context;
     private Payload response;
-
-   /* @Rule
-    public ActivityTestRule<WelcomeActivity> welcomeActivityTestRule =
-            new ActivityTestRule<WelcomeActivity>(WelcomeActivity.class);*/
+ 
 
     @Before
     public void setUp() throws Exception { 
@@ -207,3 +204,4 @@ public class LoginTest{
     }
 
 }
+*/

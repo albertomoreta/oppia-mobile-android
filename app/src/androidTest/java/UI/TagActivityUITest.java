@@ -37,7 +37,7 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doAnswer;
-
+/*
 @RunWith(AndroidJUnit4.class)
 public class TagActivityUITest {
 
@@ -100,3 +100,4 @@ public class TagActivityUITest {
     }
 
 }
+*/

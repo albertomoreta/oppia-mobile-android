@@ -86,7 +86,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
-
+/*
 @RunWith(AndroidJUnit4.class)
 public class OppiaMobileActivityUITest {
 
@@ -208,7 +208,7 @@ public class OppiaMobileActivityUITest {
         assertEquals(CourseIndexActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
 
     }
-*/
+
     @Test
     public void showsContextMenuOnCourseLongClick() throws Exception{
         givenThereAreSomeCourses(1);
@@ -252,7 +252,7 @@ public class OppiaMobileActivityUITest {
 
     }
 
-   /* @Test
+    @Test
     public void showsWelcomeActivityOnLogoutClickYes() throws Exception{
 
         when(prefs.getBoolean(eq(PrefsActivity.PREF_LOGOUT_ENABLED), anyBoolean())).thenReturn(true);
@@ -271,7 +271,7 @@ public class OppiaMobileActivityUITest {
         assertEquals(WelcomeActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
 
 
-    }*/
+    }
 
     @Test
     public void doesNotShowLogoutItemOnPrefsValueFalse() throws Exception{
@@ -497,7 +497,6 @@ public class OppiaMobileActivityUITest {
 
         assertEquals(SearchActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
     }
-
     @Test
     public void showsChangeLanguageDialogIfACourseHasAtLeastOneLang() throws Exception{
 
@@ -580,9 +579,9 @@ public class OppiaMobileActivityUITest {
                 .perform(click());
 
         assertEquals(PrefsActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void showsAboutActivityOnDrawerClickAbout() throws Exception{
 
         oppiaMobileActivityTestRule.launchActivity(null);
@@ -597,7 +596,7 @@ public class OppiaMobileActivityUITest {
 
         onView(allOf(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE),
                 withId(R.id.about_versionno))).check(matches(isDisplayed()));
-    }
+    }*/
 
 
    /* @Test
@@ -629,8 +628,9 @@ public class OppiaMobileActivityUITest {
         assertTrue(coursesCount > 0);
 
 
-    }*/
+    }
 
 
 
 }
+*/
