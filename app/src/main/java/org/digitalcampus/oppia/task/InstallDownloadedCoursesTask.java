@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.activity.PrefsActivity;
@@ -61,6 +62,7 @@ public class InstallDownloadedCoursesTask extends AsyncTask<Payload, DownloadPro
 		
 		// get folder
 		File dir = new File(Storage.getDownloadPath(ctx));
+		Log.v(TAG, dir.getAbsolutePath());
 		DownloadProgress dp = new DownloadProgress();
 		String[] children = dir.list();
 		if (children != null) {

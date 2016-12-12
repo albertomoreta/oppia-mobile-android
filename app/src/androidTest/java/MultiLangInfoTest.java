@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import static junit.framework.Assert.assertEquals;
 
-/*
+
 @RunWith(AndroidJUnit4.class)
 public class MultiLangInfoTest {
 
@@ -110,4 +110,3 @@ public class MultiLangInfoTest {
         assertEquals(context.getString(R.string.no_description_set), multiLangInfo.getDescription("en"));
     }
 }
-*/

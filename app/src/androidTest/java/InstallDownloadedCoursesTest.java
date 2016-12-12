@@ -14,6 +14,7 @@ import org.digitalcampus.oppia.model.Course;
 import org.digitalcampus.oppia.model.DownloadProgress;
 import org.digitalcampus.oppia.task.InstallDownloadedCoursesTask;
 import org.digitalcampus.oppia.task.Payload;
+import org.digitalcampus.oppia.utils.storage.ExternalStorageStrategy;
 import org.digitalcampus.oppia.utils.storage.Storage;
 import org.junit.After;
 import org.junit.Before;
@@ -67,7 +68,7 @@ public class InstallDownloadedCoursesTest {
 
         CourseUtils.cleanUp();
 
-        FileUtils.copyZipFromAssets(filename);  //Copy course zip from assets to download path
+        FileUtils.copyZipFromAssets(context, filename);  //Copy course zip from assets to download path
 
         runInstallCourseTask();//Run test task
 
@@ -85,12 +86,13 @@ public class InstallDownloadedCoursesTest {
         //Check if the resultResponse is correct
         assertEquals(context.getString(R.string.install_course_complete, title), response.getResultResponse());
 
-        File initialPath = new File(Storage.getDownloadPath(InstrumentationRegistry.getTargetContext()), filename);
-        assertFalse(initialPath.exists());  //Check that the course does not exists in the "downloads" directory
+        if(Storage.getStorageStrategy() instanceof ExternalStorageStrategy) {
+            File initialPath = new File(Storage.getDownloadPath(InstrumentationRegistry.getTargetContext()), filename);
+            assertFalse(initialPath.exists());  //Check that the course does not exists in the "downloads" directory
 
-        File finalPath = new File(Storage.getCoursesPath(InstrumentationRegistry.getTargetContext()), shortTitle);
-        assertTrue(finalPath.exists()); //Check that the course exists in the "modules" directory
-
+            File finalPath = new File(Storage.getCoursesPath(InstrumentationRegistry.getTargetContext()), shortTitle);
+            assertTrue(finalPath.exists()); //Check that the course exists in the "modules" directory
+        }
     }
 
     @Test
@@ -100,7 +102,7 @@ public class InstallDownloadedCoursesTest {
         CourseUtils.cleanUp();
 
         for(int i = 0; i < 2; i++){
-            FileUtils.copyZipFromAssets(filename); //Copy course zip from assets to download path
+            FileUtils.copyZipFromAssets(context, filename); //Copy course zip from assets to download path
             runInstallCourseTask(); //Run test task
             signal.await();
             signal = new CountDownLatch(1);
@@ -118,12 +120,13 @@ public class InstallDownloadedCoursesTest {
         //Check if the resultResponse is correct
         assertEquals(context.getString(R.string.error_latest_already_installed, title), response.getResultResponse());
 
-        File initialPath = new File(Storage.getDownloadPath(InstrumentationRegistry.getTargetContext()), filename);
-        assertFalse(initialPath.exists()); //Check that the course does not exists in the "downloads" directory
+        if(Storage.getStorageStrategy() instanceof ExternalStorageStrategy) {
+            File initialPath = new File(Storage.getDownloadPath(InstrumentationRegistry.getTargetContext()), filename);
+            assertFalse(initialPath.exists()); //Check that the course does not exists in the "downloads" directory
 
-        File finalPath = new File(Storage.getCoursesPath(InstrumentationRegistry.getTargetContext()), shortTitle);
-        assertTrue(finalPath.exists()); //Check that the course exists in the "modules" directory
-
+            File finalPath = new File(Storage.getCoursesPath(InstrumentationRegistry.getTargetContext()), shortTitle);
+            assertTrue(finalPath.exists()); //Check that the course exists in the "modules" directory
+        }
     }
 
     @Test
@@ -132,7 +135,7 @@ public class InstallDownloadedCoursesTest {
 
         CourseUtils.cleanUp();
 
-        FileUtils.copyZipFromAssets(filename);  //Copy course zip from assets to download path
+        FileUtils.copyZipFromAssets(context, filename);  //Copy course zip from assets to download path
 
         runInstallCourseTask();//Run test task
 
@@ -164,7 +167,7 @@ public class InstallDownloadedCoursesTest {
 
         CourseUtils.cleanUp();
 
-        FileUtils.copyZipFromAssets(filename);  //Copy course zip from assets to download path
+        FileUtils.copyZipFromAssets(context, filename);  //Copy course zip from assets to download path
 
         runInstallCourseTask();//Run test task
 
@@ -196,7 +199,7 @@ public class InstallDownloadedCoursesTest {
 
         CourseUtils.cleanUp();
 
-        FileUtils.copyZipFromAssets(filename);  //Copy course zip from assets to download path
+        FileUtils.copyZipFromAssets(context, filename);  //Copy course zip from assets to download path
 
         runInstallCourseTask();     //Run test task
         signal.await();
@@ -234,7 +237,7 @@ public class InstallDownloadedCoursesTest {
 
 
         for(String filename : filenames) {
-            FileUtils.copyZipFromAssets(filename);  //Copy course zip from assets to download path
+            FileUtils.copyZipFromAssets(context, filename);  //Copy course zip from assets to download path
         }
 
         runInstallCourseTask();     //Run test task
@@ -287,7 +290,7 @@ public class InstallDownloadedCoursesTest {
 
     public void installCourseAndRemoveItFromDatabase(){
         String filename = CORRECT_COURSE;
-        FileUtils.copyZipFromAssets(filename);  //Copy course zip from assets to download path
+        FileUtils.copyZipFromAssets(context, filename);  //Copy course zip from assets to download path
 
         runInstallCourseTask();//Run test task
         try {
