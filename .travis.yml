@@ -3,8 +3,8 @@ jdk: oraclejdk8
 sudo: true
 
 env:
-  - TEST_SUITE=test ANDROID_TARGET=android-17 ANDROID_ABI=armeabi-v7a
-  - TEST_SUITE=connectedAndroidTest ANDROID_TARGET=android-17 ANDROID_ABI=armeabi-v7a
+  - TEST_SUITE=test ANDROID_TARGET=android-23 ANDROID_ABI=armeabi-v7a
+  - TEST_SUITE=connectedAndroidTest ANDROID_TARGET=android-23 ANDROID_ABI=armeabi-v7a
 
 android:
   components: 
@@ -13,8 +13,8 @@ android:
     - platform-tools
     - build-tools-23.0.3
     - android-23
-    - android-17
-    - sys-img-armeabi-v7a-android-17
+    - android-22
+    - sys-img-armeabi-v7a-android-23
     - extra-google-google_play_services
     - extra-android-support
     - extra-android-m2repository
