@@ -55,7 +55,7 @@ public class UpdateCourseActivityTest {
 
         CourseUtils.cleanUp();
 
-        FileUtils.copyZipFromAssets(filename);  //Copy course zip from assets to download path
+        FileUtils.copyZipFromAssets(context, filename);  //Copy course zip from assets to download path
 
 
         ArrayList<Object> data = new ArrayList<>();
