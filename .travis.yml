@@ -3,8 +3,8 @@ jdk: oraclejdk8
 sudo: true
 
 env:
-  - TEST_SUITE=test ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
-  - TEST_SUITE=connectedAndroidTest ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
+  - TEST_SUITE=test ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
+  - TEST_SUITE=connectedAndroidTest ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
 
 android:
   components: 
@@ -12,9 +12,8 @@ android:
     - tools
     - platform-tools
     - build-tools-25.0.2
-    - android-23
-    - android-21
-    - sys-img-armeabi-v7a-google_apis-21
+    - android-19
+    - sys-img-armeabi-v7a-google_apis-19
     - extra-google-google_play_services
     - extra-android-support
     - extra-android-m2repository
