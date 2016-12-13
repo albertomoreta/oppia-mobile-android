@@ -86,7 +86,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
-/*
+
 @RunWith(AndroidJUnit4.class)
 public class OppiaMobileActivityUITest {
 
@@ -181,7 +181,7 @@ public class OppiaMobileActivityUITest {
 
     }
 
-   /* @Test
+    @Test
     public void showsCourseIndexOnCourseClick() throws Exception{
 
         givenThereAreSomeCourses(1);
@@ -579,9 +579,9 @@ public class OppiaMobileActivityUITest {
                 .perform(click());
 
         assertEquals(PrefsActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
-    }*/
+    }
 
-   /* @Test
+    @Test
     public void showsAboutActivityOnDrawerClickAbout() throws Exception{
 
         oppiaMobileActivityTestRule.launchActivity(null);
@@ -596,7 +596,7 @@ public class OppiaMobileActivityUITest {
 
         onView(allOf(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE),
                 withId(R.id.about_versionno))).check(matches(isDisplayed()));
-    }*/
+    }
 
 
    /* @Test
@@ -628,9 +628,8 @@ public class OppiaMobileActivityUITest {
         assertTrue(coursesCount > 0);
 
 
-    }
+    }*/
 
 
 
 }
-*/
