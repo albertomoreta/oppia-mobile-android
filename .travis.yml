@@ -20,7 +20,10 @@ android:
     - extra-android-m2repository
     - extra-google-m2repository
 
-
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 before_script:   
   - chmod +x scripts/start_emulator.sh
   - sh scripts/start_emulator.sh $ANDROID_TARGET $ANDROID_ABI
