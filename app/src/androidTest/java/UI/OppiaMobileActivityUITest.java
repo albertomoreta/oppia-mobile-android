@@ -86,7 +86,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
-
+/*
 @RunWith(AndroidJUnit4.class)
 public class OppiaMobileActivityUITest {
 
@@ -231,7 +231,7 @@ public class OppiaMobileActivityUITest {
 
     }
 
-    /*@Test
+    @Test
     public void showsCurrentActivityOnLogoutClickNo() throws Exception{
 
 
@@ -250,9 +250,9 @@ public class OppiaMobileActivityUITest {
 
         assertEquals(OppiaMobileActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
 
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void showsWelcomeActivityOnLogoutClickYes() throws Exception{
 
         when(prefs.getBoolean(eq(PrefsActivity.PREF_LOGOUT_ENABLED), anyBoolean())).thenReturn(true);
@@ -271,7 +271,7 @@ public class OppiaMobileActivityUITest {
         assertEquals(WelcomeActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
 
 
-    }*/
+    }
 
     @Test
     public void doesNotShowLogoutItemOnPrefsValueFalse() throws Exception{
@@ -287,7 +287,7 @@ public class OppiaMobileActivityUITest {
                 .check(doesNotExist());
     }
 
-    /*@Test
+    @Test
     public void showsLogoutItemOnPrefsValueTrue() throws Exception{
 
         when(prefs.getBoolean(eq(PrefsActivity.PREF_LOGOUT_ENABLED), anyBoolean())).thenReturn(true);
@@ -299,7 +299,7 @@ public class OppiaMobileActivityUITest {
 
         onView(withText(R.string.logout))
                 .check(matches(isDisplayed()));
-    }*/
+    }
 
     @Test
     public void doesNotShowPointsListWhenThereAreNoPoints() throws Exception{
@@ -581,7 +581,7 @@ public class OppiaMobileActivityUITest {
         assertEquals(PrefsActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
     }
 
-    /*@Test
+     @Test
     public void showsAboutActivityOnDrawerClickAbout() throws Exception{
 
         oppiaMobileActivityTestRule.launchActivity(null);
@@ -596,10 +596,10 @@ public class OppiaMobileActivityUITest {
 
         onView(allOf(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE),
                 withId(R.id.about_versionno))).check(matches(isDisplayed()));
-    }*/
+    }
 
 
-   /* @Test
+    @Test
     public void downloadCourse(){
         onView(withId(R.id.drawer))
                 .perform(DrawerActions.open());
@@ -628,8 +628,8 @@ public class OppiaMobileActivityUITest {
         assertTrue(coursesCount > 0);
 
 
-    }*/
+    }
 
 
 
-}
+}*/
