@@ -29,6 +29,7 @@ import org.digitalcampus.oppia.adapter.SectionListAdapter;
 import org.digitalcampus.oppia.application.DbHelper;
 import org.digitalcampus.oppia.application.MobileLearning;
 import org.digitalcampus.oppia.application.SessionManager;
+import org.digitalcampus.oppia.fragments.AboutFragment;
 import org.digitalcampus.oppia.model.Activity;
 import org.digitalcampus.oppia.model.Course;
 import org.digitalcampus.oppia.model.Section;
@@ -40,6 +41,7 @@ import org.digitalcampus.oppia.widgets.QuizWidget;
 import org.digitalcampus.oppia.widgets.ResourceWidget;
 import org.digitalcampus.oppia.widgets.UrlWidget;
 import org.digitalcampus.oppia.widgets.WidgetFactory;
+
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -53,6 +55,7 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -92,6 +95,11 @@ public class CourseActivity extends AppActivity implements OnInitListener, TabLa
         ActionBar actionBar = getSupportActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         viewPager = (ViewPager) findViewById(R.id.activity_widget_pager);
+        boolean isTablet = getResources().getBoolean(R.bool.isTablet);
+
+        if(isTablet){
+            
+        }
 
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
