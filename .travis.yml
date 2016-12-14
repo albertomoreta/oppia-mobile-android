@@ -29,8 +29,7 @@ before_script:
   - sh scripts/start_emulator.sh $ANDROID_TARGET $ANDROID_ABI
   - chmod +x gradlew
  
-script:
-  - adb shell input keyevent 82 &
+script: 
   - ./gradlew $TEST_SUITE --continue --stacktrace
 
 after_failure:
