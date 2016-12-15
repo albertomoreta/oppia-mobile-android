@@ -30,6 +30,7 @@ import org.digitalcampus.oppia.application.DbHelper;
 import org.digitalcampus.oppia.application.MobileLearning;
 import org.digitalcampus.oppia.application.SessionManager;
 import org.digitalcampus.oppia.fragments.AboutFragment;
+import org.digitalcampus.oppia.fragments.CourseIndexListFragment;
 import org.digitalcampus.oppia.model.Activity;
 import org.digitalcampus.oppia.model.Course;
 import org.digitalcampus.oppia.model.Section;
@@ -98,7 +99,9 @@ public class CourseActivity extends AppActivity implements OnInitListener, TabLa
         boolean isTablet = getResources().getBoolean(R.bool.isTablet);
 
         if(isTablet){
-            
+            CourseIndexListFragment courseIndexFragment = new CourseIndexListFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.course_index, courseIndexFragment).commit();
         }
 
         Bundle bundle = this.getIntent().getExtras();
