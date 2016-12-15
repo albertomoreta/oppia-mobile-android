@@ -184,7 +184,7 @@ public class OppiaMobileActivityUITest {
 
     }
 
-   /* @Test
+    @Test
     public void showsCourseIndexOnCourseClick() throws Exception{
 
         givenThereAreSomeCourses(1);
@@ -255,7 +255,7 @@ public class OppiaMobileActivityUITest {
 
     }
 
-    @Test
+    /*@Test
     public void showsWelcomeActivityOnLogoutClickYes() throws Exception{
 
         when(prefs.getBoolean(eq(PrefsActivity.PREF_LOGOUT_ENABLED), anyBoolean())).thenReturn(true);
