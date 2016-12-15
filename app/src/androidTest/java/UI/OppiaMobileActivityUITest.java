@@ -121,15 +121,15 @@ public class OppiaMobileActivityUITest {
 
     @Before
     public void setUp() throws Exception{
-        initMockEditor();
-        when(prefs.edit()).thenReturn(editor);
+        /*initMockEditor();
+        when(prefs.edit()).thenReturn(editor);*/
     }
 
-    private void initMockEditor(){
+   /* private void initMockEditor(){
         when(editor.putString(anyString(), anyString())).thenReturn(editor);
         when(editor.putLong(anyString(), anyLong())).thenReturn(editor);
         when(editor.putBoolean(anyString(), anyBoolean())).thenReturn(editor);
-    }
+    }*/
 
     private void givenThereAreSomeCourses(int numberOfCourses) {
 
@@ -157,7 +157,7 @@ public class OppiaMobileActivityUITest {
                 .check(matches(isDisplayed()));
     }
 
-    @Test
+   /* @Test
     public void doesNotShowManageCoursesButtonIfThereAreCourses() throws Exception{
         givenThereAreSomeCourses(2);
 
@@ -181,7 +181,7 @@ public class OppiaMobileActivityUITest {
 
     }
 
-   /* @Test
+    @Test
     public void showsCourseIndexOnCourseClick() throws Exception{
 
         givenThereAreSomeCourses(1);
