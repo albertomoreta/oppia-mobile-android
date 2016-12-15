@@ -146,11 +146,8 @@ public class OppiaMobileActivityUITest {
         return coursesRepository.getCourses((Context) any()).size();
     }
 
+
     @Test
-    public void test() throws Exception{
-        assertTrue(true);
-    }
-    /*@Test
     public void showsManageCoursesButtonIfThereAreNoCourses() throws Exception{
         givenThereAreSomeCourses(0);
 
@@ -168,7 +165,7 @@ public class OppiaMobileActivityUITest {
 
         onView(withId(R.id.manage_courses_btn))
                 .check(matches(not(isDisplayed())));
-    }*/
+    }
 
     @Test
     public void showsTagSelectActivityOnClickManageCourses() throws Exception{
@@ -212,7 +209,7 @@ public class OppiaMobileActivityUITest {
 
     }
 
-    /*@Test
+    @Test
     public void showsContextMenuOnCourseLongClick() throws Exception{
         givenThereAreSomeCourses(1);
 
@@ -274,7 +271,7 @@ public class OppiaMobileActivityUITest {
         assertEquals(WelcomeActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
 
 
-    }
+    }*/
 
     @Test
     public void doesNotShowLogoutItemOnPrefsValueFalse() throws Exception{
@@ -322,7 +319,7 @@ public class OppiaMobileActivityUITest {
                 withId(R.id.points_list))).check(matches(not(isDisplayed())));
     }
 
-    @Test
+    /*@Test
     public void doesNotShowBadgesListWhenThereAreNoBadges() throws Exception{
 
         when(user.getBadges()).thenReturn(0);
@@ -337,7 +334,7 @@ public class OppiaMobileActivityUITest {
         assertEquals(0, badgesList.size());
 
         onView(withText(R.string.info_no_badges)).check(matches(isDisplayed()));
-    }
+    }*/
 
     @Test
     public void deleteCourseOnContextMenuDeleteClickNo() throws Exception{
@@ -602,7 +599,7 @@ public class OppiaMobileActivityUITest {
     }
 
 
-    @Test
+   /* @Test
     public void downloadCourse(){
         onView(withId(R.id.drawer))
                 .perform(DrawerActions.open());
