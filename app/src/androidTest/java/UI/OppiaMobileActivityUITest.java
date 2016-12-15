@@ -168,7 +168,7 @@ public class OppiaMobileActivityUITest {
 
         onView(withId(R.id.manage_courses_btn))
                 .check(matches(not(isDisplayed())));
-    }
+    }*/
 
     @Test
     public void showsTagSelectActivityOnClickManageCourses() throws Exception{
@@ -184,7 +184,7 @@ public class OppiaMobileActivityUITest {
 
     }
 
-    @Test
+   /* @Test
     public void showsCourseIndexOnCourseClick() throws Exception{
 
         givenThereAreSomeCourses(1);
