@@ -35,7 +35,8 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
     private ArrayList<String> _sectionsTitles;
     private HashMap<String, ArrayList<String>> _activitiesTitles;
 
-    private SharedPreferences prefs;
+    private SharedPreferences _prefs;
+    private Section _currentSection;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
         _sectionsTitles = new ArrayList<>();
         _activitiesTitles = new HashMap<>();
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        _prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         return vv;
     }
@@ -61,10 +62,12 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
 
         if(parentActivity instanceof CourseActivity){
             Course course = ((CourseActivity) parentActivity).getCourse();
+            _currentSection = ((CourseActivity) parentActivity).getSection();
 
             ParseCourseXMLTask task =  new ParseCourseXMLTask(this.getActivity(), true);
             task.setListener(this);
             task.execute(course);
+
 
         }
 
@@ -79,7 +82,7 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
     public void onParseError()  { showErrorMessage(); }
 
     private void initList(ArrayList<Section> sections){
-        String currentLang = prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage());
+        String currentLang = _prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage());
 
         for (Section section : sections){
             _sectionsTitles.add(section.getTitle(currentLang));
@@ -94,6 +97,7 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
 
 
         _adapter = new CourseIndexAdapter(getActivity(), _sectionsTitles, _activitiesTitles);
+        _adapter.setCurrentSection(_currentSection.getTitle(currentLang));
         _listView.setAdapter(_adapter);
     }
 
