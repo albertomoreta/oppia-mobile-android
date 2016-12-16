@@ -398,4 +398,7 @@ public class CourseActivity extends AppActivity implements OnInitListener, TabLa
         }
         this.ttsRunning = false;
     }
+
+    public Course getCourse() { return course; }
+    public Section getSection() { return section; }
 }

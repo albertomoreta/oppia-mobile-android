@@ -25,7 +25,6 @@ public class CourseIndexAdapter extends BaseExpandableListAdapter {
         _activitiesTitles = activitiesTitles;
     }
 
-    private int headerPos;
     @Override
     public int getGroupCount() {
         return _sectionsTitles.size();
