@@ -237,6 +237,14 @@ public class CourseActivity extends AppActivity implements OnInitListener, TabLa
         }
     }
 
+    public void loadActivities(Section section, int activityNo){
+        this.section = section;
+        this.activities = section.getActivities();
+        this.apAdapter = null;
+        currentActivityNo = activityNo;
+        loadActivities();
+    }
+
     private void loadActivities(){
         String currentLang = prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage());
         String actionBarTitle = section.getTitle(currentLang);

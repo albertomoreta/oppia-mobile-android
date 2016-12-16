@@ -28,10 +28,11 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.Callable;
 
-public class CourseIndexListFragment extends Fragment implements ParseCourseXMLTask.OnParseXmlListener{
+public class CourseIndexListFragment extends Fragment implements ParseCourseXMLTask.OnParseXmlListener, ExpandableListView.OnChildClickListener{
 
     private ExpandableListView _listView;
     private CourseIndexAdapter _adapter;
+    private ArrayList<Section> _sections;
     private ArrayList<String> _sectionsTitles;
     private HashMap<String, ArrayList<String>> _activitiesTitles;
 
@@ -45,6 +46,7 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
         vv.setLayoutParams(lp);
 
         _listView = (ExpandableListView) vv.findViewById(R.id.list_view);
+        _listView.setOnChildClickListener(this);
 
         _sectionsTitles = new ArrayList<>();
         _activitiesTitles = new HashMap<>();
@@ -75,16 +77,17 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
 
     @Override
     public void onParseComplete(CourseXMLReader parsed) {
-        initList(parsed.getSections());
+        _sections = parsed.getSections();
+        initList();
     }
 
     @Override
     public void onParseError()  { showErrorMessage(); }
 
-    private void initList(ArrayList<Section> sections){
+    private void initList(){
         String currentLang = _prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage());
 
-        for (Section section : sections){
+        for (Section section : _sections){
             _sectionsTitles.add(section.getTitle(currentLang));
 
             ArrayList<String> titles = new ArrayList<>();
@@ -108,5 +111,20 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean onChildClick(ExpandableListView expandableListView, View view, int headerPos, int childPos, long id) {
+        Section selectedSection = _sections.get(headerPos);
+        ((CourseActivity) getActivity()).loadActivities(selectedSection, childPos);
+        changeCurrentSection(selectedSection);
+        _adapter.notifyDataSetChanged();
+        return true;
+    }
+
+    private void changeCurrentSection(Section section){
+        String currentLang = _prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage());
+        _currentSection = section;
+        _adapter.setCurrentSection(section.getTitle(currentLang));
     }
 }
