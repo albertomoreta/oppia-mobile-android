@@ -29,8 +29,6 @@ import org.digitalcampus.oppia.adapter.SectionListAdapter;
 import org.digitalcampus.oppia.application.DbHelper;
 import org.digitalcampus.oppia.application.MobileLearning;
 import org.digitalcampus.oppia.application.SessionManager;
-import org.digitalcampus.oppia.fragments.AboutFragment;
-import org.digitalcampus.oppia.fragments.CourseIndexListFragment;
 import org.digitalcampus.oppia.model.Activity;
 import org.digitalcampus.oppia.model.Course;
 import org.digitalcampus.oppia.model.Section;
@@ -56,7 +54,6 @@ import android.speech.tts.TextToSpeech.OnInitListener;
 import android.speech.tts.UtteranceProgressListener;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
@@ -96,13 +93,6 @@ public class CourseActivity extends AppActivity implements OnInitListener, TabLa
         ActionBar actionBar = getSupportActionBar();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         viewPager = (ViewPager) findViewById(R.id.activity_widget_pager);
-        boolean isTablet = getResources().getBoolean(R.bool.isTablet);
-
-        if(isTablet){
-            CourseIndexListFragment courseIndexFragment = new CourseIndexListFragment();
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.course_index, courseIndexFragment).commit();
-        }
 
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
@@ -114,6 +104,7 @@ public class CourseActivity extends AppActivity implements OnInitListener, TabLa
             if (bundle.getSerializable(CourseActivity.BASELINE_TAG) != null) {
                 this.isBaseline = bundle.getBoolean(CourseActivity.BASELINE_TAG);
             }
+
             // set image
             if (actionBar != null){
                 BitmapDrawable bm = ImageUtils.LoadBMPsdcard(course.getImageFileFromRoot(), this.getResources(), MobileLearning.APP_LOGO);

@@ -14,8 +14,9 @@
         android:orientation="horizontal">
 
 
-        <FrameLayout
+        <fragment
             android:id="@+id/course_index"
+            android:name="org.digitalcampus.oppia.fragments.CourseIndexListFragment"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".3" />
