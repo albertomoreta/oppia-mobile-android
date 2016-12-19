@@ -273,7 +273,7 @@ public class OppiaMobileActivityUITest {
 
     }*/
 
-    @Test
+   /* @Test
     public void doesNotShowLogoutItemOnPrefsValueFalse() throws Exception{
 
         when(prefs.getBoolean(eq(PrefsActivity.PREF_LOGOUT_ENABLED), anyBoolean())).thenReturn(false);
@@ -285,7 +285,7 @@ public class OppiaMobileActivityUITest {
 
         onView(withText(R.string.logout))
                 .check(doesNotExist());
-    }
+    }*/
 
     /*@Test
     public void showsLogoutItemOnPrefsValueTrue() throws Exception{
@@ -301,7 +301,7 @@ public class OppiaMobileActivityUITest {
                 .check(matches(isDisplayed()));
     }*/
 
-    @Test
+    /*@Test
     public void doesNotShowPointsListWhenThereAreNoPoints() throws Exception{
 
         when(user.getPoints()).thenReturn(0);
@@ -317,7 +317,7 @@ public class OppiaMobileActivityUITest {
 
         onView(allOf(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE),
                 withId(R.id.points_list))).check(matches(not(isDisplayed())));
-    }
+    }*/
 
     /*@Test
     public void doesNotShowBadgesListWhenThereAreNoBadges() throws Exception{
@@ -336,7 +336,7 @@ public class OppiaMobileActivityUITest {
         onView(withText(R.string.info_no_badges)).check(matches(isDisplayed()));
     }*/
 
-    @Test
+   /*@Test
     public void deleteCourseOnContextMenuDeleteClickNo() throws Exception{
         givenThereAreSomeCourses(1);
 
@@ -579,7 +579,7 @@ public class OppiaMobileActivityUITest {
                 .perform(click());
 
         assertEquals(PrefsActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
-    }
+    }*/
 
     /*@Test
     public void showsAboutActivityOnDrawerClickAbout() throws Exception{
