@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.activity.CourseActivity;
@@ -30,6 +31,7 @@ import java.util.concurrent.Callable;
 
 public class CourseIndexListFragment extends Fragment implements ParseCourseXMLTask.OnParseXmlListener, ExpandableListView.OnChildClickListener{
 
+    private TextView _courseTitle;
     private ExpandableListView _listView;
     private CourseIndexAdapter _adapter;
     private ArrayList<Section> _sections;
@@ -37,21 +39,25 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
     private HashMap<String, ArrayList<String>> _activitiesTitles;
 
     private SharedPreferences _prefs;
+    private Course _currentCourse;
     private Section _currentSection;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View vv = super.getLayoutInflater(savedInstanceState).inflate(R.layout.fragment_course_index_list, null);
+        View vv = inflater.inflate(R.layout.fragment_course_index_list, null);
+        View header = inflater.inflate(R.layout.index_list_header, null);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         vv.setLayoutParams(lp);
 
+        _prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        _courseTitle = (TextView) header.findViewById(R.id.course_title);
+
         _listView = (ExpandableListView) vv.findViewById(R.id.list_view);
+        _listView.addHeaderView(header);
         _listView.setOnChildClickListener(this);
 
         _sectionsTitles = new ArrayList<>();
         _activitiesTitles = new HashMap<>();
-
-        _prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         return vv;
     }
@@ -63,13 +69,12 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
         Activity parentActivity = getActivity();
 
         if(parentActivity instanceof CourseActivity){
-            Course course = ((CourseActivity) parentActivity).getCourse();
+            _currentCourse = ((CourseActivity) parentActivity).getCourse();
             _currentSection = ((CourseActivity) parentActivity).getSection();
 
             ParseCourseXMLTask task =  new ParseCourseXMLTask(this.getActivity(), true);
             task.setListener(this);
-            task.execute(course);
-
+            task.execute(_currentCourse);
 
         }
 
@@ -86,6 +91,8 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
 
     private void initList(){
         String currentLang = _prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage());
+
+        _courseTitle.setText(_currentCourse.getTitle(currentLang));
 
         for (Section section : _sections){
             _sectionsTitles.add(section.getTitle(currentLang));
