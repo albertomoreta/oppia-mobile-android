@@ -551,7 +551,7 @@ public class OppiaMobileActivityUITest {
 
         onView(allOf(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE),
                 withId(R.id.activity_scorecard_pager))).check(matches(isDisplayed()));
-    }
+    }*/
 
     @Test
     public void showsMonitorActivityOnDrawerClickMonitor() throws Exception{
@@ -579,7 +579,7 @@ public class OppiaMobileActivityUITest {
                 .perform(click());
 
         assertEquals(PrefsActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
-    }*/
+    }
 
     /*@Test
     public void showsAboutActivityOnDrawerClickAbout() throws Exception{
