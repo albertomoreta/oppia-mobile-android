@@ -483,7 +483,7 @@ public class OppiaMobileActivityUITest {
 
         assertEquals(TagSelectActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
     }
-
+*/
     @Test
     public void showsSearchActivityOnDrawerClickSearch() throws Exception{
 
@@ -497,6 +497,7 @@ public class OppiaMobileActivityUITest {
 
         assertEquals(SearchActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
     }
+
     @Test
     public void showsChangeLanguageDialogIfACourseHasAtLeastOneLang() throws Exception{
 
@@ -551,7 +552,7 @@ public class OppiaMobileActivityUITest {
 
         onView(allOf(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE),
                 withId(R.id.activity_scorecard_pager))).check(matches(isDisplayed()));
-    }*/
+    }
 
     @Test
     public void showsMonitorActivityOnDrawerClickMonitor() throws Exception{
