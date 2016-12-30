@@ -1,5 +1,5 @@
 package UI;
-/*
+
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -64,7 +64,7 @@ public class RegisterUITest {
         onView(withText(R.string.error_register_username_spaces))
                 .check(matches(isDisplayed()));
     }
-
+    /*
     @Test
     public void showsErrorMessageWhenThereIsNoEmail() throws  Exception {
 
@@ -337,6 +337,5 @@ public class RegisterUITest {
         }
 
     }
-
-}
 */
+}
