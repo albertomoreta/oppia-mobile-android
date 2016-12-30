@@ -1,5 +1,5 @@
 package UI;
-
+/*
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -33,7 +33,7 @@ public class RegisterUITest {
     public ActivityTestRule<WelcomeActivity> welcomeActivityTestRule =
             new ActivityTestRule<>(WelcomeActivity.class);
 
-    /*@Test
+    @Test
     public void showsErrorMessageWhenThereIsNoUsername() throws  Exception {
 
         onView(withId(R.id.welcome_register))
@@ -337,5 +337,6 @@ public class RegisterUITest {
         }
 
     }
-*/
+
 }
+*/
