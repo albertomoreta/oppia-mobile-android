@@ -33,7 +33,7 @@ public class RegisterUITest {
     public ActivityTestRule<WelcomeActivity> welcomeActivityTestRule =
             new ActivityTestRule<>(WelcomeActivity.class);
 
-    @Test
+    /*@Test
     public void showsErrorMessageWhenThereIsNoUsername() throws  Exception {
 
         onView(withId(R.id.welcome_register))
@@ -64,7 +64,7 @@ public class RegisterUITest {
         onView(withText(R.string.error_register_username_spaces))
                 .check(matches(isDisplayed()));
     }
-    /*
+
     @Test
     public void showsErrorMessageWhenThereIsNoEmail() throws  Exception {
 
