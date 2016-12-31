@@ -1,5 +1,5 @@
 package UI;
-
+/*
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -339,3 +339,4 @@ public class RegisterUITest {
     }
 
 }
+*/
