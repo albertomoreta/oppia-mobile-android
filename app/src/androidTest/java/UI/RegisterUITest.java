@@ -345,4 +345,4 @@ public class RegisterUITest {
     }
 
 }
-*/
+
