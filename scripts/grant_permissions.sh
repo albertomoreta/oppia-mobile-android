@@ -1,23 +1,17 @@
 #!/bin/bash
 #
-# argument: apk adb package
-# ex: sh grant_permissions.sh <path_to_adb> <package>
+# Usage
+# You can run any command adb provides on all your currently connected devices
+# ./adb+ <command> is the equivalent of ./adb -s <serial number> <command>
+#
 
-adb=$1
-package=$2
+adb devices | while read line
+do
 
-if [ "$#" = 0 ]; then
-    echo "No parameters found, run with sh grant_permissions.sh <path_to_adb> <package>"
-    exit 0
-fi
-
-# get all the devices
-devices=$($adb devices | grep -v 'List of devices' | cut -f1 | grep '.')
-
-for device in $devices; do
-    echo "Setting permissions to device" $device "for package" $package
-    $adb shell pm list packages
-    $adb -s $device shell pm grant $package android.permission.READ_PHONE_STATE
-    $adb -s $device shell pm grant $package android.permission.READ_EXTERNAL_STORAGE
-    $adb -s $device shell pm grant $package android.permission.WRITE_EXTERNAL_STORAGE
+    if [ ! "$line" = "" ] && [ `echo $line | awk '{print $2}'` = "device" ]
+    then
+        device=`echo $line | awk '{print $1}'`
+        echo "$device $@ ..."
+        adb -s $device $@
+    fi
 done
