@@ -1,4 +1,4 @@
-/* 
+/*
  * This file is part of OppiaMobile - https://digital-campus.org/
  * 
  * OppiaMobile is free software: you can redistribute it and/or modify
@@ -18,6 +18,7 @@
 package org.digitalcampus.oppia.widgets.quiz;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -45,20 +46,31 @@ public class MultiChoiceWidget extends QuestionWidget{
 	}
 
 	public void setQuestionResponses(List<Response> responses, List<String> currentAnswer) {
+		String lang = prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage());
 		LinearLayout responsesLL = (LinearLayout) view.findViewById(R.id.questionresponses);
     	responsesLL.removeAllViews();
     	RadioGroup responsesRG = new RadioGroup(ctx);
     	// TODO change to use getchild views (like the MultiSelect)
     	responsesRG.setId(R.id.multichoiceRadioGroup);
     	responsesLL.addView(responsesRG);
+		if(responses.size() == 2) {
+			String trueString = ctx.getResources().getString(R.string.value_true);
+			String falseString = ctx.getResources().getString(R.string.value_false);
+			String response1 = responses.get(0).getTitle(lang);
+			String response2 = responses.get(1).getTitle(lang);
+			if (response1.equalsIgnoreCase(trueString) && response2.equalsIgnoreCase(falseString) ||
+					response1.equalsIgnoreCase(falseString) && response2.equalsIgnoreCase(trueString)) {
+				Collections.shuffle(responses);
+			}
+		}
     	int id = 1000+1;
     	for (Response r : responses){
     		RadioButton rb = new RadioButton(ctx);
     		rb.setId(id);
-			rb.setText(r.getTitle(prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage())));
+			rb.setText(r.getTitle(lang));
 			responsesRG.addView(rb);
             for (String answer : currentAnswer) {
-                if (r.getTitle(prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage())) == answer) {
+                if (r.getTitle(lang) == answer) {
                     rb.setChecked(true);
                 }
             }
