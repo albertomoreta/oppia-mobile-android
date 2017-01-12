@@ -51,6 +51,7 @@ import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
 
+import TestRules.DisableAnimationsRule;
 import Utils.CourseUtils;
 import it.cosenonjaviste.daggermock.DaggerMockRule;
 
@@ -109,7 +110,9 @@ public class OppiaMobileActivityUITest {
     public ActivityTestRule<OppiaMobileActivity> oppiaMobileActivityTestRule =
             new ActivityTestRule<>(OppiaMobileActivity.class, false, false);
 
-    
+    @Rule
+    public DisableAnimationsRule disableAnimationsRule = new DisableAnimationsRule();
+
 
     @Mock CoursesRepository coursesRepository;
     @Mock CompleteCourseProvider completeCourseProvider;
