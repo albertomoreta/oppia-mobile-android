@@ -246,7 +246,7 @@ public class OppiaMobileActivityUITest {
 
     }
 
-    /*@Test
+    @Test
     public void showsCurrentActivityOnLogoutClickNo() throws Exception{
 
 
@@ -254,39 +254,32 @@ public class OppiaMobileActivityUITest {
 
         oppiaMobileActivityTestRule.launchActivity(null);
 
-        onView(withId(R.id.drawer))
-                .perform(DrawerActions.open());
-
-        onView(withText(R.string.menu_logout))
-                .perform(click());
+        openDrawer();
+        performClickDrawerItem(R.id.menu_logout);
 
         onView(withText(R.string.no))
                 .perform(click());
 
-        assertEquals(OppiaMobileActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
+        checkCorrectActivity(OppiaMobileActivity.class);
 
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void showsWelcomeActivityOnLogoutClickYes() throws Exception{
 
         when(prefs.getBoolean(eq(PrefsActivity.PREF_LOGOUT_ENABLED), anyBoolean())).thenReturn(true);
 
         oppiaMobileActivityTestRule.launchActivity(null);
 
-        onView(withId(R.id.drawer))
-                .perform(DrawerActions.open());
-
-        onView(withText(R.string.menu_logout))
-                .perform(click());
+        openDrawer();
+        performClickDrawerItem(R.id.menu_logout);
 
         onView(withText(R.string.yes))
                 .perform(click());
 
-        assertEquals(WelcomeActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
+        checkCorrectActivity(WelcomeActivity.class);
 
-
-    }*/
+    }
 
     @Test
     public void doesNotShowLogoutItemOnPrefsValueFalse() throws Exception{
@@ -302,19 +295,18 @@ public class OppiaMobileActivityUITest {
                 .check(doesNotExist());
     }
 
-    /*@Test
+    @Test
     public void showsLogoutItemOnPrefsValueTrue() throws Exception{
 
         when(prefs.getBoolean(eq(PrefsActivity.PREF_LOGOUT_ENABLED), anyBoolean())).thenReturn(true);
 
         oppiaMobileActivityTestRule.launchActivity(null);
 
-        onView(withId(R.id.drawer))
-                .perform(DrawerActions.open());
+        openDrawer();
 
         onView(withText(R.string.logout))
                 .check(matches(isDisplayed()));
-    }*/
+    }
 
     @Test
     public void doesNotShowPointsListWhenThereAreNoPoints() throws Exception{

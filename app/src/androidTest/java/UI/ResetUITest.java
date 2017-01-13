@@ -48,7 +48,7 @@ public class ResetUITest {
                 .check(matches(isDisplayed()));
     }
 
-    /*@Test
+    @Test
     public void clickResetButton_WrongUsername() throws  Exception {
         onView(withText(R.string.tab_title_reset))
                 .perform(click());
@@ -59,7 +59,7 @@ public class ResetUITest {
         onView(withId(R.id.reset_btn))
                 .perform(scrollTo(), click());
 
-        onView(withText(R.string.error_register_no_username))
+        onView(withText(R.string.error_reset))
                 .check(matches(isDisplayed()));
-    }*/
+    }
 }
