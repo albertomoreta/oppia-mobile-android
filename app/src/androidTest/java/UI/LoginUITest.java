@@ -78,6 +78,10 @@ public class LoginUITest {
        onView(withId(R.id.login_btn))
                .perform(click());
 
-       assertEquals(OppiaMobileActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
+        try {
+            assertEquals(OppiaMobileActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
     }
 }

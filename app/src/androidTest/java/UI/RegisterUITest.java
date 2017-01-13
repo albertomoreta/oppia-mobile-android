@@ -340,6 +340,8 @@ public class RegisterUITest {
             assertEquals(OppiaMobileActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
         }catch(AssertionFailedError afe){
             afe.printStackTrace();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
         }
 
     }
