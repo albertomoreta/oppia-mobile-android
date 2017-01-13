@@ -129,7 +129,7 @@ dependencies {
 }
 apply plugin: 'com.google.gms.google-services'
 
-task grantPermissions (type: Exec){
+task grantPermissions (type: Exec, dependsOn: 'installDebug'){
     group = 'test'
     description = 'Grant permissions for testing.'
 
