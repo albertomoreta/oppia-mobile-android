@@ -184,11 +184,7 @@ public class OppiaMobileActivityUITest {
         onView(withId(R.id.manage_courses_btn))
                 .perform(click());
 
-        try {
-            assertEquals(TagSelectActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
+        checkCorrectActivity(TagSelectActivity.class);
 
     }
 
@@ -216,11 +212,7 @@ public class OppiaMobileActivityUITest {
                 .atPosition(0)
                 .perform(click());
 
-        try {
-            assertEquals(CourseIndexActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
+        checkCorrectActivity(CourseIndexActivity.class);
 
     }
 

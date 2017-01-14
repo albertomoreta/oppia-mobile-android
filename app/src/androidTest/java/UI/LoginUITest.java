@@ -15,6 +15,7 @@ import TestRules.DisableAnimationsRule;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -51,10 +52,10 @@ public class LoginUITest {
                 .perform(click());
 
         onView(withId(R.id.login_username_field))
-                .perform(typeText("WrongUsername"), closeSoftKeyboard());
+                .perform(closeSoftKeyboard(), scrollTo(), typeText("WrongUsername"));
 
         onView(withId(R.id.login_password_field))
-                .perform(typeText("WrongPassword"), closeSoftKeyboard());
+                .perform(closeSoftKeyboard(), scrollTo(), typeText("WrongPassword"));
 
         onView(withId(R.id.login_btn))
                 .perform(click());
@@ -70,10 +71,10 @@ public class LoginUITest {
                .perform(click());
 
        onView(withId(R.id.login_username_field))
-               .perform(typeText("aaaaaaa"), closeSoftKeyboard());
+               .perform(closeSoftKeyboard(), scrollTo(), typeText("aaaaaaa"));
 
        onView(withId(R.id.login_password_field))
-               .perform(typeText("aaaaaaa"), closeSoftKeyboard());
+               .perform(closeSoftKeyboard(), scrollTo(), typeText("aaaaaaa"));
 
        onView(withId(R.id.login_btn))
                .perform(click());

@@ -39,7 +39,7 @@ public class ResetUITest {
                 .perform(click());
 
         onView(withId(R.id.reset_username_field))
-                .perform(click(), typeText(""));
+                .perform(closeSoftKeyboard(), scrollTo(), typeText(""));
 
         onView(withId(R.id.reset_btn))
                 .perform(scrollTo(), click());
@@ -54,7 +54,7 @@ public class ResetUITest {
                 .perform(click());
 
         onView(withId(R.id.reset_username_field))
-                .perform(click(), typeText("WrongUsername"), closeSoftKeyboard());
+                .perform(closeSoftKeyboard(), scrollTo(), typeText("WrongUsername"));
 
         onView(withId(R.id.reset_btn))
                 .perform(scrollTo(), click());
