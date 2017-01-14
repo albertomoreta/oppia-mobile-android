@@ -283,7 +283,7 @@ public class OppiaMobileActivityUITest {
         onView(withId(R.id.drawer))
                 .perform(DrawerActions.open());
 
-        onData(withText(R.string.logout))
+        onView(withText(R.string.logout))
                 .check(doesNotExist());
     }
 
@@ -296,7 +296,7 @@ public class OppiaMobileActivityUITest {
 
         openDrawer();
 
-        onData(withText(R.string.logout))
+        onView(withText(R.string.logout))
                 .check(matches(isDisplayed()));
     }
 
