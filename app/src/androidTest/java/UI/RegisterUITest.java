@@ -43,7 +43,7 @@ public class RegisterUITest {
     public void showsErrorMessageWhenThereIsNoUsername() throws  Exception {
 
         onView(withId(R.id.welcome_register))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText(""));
@@ -59,7 +59,7 @@ public class RegisterUITest {
     public void showsErrorMessageWhenTheUsernameContainsSpaces() throws  Exception {
 
         onView(withId(R.id.welcome_register))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("Username With Spaces"));
@@ -75,7 +75,7 @@ public class RegisterUITest {
     public void showsErrorMessageWhenThereIsNoEmail() throws  Exception {
 
         onView(withId(R.id.welcome_register))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("UsernameWithoutSpaces"));
@@ -93,7 +93,7 @@ public class RegisterUITest {
     @Test
     public void showErrorMessageWhenTheEmailIsWrong() throws Exception {
         onView(withId(R.id.welcome_register))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
@@ -126,7 +126,7 @@ public class RegisterUITest {
     @Test
     public void showErrorMessageWhenTheEmailContainsSpaces() throws Exception {
         onView(withId(R.id.welcome_register))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
@@ -160,7 +160,7 @@ public class RegisterUITest {
     public void showsErrorMessageWhenThePasswordIsTooShort() throws Exception {
 
         onView(withId(R.id.welcome_register))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
@@ -182,7 +182,7 @@ public class RegisterUITest {
     public void showsErrorMessageWhenThePasswordsDoNotMatch() throws Exception{
 
         onView(withId(R.id.welcome_register))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
@@ -207,7 +207,7 @@ public class RegisterUITest {
     public void showsErrorMessageWhenThereIsNoFirstName() throws Exception {
 
         onView(withId(R.id.welcome_register))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
@@ -235,7 +235,7 @@ public class RegisterUITest {
     public void showsErrorMessageWhenThereIsNoLastName() throws Exception {
 
         onView(withId(R.id.welcome_register))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
@@ -266,7 +266,7 @@ public class RegisterUITest {
     public void showsErrorMessageWhenThePhoneNumberIsNotValid() throws Exception {
 
         onView(withId(R.id.welcome_register))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
@@ -310,7 +310,7 @@ public class RegisterUITest {
     public void changeActivityWhenAllTheFieldsAreCorrect() throws Exception {
 
         onView(withId(R.id.welcome_register))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));

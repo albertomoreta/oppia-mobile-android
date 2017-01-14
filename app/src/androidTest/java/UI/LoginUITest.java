@@ -37,10 +37,10 @@ public class LoginUITest {
     @Test
     public void showsErrorMessageWhenThereIsNoUsername() throws Exception{
         onView(withId(R.id.welcome_login))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.login_btn))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withText(R.string.error_no_username))
                 .check(matches(isDisplayed()));
@@ -49,7 +49,7 @@ public class LoginUITest {
     @Test
     public void showsErrorMessageWhenTheUsernameOrPasswordAreWrong() throws Exception{
         onView(withId(R.id.welcome_login))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.login_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("WrongUsername"));
@@ -58,7 +58,7 @@ public class LoginUITest {
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("WrongPassword"));
 
         onView(withId(R.id.login_btn))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withText(R.string.error_login))
                 .check(matches(isDisplayed()));
@@ -68,7 +68,7 @@ public class LoginUITest {
     public void changeActivityWhenTheCredentialsAreCorrect() throws Exception{
 
        onView(withId(R.id.welcome_login))
-               .perform(click());
+               .perform(scrollTo(), click());
 
        onView(withId(R.id.login_username_field))
                .perform(closeSoftKeyboard(), scrollTo(), typeText("aaaaaaa"));
@@ -77,7 +77,7 @@ public class LoginUITest {
                .perform(closeSoftKeyboard(), scrollTo(), typeText("aaaaaaa"));
 
        onView(withId(R.id.login_btn))
-               .perform(click());
+               .perform(scrollTo(), click());
 
         try {
             assertEquals(OppiaMobileActivity.class, Utils.TestUtils.getCurrentActivity().getClass());
