@@ -36,7 +36,7 @@ public class ResetUITest {
     @Test
     public void  showsErrorMessageWhenThereIsNoUsername() throws  Exception {
         onView(withText(R.string.tab_title_reset))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.reset_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText(""));
@@ -51,7 +51,7 @@ public class ResetUITest {
     @Test
     public void clickResetButton_WrongUsername() throws  Exception {
         onView(withText(R.string.tab_title_reset))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.reset_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("WrongUsername"));

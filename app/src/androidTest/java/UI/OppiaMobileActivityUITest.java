@@ -182,7 +182,7 @@ public class OppiaMobileActivityUITest {
         oppiaMobileActivityTestRule.launchActivity(null);
 
         onView(withId(R.id.manage_courses_btn))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         checkCorrectActivity(TagSelectActivity.class);
 
@@ -250,7 +250,7 @@ public class OppiaMobileActivityUITest {
         performClickDrawerItem(R.id.menu_logout);
 
         onView(withText(R.string.no))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         checkCorrectActivity(OppiaMobileActivity.class);
 
@@ -267,7 +267,7 @@ public class OppiaMobileActivityUITest {
         performClickDrawerItem(R.id.menu_logout);
 
         onView(withText(R.string.yes))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         checkCorrectActivity(WelcomeActivity.class);
 
@@ -280,8 +280,7 @@ public class OppiaMobileActivityUITest {
 
         oppiaMobileActivityTestRule.launchActivity(null);
 
-        onView(withId(R.id.drawer))
-                .perform(DrawerActions.open());
+        openDrawer();
 
         onView(withText(R.string.logout))
                 .check(doesNotExist());
@@ -310,7 +309,7 @@ public class OppiaMobileActivityUITest {
         oppiaMobileActivityTestRule.launchActivity(null);
 
         onView(withId(R.id.userpoints))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         assertEquals(0, pointList.size());
 
@@ -328,7 +327,7 @@ public class OppiaMobileActivityUITest {
         oppiaMobileActivityTestRule.launchActivity(null);
 
         onView(withId(R.id.userbadges))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         assertEquals(0, badgesList.size());
 
@@ -349,11 +348,11 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withId(R.id.course_context_delete))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withText(R.string.no))
                 .check(matches(isDisplayed()))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         //TODO: Check
 
@@ -373,11 +372,11 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withId(R.id.course_context_delete))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withText(R.string.yes))
                 .check(matches(isDisplayed()))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         //TODO: Check
 
@@ -397,7 +396,7 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withId(R.id.course_context_delete))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withText(R.string.course_context_delete))
                 .check(doesNotExist());
@@ -416,11 +415,11 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withId(R.id.course_context_reset))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withText(R.string.yes))
                 .check(matches(isDisplayed()))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         //TODO: Check
 
@@ -438,11 +437,11 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withId(R.id.course_context_reset))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withText(R.string.no))
                 .check(matches(isDisplayed()))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         //TODO: Check
 
@@ -460,7 +459,7 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withChild(withId(R.id.course_context_update_activity)))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withText(containsString(InstrumentationRegistry.getTargetContext().getString(R.string.course_updating_success))));
 
