@@ -182,7 +182,7 @@ public class OppiaMobileActivityUITest {
         oppiaMobileActivityTestRule.launchActivity(null);
 
         onView(withId(R.id.manage_courses_btn))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         checkCorrectActivity(TagSelectActivity.class);
 
@@ -250,7 +250,7 @@ public class OppiaMobileActivityUITest {
         performClickDrawerItem(R.id.menu_logout);
 
         onView(withText(R.string.no))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         checkCorrectActivity(OppiaMobileActivity.class);
 
@@ -267,7 +267,7 @@ public class OppiaMobileActivityUITest {
         performClickDrawerItem(R.id.menu_logout);
 
         onView(withText(R.string.yes))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         checkCorrectActivity(WelcomeActivity.class);
 
@@ -309,7 +309,7 @@ public class OppiaMobileActivityUITest {
         oppiaMobileActivityTestRule.launchActivity(null);
 
         onView(withId(R.id.userpoints))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         assertEquals(0, pointList.size());
 
@@ -327,7 +327,7 @@ public class OppiaMobileActivityUITest {
         oppiaMobileActivityTestRule.launchActivity(null);
 
         onView(withId(R.id.userbadges))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         assertEquals(0, badgesList.size());
 
@@ -348,11 +348,11 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withId(R.id.course_context_delete))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         onView(withText(R.string.no))
                 .check(matches(isDisplayed()))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         //TODO: Check
 
@@ -372,11 +372,11 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withId(R.id.course_context_delete))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         onView(withText(R.string.yes))
                 .check(matches(isDisplayed()))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         //TODO: Check
 
@@ -396,7 +396,7 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withId(R.id.course_context_delete))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         onView(withText(R.string.course_context_delete))
                 .check(doesNotExist());
@@ -415,11 +415,11 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withId(R.id.course_context_reset))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         onView(withText(R.string.yes))
                 .check(matches(isDisplayed()))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         //TODO: Check
 
@@ -437,11 +437,11 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withId(R.id.course_context_reset))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         onView(withText(R.string.no))
                 .check(matches(isDisplayed()))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         //TODO: Check
 
@@ -459,7 +459,7 @@ public class OppiaMobileActivityUITest {
                 .perform(longClick());
 
         onView(withChild(withId(R.id.course_context_update_activity)))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         onView(withText(containsString(InstrumentationRegistry.getTargetContext().getString(R.string.course_updating_success))));
 
