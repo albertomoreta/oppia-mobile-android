@@ -25,26 +25,29 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
+import org.digitalcampus.mobile.learning.R;
+
 public class ImageUtils {
 
 	public static final String TAG = ImageUtils.class.getSimpleName();
 
 	public static BitmapDrawable LoadBMPsdcard(String path, Resources res, int defaultImageResource) {
 		File imageFile = new File(path);
+		int size = res.getDimensionPixelSize(R.dimen.course_actionbar_icon_size);
 		// if the file exists
 		try {
 			if (imageFile.exists()) {
 				// load the bitmap from the given path
-				Bitmap bmp = BitmapFactory.decodeFile(path);
+				Bitmap bmp = Bitmap.createScaledBitmap(BitmapFactory.decodeFile(path), size, size, false);
 				return new BitmapDrawable(res, bmp);
 			} else {
 				// return the standard 'Image not found' bitmap placed on the
 				// res folder
-				Bitmap bmp = BitmapFactory.decodeResource(res, defaultImageResource);
+				Bitmap bmp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, defaultImageResource), size, size, false);
 				return new BitmapDrawable(res, bmp);
 			}
 		} catch (OutOfMemoryError oome) {
-			Bitmap bmp = BitmapFactory.decodeResource(res, defaultImageResource);
+			Bitmap bmp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(res, defaultImageResource), size, size, false);
 			return new BitmapDrawable(res, bmp);
 		}
 	}
