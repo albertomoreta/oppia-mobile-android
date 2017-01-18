@@ -35,19 +35,18 @@ android {
     runtimeProps.load(new FileInputStream(rootProject.file('oppia-default.properties')))
 
     def oppiaPropsFile = rootProject.file('custom.properties')
-    if (oppiaPropsFile.canRead()){
+    if (oppiaPropsFile.canRead()) {
         logger.info('Fetching properties from external file')
         runtimeProps.load(new FileInputStream(oppiaPropsFile))
-    }
-    else{
+    } else {
         logger.error('No properties file found. Using default values.')
     }
 
     buildTypes {
 
-        all{
+        all {
             //Define all the constant values that depend on the config properties
-            buildConfigField "String", "MINT_API_KEY", "\"" + runtimeProps['MINT_API_KEY'] +"\""
+            buildConfigField "String", "MINT_API_KEY", "\"" + runtimeProps['MINT_API_KEY'] + "\""
             buildConfigField "boolean", "ADMIN_PROTECT_SETTINGS", runtimeProps['ADMIN_PROTECT_SETTINGS']
             buildConfigField "boolean", "ADMIN_PROTECT_COURSE_DELETE", runtimeProps['ADMIN_PROTECT_COURSE_DELETE']
             buildConfigField "boolean", "ADMIN_PROTECT_COURSE_RESET", runtimeProps['ADMIN_PROTECT_COURSE_RESET']
@@ -66,10 +65,10 @@ android {
             resValue "string", "prefServerDefault", runtimeProps['OPPIA_SERVER_DEFAULT']
         }
 
-	debug{
+        debug {
             testCoverageEnabled = true
 
-	}
+        }
 
         release {
             minifyEnabled false
@@ -86,26 +85,27 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'joda-time:joda-time:2.3'
-    compile 'com.android.support:design:23.4.0'
-    compile "com.androidplot:androidplot-core:0.6.1"
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.squareup.okhttp3:okhttp:3.3.1'
-    compile "com.splunk.mint:mint:5.0.0"
-    compile 'com.google.android.gms:play-services-gcm:9.4.0'
 
-    testCompile 'junit:junit:4.12'
-    androidTestCompile 'com.squareup.okhttp3:mockwebserver:3.3.1'
-    androidTestCompile 'com.android.support.test:runner:0.4'
-    androidTestCompile 'com.android.support.test:rules:0.4'
-    androidTestCompile 'com.android.support:support-annotations:23.4.0'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
-    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2.1'){
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.1') {
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
         exclude module: 'support-v13'
         exclude module: 'recyclerview-v7'
     }
+    compile 'joda-time:joda-time:2.3'
+    compile 'com.android.support:design:23.4.0'
+    compile 'com.androidplot:androidplot-core:0.6.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.squareup.okhttp3:okhttp:3.3.1'
+    compile 'com.splunk.mint:mint:5.0.0'
+    compile 'com.google.android.gms:play-services-gcm:10.0.1'
+    compile 'com.android.support:support-v4:23.4.0'
+    testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.squareup.okhttp3:mockwebserver:3.3.1'
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    androidTestCompile 'com.android.support.test:rules:0.5'
+    androidTestCompile 'com.android.support:support-annotations:24.0.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
 }
 apply plugin: 'com.google.gms.google-services'
 
