@@ -20,6 +20,7 @@ import org.digitalcampus.oppia.activity.TagSelectActivity;
 import org.digitalcampus.oppia.adapter.TagListAdapter;
 import org.digitalcampus.oppia.application.MobileLearning;
 import org.digitalcampus.oppia.listener.APIRequestListener;
+import org.digitalcampus.oppia.listener.TagClickListener;
 import org.digitalcampus.oppia.model.Tag;
 import org.digitalcampus.oppia.task.APIUserRequestTask;
 import org.digitalcampus.oppia.task.Payload;
@@ -41,6 +42,8 @@ public class TagSelectFragment extends AppFragment implements APIRequestListener
     private TagListAdapter tla;
     private ArrayList<Tag> tags;
 
+    private TagClickListener _listener;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,16 +58,15 @@ public class TagSelectFragment extends AppFragment implements APIRequestListener
         tla = new TagListAdapter(getActivity(), tags);
 
 
-        ListView listView = (ListView) getActivity().findViewById(R.id.tag_list);
+        ListView listView = (ListView) getView().findViewById(R.id.tag_list);
         listView.setAdapter(tla);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Tag selectedTag = tags.get(position);
-                Intent i = new Intent(getActivity(), DownloadActivity.class);
-                Bundle tb = new Bundle();
-                tb.putSerializable(Tag.TAG, selectedTag);
-                i.putExtras(tb);
-                startActivity(i);
+                if(_listener != null){
+                    Tag selectedTag = tags.get(position);
+                    _listener.onTagClick(selectedTag);
+                }
+
             }
         });
 
@@ -156,7 +158,7 @@ public class TagSelectFragment extends AppFragment implements APIRequestListener
                 tags.add(t);
             }
             tla.notifyDataSetChanged();
-            getActivity().findViewById(R.id.empty_state).setVisibility((tags.size()==0) ? View.VISIBLE : View.GONE);
+            getView().findViewById(R.id.empty_state).setVisibility((tags.size()==0) ? View.VISIBLE : View.GONE);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -190,5 +192,9 @@ public class TagSelectFragment extends AppFragment implements APIRequestListener
             UIUtils.showAlert(getActivity(), R.string.error, errorMsg, finishActivity);
         }
 
+    }
+
+    public void setTagClickListener(TagClickListener listener) {
+        _listener=listener;
     }
 }

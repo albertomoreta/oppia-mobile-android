@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+
+    <fragment
+        android:id="@+id/tag_select_fragment"
+        android:name="org.digitalcampus.oppia.fragments.TagSelectFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".5" />
+
+    <fragment
+        android:id="@+id/download_fragment"
+        android:name="org.digitalcampus.oppia.fragments.DownloadFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".5" />
+
+</LinearLayout>

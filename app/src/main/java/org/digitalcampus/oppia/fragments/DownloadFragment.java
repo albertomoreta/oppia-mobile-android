@@ -76,10 +76,11 @@ public class DownloadFragment extends AppFragment implements APIRequestListener,
             this.showUpdatesOnly = true;
         }
 
+
         courses = new ArrayList<>();
         dla = new DownloadCourseListAdapter(getActivity(), courses);
         dla.setOnClickListener(new CourseListListener());
-        ListView listView = (ListView) getActivity().findViewById(R.id.tag_list);
+        ListView listView = (ListView) getView().findViewById(R.id.tag_list);
         listView.setAdapter(dla);
 
         try {
@@ -138,6 +139,12 @@ public class DownloadFragment extends AppFragment implements APIRequestListener,
         }
     }
 
+    public void getCourseList(Tag selectedTag){
+        this.url = MobileLearning.SERVER_TAG_PATH + String.valueOf(selectedTag.getId()) + File.separator;
+        showUpdatesOnly = false;
+        getCourseList();
+    }
+
     private void getCourseList() {
         // show progress dialog
         progressDialog = new ProgressDialog(getActivity(), R.style.Oppia_AlertDialogStyle);
@@ -161,7 +168,7 @@ public class DownloadFragment extends AppFragment implements APIRequestListener,
             courses.addAll(CourseIntallViewAdapter.parseCoursesJSON(getActivity(), json, storage, showUpdatesOnly));
 
             dla.notifyDataSetChanged();
-            getActivity().findViewById(R.id.empty_state).setVisibility((courses.size()==0) ? View.VISIBLE : View.GONE);
+            getView().findViewById(R.id.empty_state).setVisibility((courses.size()==0) ? View.VISIBLE : View.GONE);
 
         } catch (Exception e) {
             Mint.logException(e);

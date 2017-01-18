@@ -24,7 +24,10 @@ import java.util.concurrent.Callable;
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.adapter.TagListAdapter;
 import org.digitalcampus.oppia.application.MobileLearning;
+import org.digitalcampus.oppia.fragments.DownloadFragment;
+import org.digitalcampus.oppia.fragments.TagSelectFragment;
 import org.digitalcampus.oppia.listener.APIRequestListener;
+import org.digitalcampus.oppia.listener.TagClickListener;
 import org.digitalcampus.oppia.model.Tag;
 import org.digitalcampus.oppia.task.APIUserRequestTask;
 import org.digitalcampus.oppia.task.Payload;
@@ -43,7 +46,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class TagSelectActivity extends AppActivity {
+public class TagSelectActivity extends AppActivity implements TagClickListener {
 
 	public static final String TAG = TagSelectActivity.class.getSimpleName();
 
@@ -53,7 +56,26 @@ public class TagSelectActivity extends AppActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tag_select_activity);
 
+		TagSelectFragment tagSelectFragment = (TagSelectFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.tag_select_fragment);
+
+		tagSelectFragment.setTagClickListener(this);
+
 	}
 
+	@Override
+	public void onTagClick(Tag selectedTag) {
+		DownloadFragment downloadFragment = (DownloadFragment) getSupportFragmentManager()
+				.findFragmentById(R.id.download_fragment);
 
+		if(downloadFragment != null) {
+			downloadFragment.getCourseList(selectedTag);
+		} else {
+			Intent i = new Intent(this, DownloadActivity.class);
+			Bundle tb = new Bundle();
+			tb.putSerializable(Tag.TAG, selectedTag);
+			i.putExtras(tb);
+			startActivity(i);
+		}
+	}
 }
