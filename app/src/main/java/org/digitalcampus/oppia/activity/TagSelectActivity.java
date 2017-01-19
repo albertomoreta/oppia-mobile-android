@@ -37,6 +37,8 @@ import org.json.JSONObject;
 
 import com.splunk.mint.Mint;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,6 +46,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class TagSelectActivity extends AppActivity implements TagClickListener {
@@ -69,7 +72,25 @@ public class TagSelectActivity extends AppActivity implements TagClickListener {
 				.findFragmentById(R.id.download_fragment);
 
 		if(downloadFragment != null) {
+			//Slide animation
+			final LinearLayout dualPanel = (LinearLayout) findViewById(R.id.dual_panel);
+			ObjectAnimator animator = ObjectAnimator.ofFloat(
+					dualPanel,
+					"weightSum",
+					dualPanel.getWeightSum(),
+					2.2f);
+
+			animator.setDuration(500);
+			animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+				@Override
+				public void onAnimationUpdate(ValueAnimator valueAnimator) {
+					dualPanel.requestLayout();
+				}
+			});
+			animator.start();
+
 			downloadFragment.getCourseList(selectedTag);
+			
 		} else {
 			Intent i = new Intent(this, DownloadActivity.class);
 			Bundle tb = new Bundle();
