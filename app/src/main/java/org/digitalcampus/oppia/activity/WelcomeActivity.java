@@ -21,11 +21,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.adapter.ActivityPagerAdapter;
@@ -41,7 +44,9 @@ import java.util.List;
 public class WelcomeActivity extends AppActivity {
 
 	public static final String TAG = WelcomeActivity.class.getSimpleName();
+
 	private ViewPager viewPager;
+	private FrameLayout rightFragment;
     private TabLayout tabs;
     private int currentTab = 0;
 	
@@ -51,7 +56,7 @@ public class WelcomeActivity extends AppActivity {
 
 		setContentView(R.layout.activity_about);
 
-        tabs = (TabLayout) findViewById(R.id.tabs_toolbar);
+		tabs = (TabLayout) findViewById(R.id.tabs_toolbar);
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         ActionBar actionBar = getSupportActionBar();
@@ -62,6 +67,11 @@ public class WelcomeActivity extends AppActivity {
         }
 
 		viewPager = (ViewPager) findViewById(R.id.activity_about_pager);
+		rightFragment = (FrameLayout) findViewById(R.id.right_fragment);
+
+		if(rightFragment != null){
+			replaceFragment(R.id.right_fragment, new LoginFragment());
+		}
 
 	}
 	
@@ -87,14 +97,16 @@ public class WelcomeActivity extends AppActivity {
 		fragments.add(fReset);
         tabTitles.add(this.getString(R.string.tab_title_reset));
 
-        ActivityPagerAdapter apAdapter = new ActivityPagerAdapter(this, getSupportFragmentManager(), fragments, tabTitles);
-		viewPager.setAdapter(apAdapter);
-        tabs.setupWithViewPager(viewPager);
-        tabs.setTabMode(TabLayout.MODE_FIXED);
-        tabs.setTabGravity(TabLayout.GRAVITY_FILL);
+		if(viewPager != null && tabs != null){
+			ActivityPagerAdapter apAdapter = new ActivityPagerAdapter(this, getSupportFragmentManager(), fragments, tabTitles);
+			viewPager.setAdapter(apAdapter);
+			tabs.setupWithViewPager(viewPager);
+			tabs.setTabMode(TabLayout.MODE_FIXED);
+			tabs.setTabGravity(TabLayout.GRAVITY_FILL);
 
-		viewPager.setCurrentItem(currentTab);
-        viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
+			viewPager.setCurrentItem(currentTab);
+			viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
+		}
 	}
 	
 	@Override
@@ -126,8 +138,23 @@ public class WelcomeActivity extends AppActivity {
 	}
 	
 	public void switchTab(int tab){
-		viewPager.setCurrentItem(tab);
-		this.currentTab = tab;
+		if(rightFragment == null) {
+			viewPager.setCurrentItem(tab);
+			this.currentTab = tab;
+		}else{
+
+			switch(tab){
+				case 1: replaceFragment(R.id.right_fragment, new LoginFragment()); break;
+				case 2: replaceFragment(R.id.right_fragment, new RegisterFragment()); break;
+			}
+
+		}
+	}
+
+	private void replaceFragment(int containerViewId, Fragment fragment){
+		final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+		transaction.replace(containerViewId, fragment);
+		transaction.commit();
 	}
 }
 
