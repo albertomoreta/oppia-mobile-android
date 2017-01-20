@@ -24,6 +24,6 @@
         android:layout_height="match_parent"
         android:divider="@color/list_divider_light"
         android:dividerHeight="1dp"
-        android:listSelector="@color/pressed_om"/>
+        android:choiceMode="singleChoice"/>
 
 </RelativeLayout>

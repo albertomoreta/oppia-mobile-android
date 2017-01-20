@@ -3,7 +3,10 @@
     android:id="@+id/course_row"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp" >
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" >
 
     <TextView
         android:id="@+id/course_title"

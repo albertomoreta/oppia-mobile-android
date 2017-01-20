@@ -17,47 +17,30 @@
 
 package org.digitalcampus.oppia.activity;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.concurrent.Callable;
 
 import org.digitalcampus.mobile.learning.R;
-import org.digitalcampus.oppia.adapter.TagListAdapter;
-import org.digitalcampus.oppia.application.MobileLearning;
 import org.digitalcampus.oppia.fragments.DownloadFragment;
 import org.digitalcampus.oppia.fragments.TagSelectFragment;
-import org.digitalcampus.oppia.listener.APIRequestListener;
 import org.digitalcampus.oppia.listener.TagClickListener;
 import org.digitalcampus.oppia.model.Tag;
-import org.digitalcampus.oppia.task.APIUserRequestTask;
-import org.digitalcampus.oppia.task.Payload;
-import org.digitalcampus.oppia.utils.UIUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.splunk.mint.Mint;
-
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 public class TagSelectActivity extends AppActivity implements TagClickListener {
 
 	public static final String TAG = TagSelectActivity.class.getSimpleName();
 
+	private LinearLayout dualPanel;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tag_select_activity);
+
+		dualPanel = (LinearLayout) findViewById(R.id.dual_panel);
 
 		TagSelectFragment tagSelectFragment = (TagSelectFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.tag_select_fragment);
@@ -68,19 +51,20 @@ public class TagSelectActivity extends AppActivity implements TagClickListener {
 
 	@Override
 	public void onTagClick(Tag selectedTag) {
+
 		DownloadFragment downloadFragment = (DownloadFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.download_fragment);
 
 		if(downloadFragment != null) {
+			//If tablet, refresh course list
 			//Slide animation
-			final LinearLayout dualPanel = (LinearLayout) findViewById(R.id.dual_panel);
 			ObjectAnimator animator = ObjectAnimator.ofFloat(
 					dualPanel,
 					"weightSum",
 					dualPanel.getWeightSum(),
 					2.2f);
 
-			animator.setDuration(500);
+			animator.setDuration(700);
 			animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 				@Override
 				public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -92,11 +76,29 @@ public class TagSelectActivity extends AppActivity implements TagClickListener {
 			downloadFragment.getCourseList(selectedTag);
 			
 		} else {
+			//If phone, start DownloadActivity
 			Intent i = new Intent(this, DownloadActivity.class);
 			Bundle tb = new Bundle();
 			tb.putSerializable(Tag.TAG, selectedTag);
 			i.putExtras(tb);
 			startActivity(i);
+		}
+	}
+
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		if(dualPanel != null) {
+			outState.putFloat("weightSum", dualPanel.getWeightSum());
+		}
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		if(dualPanel != null) {
+			dualPanel.setWeightSum(savedInstanceState.getFloat("weightSum"));
 		}
 	}
 }
