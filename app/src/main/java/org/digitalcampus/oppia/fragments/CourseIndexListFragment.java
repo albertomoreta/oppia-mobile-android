@@ -122,12 +122,15 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
 
     @Override
     public boolean onChildClick(ExpandableListView expandableListView, View view, int headerPos, int childPos, long id) {
-        Section selectedSection = _sections.get(headerPos);
-        ((CourseActivity) getActivity()).loadActivities(selectedSection, childPos);
-        changeCurrentSection(selectedSection);
-        expandableListView.setItemChecked(childPos, true);
-        _adapter.notifyDataSetChanged();
-        return true;
+        if(getActivity() instanceof CourseActivity && !((CourseActivity) getActivity()).isBaseline()) {
+            Section selectedSection = _sections.get(headerPos);
+            ((CourseActivity) getActivity()).loadActivities(selectedSection, childPos);
+            changeCurrentSection(selectedSection);
+            expandableListView.setItemChecked(childPos, true);
+            _adapter.notifyDataSetChanged();
+            return true;
+        }
+        return false;
     }
 
     private void changeCurrentSection(Section section){

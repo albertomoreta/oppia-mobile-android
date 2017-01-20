@@ -400,4 +400,5 @@ public class CourseActivity extends AppActivity implements OnInitListener, TabLa
 
     public Course getCourse() { return course; }
     public Section getSection() { return section; }
+    public boolean isBaseline() { return isBaseline; }
 }
