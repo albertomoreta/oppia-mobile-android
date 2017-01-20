@@ -146,6 +146,7 @@ public class WelcomeActivity extends AppActivity {
 			switch(tab){
 				case 1: replaceFragment(R.id.right_fragment, new LoginFragment()); break;
 				case 2: replaceFragment(R.id.right_fragment, new RegisterFragment()); break;
+				case 3: replaceFragment(R.id.right_fragment, new ResetFragment()); break;
 			}
 
 		}

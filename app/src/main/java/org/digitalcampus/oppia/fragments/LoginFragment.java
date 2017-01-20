@@ -28,10 +28,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.activity.AppActivity;
 import org.digitalcampus.oppia.activity.OppiaMobileActivity;
+import org.digitalcampus.oppia.activity.WelcomeActivity;
 import org.digitalcampus.oppia.application.SessionManager;
 import org.digitalcampus.oppia.listener.SubmitListener;
 import org.digitalcampus.oppia.model.User;
@@ -47,6 +49,7 @@ public class LoginFragment extends AppFragment implements SubmitListener {
 	public static final String TAG = LoginFragment.class.getSimpleName();
     private EditText usernameField;
 	private EditText passwordField;
+	private TextView forgotPaswordText;
 	private ProgressDialog pDialog;
     private Context appContext;
 	
@@ -72,6 +75,14 @@ public class LoginFragment extends AppFragment implements SubmitListener {
 		super.onActivityCreated(savedInstanceState);
 		usernameField = (EditText) super.getActivity().findViewById(R.id.login_username_field);
         passwordField = (EditText) super.getActivity().findViewById(R.id.login_password_field);
+		forgotPaswordText = (TextView) super.getActivity().findViewById(R.id.forgot_password);
+		forgotPaswordText.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				WelcomeActivity wa = (WelcomeActivity) LoginFragment.super.getActivity();
+				wa.switchTab(3);
+			}
+		});
         Button loginButton = (Button) super.getActivity().findViewById(R.id.login_btn);
         loginButton.setOnClickListener(new View.OnClickListener() {
 			

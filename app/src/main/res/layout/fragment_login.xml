@@ -44,6 +44,16 @@
             android:layout_height="wrap_content"
             android:text="@string/title_login" />
 
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_forgot_password"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            style="@style/MediumTextItalic"
+            android:textColor="@color/highlight_secondary"/>
+
     </LinearLayout>
 
 </ScrollView>
