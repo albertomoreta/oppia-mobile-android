@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/welcome_activity_lateral_margin"
+    android:paddingRight="@dimen/welcome_activity_lateral_margin"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/translucent_white"
+        android:paddingLeft="@dimen/welcome_activity_lateral_padding"
+        android:paddingRight="@dimen/welcome_activity_lateral_padding">
+
+        <TextView
+            android:id="@+id/main_email_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/login_username_title" />
+
+        <EditText
+            android:id="@+id/login_username_field"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/main_password_title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/login_password_title" />
+
+        <EditText
+            android:id="@+id/login_password_field"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:padding="5dp" />
+
+        <Button
+            android:id="@+id/login_btn"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/welcome_activity_lateral_padding"
+            android:layout_marginRight="@dimen/welcome_activity_lateral_padding"
+            android:text="@string/title_login" />
+
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_forgot_password"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            style="@style/MediumTextItalic"
+            android:textColor="@color/highlight_secondary"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -6,6 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/drawer_header_bg"
+        android:alpha="0.8">
+
+    </View>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/activity_welcome_pager"
         android:layout_width="fill_parent"

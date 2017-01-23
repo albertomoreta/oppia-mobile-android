@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="welcome_activity_lateral_margin">300dp</dimen>
+
+</resources>

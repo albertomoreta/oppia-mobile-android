@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/welcome_activity_lateral_margin"
+    android:paddingRight="@dimen/welcome_activity_lateral_margin"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@color/translucent_white"
+        android:padding="@dimen/welcome_activity_lateral_padding" >
+
+        <TextView
+            android:id="@+id/welcome_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_welcome_title"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            style="@style/HeaderText" />
+
+        <TextView
+            android:id="@+id/welcome_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_welcome_desc"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            style="@style/NormalTextDark" />
+
+        <TextView
+            android:id="@+id/welcome_login_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_welcome_login_info"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            style="@style/NormalTextDark" />
+
+        <Button
+            android:id="@+id/welcome_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/welcome_activity_lateral_padding"
+            android:layout_marginRight="@dimen/welcome_activity_lateral_padding"
+            android:text="@string/title_register" />
+
+        <Button
+            android:id="@+id/welcome_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/welcome_activity_lateral_padding"
+            android:layout_marginRight="@dimen/welcome_activity_lateral_padding"
+            android:text="@string/title_login" />
+
+        <TextView
+            android:id="@+id/welcome_privacy_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_welcome_privacy"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            style="@style/SmallTextDarkItalic" />
+    </LinearLayout>
+
+</ScrollView>

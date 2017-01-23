@@ -46,7 +46,6 @@ public class WelcomeActivity extends AppActivity {
 	public static final String TAG = WelcomeActivity.class.getSimpleName();
 
 	private ViewPager viewPager;
-	private FrameLayout rightFragment;
     private TabLayout tabs;
     private int currentTab = 0;
 	
@@ -54,7 +53,7 @@ public class WelcomeActivity extends AppActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_about);
+		setContentView(R.layout.activity_welcome);
 
 		tabs = (TabLayout) findViewById(R.id.tabs_toolbar);
 
@@ -66,13 +65,7 @@ public class WelcomeActivity extends AppActivity {
             actionBar.setDisplayShowTitleEnabled(true);
         }
 
-		viewPager = (ViewPager) findViewById(R.id.activity_about_pager);
-		rightFragment = (FrameLayout) findViewById(R.id.right_fragment);
-
-		if(rightFragment != null){
-			replaceFragment(R.id.right_fragment, new LoginFragment());
-		}
-
+		viewPager = (ViewPager) findViewById(R.id.activity_welcome_pager);
 	}
 	
 	@Override
@@ -97,16 +90,14 @@ public class WelcomeActivity extends AppActivity {
 		fragments.add(fReset);
         tabTitles.add(this.getString(R.string.tab_title_reset));
 
-		if(viewPager != null && tabs != null){
-			ActivityPagerAdapter apAdapter = new ActivityPagerAdapter(this, getSupportFragmentManager(), fragments, tabTitles);
-			viewPager.setAdapter(apAdapter);
-			tabs.setupWithViewPager(viewPager);
-			tabs.setTabMode(TabLayout.MODE_FIXED);
-			tabs.setTabGravity(TabLayout.GRAVITY_FILL);
+		ActivityPagerAdapter apAdapter = new ActivityPagerAdapter(this, getSupportFragmentManager(), fragments, tabTitles);
+		viewPager.setAdapter(apAdapter);
+		tabs.setupWithViewPager(viewPager);
+		tabs.setTabMode(TabLayout.MODE_FIXED);
+		tabs.setTabGravity(TabLayout.GRAVITY_FILL);
 
-			viewPager.setCurrentItem(currentTab);
-			viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
-		}
+		viewPager.setCurrentItem(currentTab);
+		viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 	}
 	
 	@Override
@@ -138,24 +129,8 @@ public class WelcomeActivity extends AppActivity {
 	}
 	
 	public void switchTab(int tab){
-		if(rightFragment == null) {
-			viewPager.setCurrentItem(tab);
-			this.currentTab = tab;
-		}else{
-
-			switch(tab){
-				case 1: replaceFragment(R.id.right_fragment, new LoginFragment()); break;
-				case 2: replaceFragment(R.id.right_fragment, new RegisterFragment()); break;
-				case 3: replaceFragment(R.id.right_fragment, new ResetFragment()); break;
-			}
-
-		}
-	}
-
-	private void replaceFragment(int containerViewId, Fragment fragment){
-		final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-		transaction.replace(containerViewId, fragment);
-		transaction.commit();
+		viewPager.setCurrentItem(tab);
+		this.currentTab = tab;
 	}
 }
 
