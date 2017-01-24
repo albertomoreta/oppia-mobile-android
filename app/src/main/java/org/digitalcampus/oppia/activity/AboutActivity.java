@@ -62,10 +62,10 @@ public class AboutActivity extends AppActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_about);
+		setContentView(R.layout.activity_welcome);
 		actionBar = getSupportActionBar();
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		viewPager = (ViewPager) findViewById(R.id.activity_about_pager);
+		viewPager = (ViewPager) findViewById(R.id.activity_welcome_pager);
 
         tabs = (TabLayout) findViewById(R.id.tabs_toolbar);
 

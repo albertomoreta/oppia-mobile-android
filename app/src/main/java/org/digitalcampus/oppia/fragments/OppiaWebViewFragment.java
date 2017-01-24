@@ -55,7 +55,7 @@ public class OppiaWebViewFragment extends Fragment{
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View vv = super.getLayoutInflater(savedInstanceState).inflate(R.layout.fragment_webview, null);
+		View vv = super.getLayoutInflater(savedInstanceState).inflate(R.layout.fragment_about_webview, null);
 		LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 		vv.setLayoutParams(lp);
 		this.id = (Integer) getArguments().getSerializable(OppiaWebViewFragment.TAG_ID);
@@ -72,8 +72,10 @@ public class OppiaWebViewFragment extends Fragment{
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
-		webView = (WebView) super.getActivity().findViewById(this.id);
+		View parentView = super.getActivity().findViewById(this.id);
+		webView = parentView instanceof WebView ?
+				(WebView) parentView :										//In case of phone layout
+				(WebView) parentView.findViewById(R.id.fragment_webview);	//In case of tablet layout
 		webView.getSettings().setJavaScriptEnabled(true);
 		int defaultFontSize = Integer.parseInt(prefs.getString(PrefsActivity.PREF_TEXT_SIZE, "16"));
 		webView.getSettings().setDefaultFontSize(defaultFontSize);
