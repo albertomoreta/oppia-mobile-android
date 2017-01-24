@@ -126,8 +126,9 @@ public class CourseIndexListFragment extends Fragment implements ParseCourseXMLT
             Section selectedSection = _sections.get(headerPos);
             ((CourseActivity) getActivity()).loadActivities(selectedSection, childPos);
             changeCurrentSection(selectedSection);
-            expandableListView.setItemChecked(childPos, true);
             _adapter.notifyDataSetChanged();
+            //int index = expandableListView.getFlatListPosition(ExpandableListView.getPackedPositionForChild(headerPos, childPos));
+            //expandableListView.setItemChecked(index, true);
             return true;
         }
         return false;
