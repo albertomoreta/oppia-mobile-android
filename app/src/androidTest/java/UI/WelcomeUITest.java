@@ -29,13 +29,13 @@ public class WelcomeUITest {
     @Rule
     public DisableAnimationsRule disableAnimationsRule = new DisableAnimationsRule();
 
-
     @Test
     public void showsLoginFragmentOnLoginButtonClick() throws Exception{
         onView(withId(R.id.welcome_login))
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.login_btn))
+                .perform(scrollTo())
                 .check(matches(isDisplayed()));
     }
 
@@ -55,6 +55,7 @@ public class WelcomeUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.reset_btn))
+                .perform(scrollTo())
                 .check(matches(isDisplayed()));
     }
 

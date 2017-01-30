@@ -32,11 +32,10 @@ public class ResetUITest {
     @Rule
     public DisableAnimationsRule disableAnimationsRule = new DisableAnimationsRule();
 
-
     @Test
     public void  showsErrorMessageWhenThereIsNoUsername() throws  Exception {
         onView(withText(R.string.tab_title_reset))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         onView(withId(R.id.reset_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText(""));
@@ -51,7 +50,7 @@ public class ResetUITest {
     @Test
     public void clickResetButton_WrongUsername() throws  Exception {
         onView(withText(R.string.tab_title_reset))
-                .perform(scrollTo(), click());
+                .perform(click());
 
         onView(withId(R.id.reset_username_field))
                 .perform(closeSoftKeyboard(), scrollTo(), typeText("WrongUsername"));

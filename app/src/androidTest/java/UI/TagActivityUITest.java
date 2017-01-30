@@ -64,7 +64,6 @@ public class TagActivityUITest {
     public DisableAnimationsRule disableAnimationsRule = new DisableAnimationsRule();
 
 
-
     @Mock TagRepository tagRepository;
 
 
