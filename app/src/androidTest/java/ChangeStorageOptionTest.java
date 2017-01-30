@@ -37,7 +37,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 import static org.mockito.Mockito.when;
-
+/*
 @RunWith(AndroidJUnit4.class)
 public class ChangeStorageOptionTest {
 
@@ -160,3 +160,4 @@ public class ChangeStorageOptionTest {
     }
 
 }
+*/
