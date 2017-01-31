@@ -37,7 +37,7 @@ before_script:
   - chmod +x gradlew
  
 script: 
-  - ./gradlew $TEST_SUITE --continue --stacktrace
+  - ./gradlew $TEST_SUITE -stacktrace
 
 after_failure:
   - wget http://imgur.com/tools/imgurbash.sh
