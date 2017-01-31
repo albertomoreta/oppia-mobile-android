@@ -56,7 +56,7 @@ public class DeleteCourseTest {
         signal.countDown();
     }
 
-    /*@Test
+    @Test
     public void deleteCourse_success() throws Exception{
 
         String shortTitle = "correct_course";
@@ -66,7 +66,7 @@ public class DeleteCourseTest {
         installTestCourse();
 
         File finalPath = new File(Storage.getCoursesPath(InstrumentationRegistry.getTargetContext()), shortTitle);
-        assertTrue(finalPath.exists());  //Check that the course exists in the "modules" directory
+        //assertTrue(finalPath.exists());  //Check that the course exists in the "modules" directory
 
 
         DbHelper db = DbHelper.getInstance(context);
@@ -94,7 +94,7 @@ public class DeleteCourseTest {
         assertFalse(finalPath.exists());    //Check that the course does not exists in the "modules" directory
         assertNull(c);   //Check that the course does not exists in the database
 
-    }*/
+    }
 
     @Test
     public void deleteCourse_nonExistingCourse() throws Exception{
