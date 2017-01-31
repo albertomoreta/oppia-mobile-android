@@ -37,7 +37,7 @@ before_script:
   - chmod +x gradlew
  
 script: 
-  - ./gradlew $TEST_SUITE -stacktrace
+  - travis_wait 30 ./gradlew $TEST_SUITE -stacktrace
 
 after_failure:
   - wget http://imgur.com/tools/imgurbash.sh
