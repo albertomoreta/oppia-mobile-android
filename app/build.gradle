@@ -113,8 +113,6 @@ dependencies {
         exclude module: 'design'
         exclude module: 'support-v13'
         exclude module: 'recyclerview-v7'
-        exclude module: 'appcompat-v7'
-        exclude module: 'design'
     }
 
     //Mockito Dependencies
@@ -143,8 +141,6 @@ task grantPermissions (type: Exec, dependsOn: 'installDebug'){
     }else{
         println "Granting permissions for a windows os"
     }
-    commandLine "${adb} shell pm grant org.digitalcampus.mobile.learning android.permission.SET_ANIMATION_SCALE".split(" ")
-
     commandLine "${adb} shell pm grant org.digitalcampus.mobile.learning android.permission.SET_ANIMATION_SCALE".split(" ")
 
 
