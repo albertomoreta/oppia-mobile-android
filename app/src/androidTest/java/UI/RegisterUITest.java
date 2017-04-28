@@ -1,8 +1,11 @@
 package UI;
 
+import android.app.Activity;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.v4.content.ContextCompat;
+import android.widget.ProgressBar;
 
 import junit.framework.AssertionFailedError;
 
@@ -46,7 +49,7 @@ public class RegisterUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText(""));
+                .perform(scrollTo(), typeText("")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());
@@ -62,7 +65,7 @@ public class RegisterUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Username With Spaces"));
+                .perform(scrollTo(), typeText("Username With Spaces")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());
@@ -78,10 +81,10 @@ public class RegisterUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("UsernameWithoutSpaces"));
+                .perform(scrollTo(), typeText("UsernameWithoutSpaces")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_email_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText(""));
+                .perform(scrollTo(), typeText("")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());
@@ -96,25 +99,25 @@ public class RegisterUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
+                .perform(scrollTo(), typeText("Username")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_email_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("NoValidEmail"));
+                .perform(scrollTo(), typeText("NoValidEmail")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_again_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_firstname_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("First Name"));
+                .perform(scrollTo(), typeText("First Name")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_lastname_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Last Name"));
+                .perform(scrollTo(), typeText("Last Name")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_phoneno_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("123456789"));
+                .perform(scrollTo(), typeText("123456789")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());
@@ -129,25 +132,25 @@ public class RegisterUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
+                .perform(scrollTo(), typeText("Username")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_email_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("email with spaces@gmail.com"));
+                .perform(scrollTo(), typeText("email with spaces@gmail.com")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_again_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_firstname_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("First Name"));
+                .perform(scrollTo(), typeText("First Name")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_lastname_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Last Name"));
+                .perform(scrollTo(), typeText("Last Name")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_phoneno_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("123456789"));
+                .perform(scrollTo(), typeText("123456789")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());
@@ -163,13 +166,13 @@ public class RegisterUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
+                .perform(scrollTo(), typeText("Username")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_email_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Email"));
+                .perform(scrollTo(), typeText("Email")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("123"));
+                .perform(scrollTo(), typeText("123")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());
@@ -185,16 +188,16 @@ public class RegisterUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
+                .perform(scrollTo(), typeText("Username")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_email_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Email"));
+                .perform(scrollTo(), typeText("Email")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_again_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password2"));
+                .perform(scrollTo(), typeText("password2")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());
@@ -210,19 +213,19 @@ public class RegisterUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
+                .perform(scrollTo(), typeText("Username")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_email_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Email"));
+                .perform(scrollTo(), typeText("Email")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_again_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_firstname_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText(""));
+                .perform(scrollTo(), typeText(""));
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());
@@ -238,22 +241,22 @@ public class RegisterUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
+                .perform(scrollTo(), typeText("Username")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_email_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Email"));
+                .perform(scrollTo(), typeText("Email")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_again_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_firstname_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("First Name"));
+                .perform(scrollTo(), typeText("First Name")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_lastname_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText(""));
+                .perform(scrollTo(), typeText("")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());
@@ -269,25 +272,25 @@ public class RegisterUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
+                .perform(scrollTo(), typeText("Username")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_email_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Email"));
+                .perform(scrollTo(), typeText("Email")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_again_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_firstname_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("First Name"));
+                .perform(scrollTo(), typeText("First Name")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_lastname_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Last Name"));
+                .perform(scrollTo(), typeText("Last Name")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_phoneno_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText(""));
+                .perform(scrollTo(), typeText("")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());
@@ -297,7 +300,7 @@ public class RegisterUITest {
                 .perform(pressBack());
 
         onView(withId(R.id.register_form_phoneno_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("1234567"));
+                .perform(scrollTo(), typeText("1234567")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());
@@ -313,25 +316,25 @@ public class RegisterUITest {
                 .perform(scrollTo(), click());
 
         onView(withId(R.id.register_form_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Username"));
+                .perform(scrollTo(), typeText("Username")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_email_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Email@email.com"));
+                .perform(scrollTo(), typeText("Email@email.com")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_password_again_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("password1"));
+                .perform(scrollTo(), typeText("password1")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_firstname_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("First Name"));
+                .perform(scrollTo(), typeText("First Name")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_lastname_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("Last Name"));
+                .perform(scrollTo(), typeText("Last Name")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_form_phoneno_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("12345678"));
+                .perform(scrollTo(), typeText("12345678")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.register_btn))
                 .perform(scrollTo(), click());

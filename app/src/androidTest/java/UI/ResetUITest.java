@@ -33,12 +33,27 @@ public class ResetUITest {
     public DisableAnimationsRule disableAnimationsRule = new DisableAnimationsRule();
 
     @Test
-    public void  showsErrorMessageWhenThereIsNoUsername() throws  Exception {
+    public void clickResetButton_WrongUsername() throws  Exception {
         onView(withText(R.string.tab_title_reset))
-                .perform(click());
+                .perform(scrollTo(), click());
 
         onView(withId(R.id.reset_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText(""));
+                .perform(scrollTo(), typeText("WrongUsername")).perform(closeSoftKeyboard());;
+
+        onView(withId(R.id.reset_btn))
+                .perform(scrollTo(), click());
+
+        onView(withText(R.string.error_reset))
+                .check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void  showsErrorMessageWhenThereIsNoUsername() throws  Exception {
+        onView(withText(R.string.tab_title_reset))
+                .perform(scrollTo(), click());
+
+        onView(withId(R.id.reset_username_field))
+                .perform(scrollTo(), typeText("")).perform(closeSoftKeyboard());
 
         onView(withId(R.id.reset_btn))
                 .perform(scrollTo(), click());
@@ -47,18 +62,5 @@ public class ResetUITest {
                 .check(matches(isDisplayed()));
     }
 
-    @Test
-    public void clickResetButton_WrongUsername() throws  Exception {
-        onView(withText(R.string.tab_title_reset))
-                .perform(click());
 
-        onView(withId(R.id.reset_username_field))
-                .perform(closeSoftKeyboard(), scrollTo(), typeText("WrongUsername"));
-
-        onView(withId(R.id.reset_btn))
-                .perform(scrollTo(), click());
-
-        onView(withText(R.string.error_reset))
-                .check(matches(isDisplayed()));
-    }
 }

@@ -31,6 +31,7 @@ import org.digitalcampus.oppia.application.MobileLearning;
 import org.digitalcampus.oppia.application.SessionManager;
 import org.digitalcampus.oppia.model.Activity;
 import org.digitalcampus.oppia.model.Course;
+import org.digitalcampus.oppia.model.MultiLangInfo;
 import org.digitalcampus.oppia.model.Section;
 import org.digitalcampus.oppia.utils.ImageUtils;
 import org.digitalcampus.oppia.utils.UIUtils;
@@ -229,11 +230,15 @@ public class CourseActivity extends AppActivity implements OnInitListener, TabLa
     private void loadActivities(){
         String currentLang = prefs.getString(PrefsActivity.PREF_LANGUAGE, Locale.getDefault().getLanguage());
         String actionBarTitle = section.getMultiLangInfo().getTitle(currentLang);
-        if (actionBarTitle != null) {
+        if ((actionBarTitle != null) && ( !actionBarTitle.equals(MultiLangInfo.DEFAULT_NOTITLE)) ){
             setTitle(actionBarTitle);
-        } else if (isBaseline) {
-            setTitle(getString(R.string.title_baseline));
+        } else {
+            ArrayList<Activity> activities = section.getActivities();
+            String preTestTitle = getString(R.string.alert_pretest);
+            setTitle(!activities.isEmpty() && activities.get(0).getMultiLangInfo().getTitle(currentLang).toUpperCase().equals(preTestTitle.toUpperCase()) ?
+                    preTestTitle : isBaseline ? getString(R.string.title_baseline): "");
         }
+
         //actionBar.removeAllTabs();
         List<Fragment> fragments = new ArrayList<>();
         List<String> titles = new ArrayList<>();

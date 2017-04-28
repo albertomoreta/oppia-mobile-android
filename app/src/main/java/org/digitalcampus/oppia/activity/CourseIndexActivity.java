@@ -54,6 +54,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import javax.inject.Inject;
 
@@ -70,6 +71,7 @@ public class CourseIndexActivity extends AppActivity implements OnSharedPreferen
 	private Activity baselineActivity;
 	private AlertDialog aDialog;
     private View loadingCourseView;
+    private ProgressBar progressBar;
     private SectionListAdapter sla;
 
     private String digestJumpTo;
@@ -86,6 +88,7 @@ public class CourseIndexActivity extends AppActivity implements OnSharedPreferen
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		prefs.registerOnSharedPreferenceChangeListener(this);
         loadingCourseView =  findViewById(R.id.loading_course);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar2);
 
 		Bundle bundle = this.getIntent().getExtras();
 		if (bundle != null) {
@@ -281,6 +284,7 @@ public class CourseIndexActivity extends AppActivity implements OnSharedPreferen
             listView.setVisibility(View.VISIBLE);
         }
 
+        progressBar.setVisibility(View.GONE);
         listView.setAdapter(sla);
     }
 
