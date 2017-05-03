@@ -1,5 +1,5 @@
 package UI;
-
+/*
 import android.os.SystemClock;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -64,3 +64,4 @@ public class ResetUITest {
 
 
 }
+*/
