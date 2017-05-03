@@ -21,9 +21,9 @@ android:
     - sys-img-armeabi-v7a-android-19
     - sys-img-armeabi-v7a-android-23
 
-    #- extra-google-google_play_services
-    #- extra-android-support
-    #- extra-google-m2repository
+    - extra-google-google_play_services
+    - extra-android-support
+    - extra-google-m2repository
 
   licenses:
     - 'android-sdk-preview-license-.+'
