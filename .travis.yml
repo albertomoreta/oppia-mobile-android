@@ -9,10 +9,8 @@ env:
 android:
   components: 
     - tools
-    - tools
     - platform-tools
     - build-tools-25.0.2
-    - android-23
     - android-19
     - sys-img-armeabi-v7a-google_apis-19
     - extra-google-google_play_services
