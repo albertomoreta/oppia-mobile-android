@@ -138,7 +138,7 @@ task grantPermissions (type: Exec, dependsOn: 'installDebug'){
 
     if (!System.getProperty('os.name').toLowerCase().contains('windows')) {
         println "Granting permissions for a non windows os"
-        commandLine "chmod 700 ${absolutePath}/scripts/grant_permissions.sh".split(" ")
+        commandLine "chmod a+x ${absolutePath}/scripts/grant_permissions.sh".split(" ")
         commandLine "sh ${absolutePath}/scripts/grant_permissions.sh ${adb} org.digitalcampus.mobile.learning".split(" ")
     }else{
         println "Granting permissions for a windows os"
