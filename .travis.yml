@@ -1,6 +1,7 @@
 language: android 
 jdk: oraclejdk8
-sudo: true
+sudo: false
+os: windows
 
 env:
   - TEST_SUITE=test ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
