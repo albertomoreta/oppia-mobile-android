@@ -4,8 +4,8 @@ sudo: false
 os: windows
 
 env:
-  - TEST_SUITE=test ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
-  - TEST_SUITE=connectedAndroidTest ANDROID_TARGET=android-19 ANDROID_ABI=armeabi-v7a
+  - TEST_SUITE=test ANDROID_TARGET=android-23 ANDROID_ABI=armeabi-v7a
+  - TEST_SUITE=connectedAndroidTest ANDROID_TARGET=android-23 ANDROID_ABI=armeabi-v7a
 
 android:
   components: 
