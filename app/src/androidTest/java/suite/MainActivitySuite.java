@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 
 import UI.LoginUITest;
 import UI.RegisterUITest;
-import UI.ResetUITest;
+//import UI.ResetUITest;
 import UI.WelcomeUITest;
 /*
 @RunWith(Suite.class)
