@@ -29,11 +29,6 @@ android:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
 
-cache:
-  directories:
-  - $HOME/.gradle
-  - $HOME/.gradle/wrapper
-  - $HOME/.gradle/caches
 
 before_script:
   - chmod +x scripts/grant_permissions.sh
