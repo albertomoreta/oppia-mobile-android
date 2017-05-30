@@ -1,0 +1,23 @@
+{
+  "api_key": "817cd1199105543460c2c1f9d4fff339b0b34894",
+  "badges": 0,
+  "badging": true,
+  "email": "email1@email.com",
+  "first_name": "FirstName",
+  "jobtitle": "Job",
+  "last_name": "LastName",
+  "metadata": {
+    "BATTERY_LEVEL": true,
+    "DEVICE_ID": true,
+    "GPS": false,
+    "NETWORK": true,
+    "NETWORK_CONNECTED": true,
+    "SIM_SERIAL": true,
+    "WIFI_ON": true
+  },
+  "organisation": "Organisation",
+  "phoneno": "123456789",
+  "points": 100,
+  "scoring": true,
+  "username": "username1"
+}
