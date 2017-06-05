@@ -28,9 +28,12 @@ import com.splunk.mint.Mint;
 
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.activity.PrefsActivity;
+import org.digitalcampus.oppia.api.ApiEndpoint;
+import org.digitalcampus.oppia.api.RemoteApiEndpoint;
 import org.digitalcampus.oppia.application.DbHelper;
 import org.digitalcampus.oppia.application.MobileLearning;
 import org.digitalcampus.oppia.application.SessionManager;
+import org.digitalcampus.oppia.listener.SubmitListener;
 import org.digitalcampus.oppia.model.QuizAttempt;
 import org.digitalcampus.oppia.utils.HTTPClientUtils;
 import org.json.JSONException;
@@ -49,10 +52,20 @@ public class SubmitQuizAttemptsTask extends AsyncTask<Payload, Object, Payload> 
 	public final static String TAG = SubmitQuizAttemptsTask.class.getSimpleName();
 	private Context ctx;
 	private SharedPreferences prefs;
+	protected ApiEndpoint apiEndpoint;
+
+	private SubmitListener mStateListener;
 	
 	public SubmitQuizAttemptsTask(Context c) {
 		this.ctx = c;
 		prefs = PreferenceManager.getDefaultSharedPreferences(ctx);
+		apiEndpoint = new RemoteApiEndpoint();
+	}
+
+
+	public SubmitQuizAttemptsTask(Context ctx, ApiEndpoint api) {
+		this(ctx);
+		apiEndpoint = api;
 	}
 
 	@Override
@@ -66,7 +79,7 @@ public class SubmitQuizAttemptsTask extends AsyncTask<Payload, Object, Payload> 
 				Log.d(TAG, qa.getData());
                 OkHttpClient client = HTTPClientUtils.getClient(ctx);
                 Request request = new Request.Builder()
-                        .url(HTTPClientUtils.getFullURL(ctx, MobileLearning.QUIZ_SUBMIT_PATH))
+                        .url(apiEndpoint.getFullURL(ctx, MobileLearning.QUIZ_SUBMIT_PATH))
                         .addHeader(HTTPClientUtils.HEADER_AUTH,
                                 HTTPClientUtils.getAuthHeaderValue(qa.getUser().getUsername(), qa.getUser().getApiKey()))
                         .post(RequestBody.create(HTTPClientUtils.MEDIA_TYPE_JSON, qa.getData()))
@@ -126,6 +139,19 @@ public class SubmitQuizAttemptsTask extends AsyncTask<Payload, Object, Payload> 
 		// properly
 		MobileLearning app = (MobileLearning) ctx.getApplicationContext();
 		app.omSubmitQuizAttemptsTask = null;
+		synchronized (this) {
+			if (mStateListener != null) {
+				mStateListener.submitComplete(p);
+			}
+		}
 	}
+
+	public void setRegisterListener(SubmitListener srl) {
+		synchronized (this) {
+			mStateListener = srl;
+		}
+	}
+
+
 
 }
