@@ -1,14 +1,13 @@
+package InstrumentedUnitTests;
+
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
-import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.digitalcampus.mobile.learning.R;
-import org.digitalcampus.oppia.activity.WelcomeActivity;
 import org.digitalcampus.oppia.api.MockApiEndpoint;
 import org.digitalcampus.oppia.listener.SubmitListener;
 import org.digitalcampus.oppia.model.User;
-import org.digitalcampus.oppia.task.LoginTask;
 import org.digitalcampus.oppia.task.Payload;
 import org.digitalcampus.oppia.task.RegisterTask;
 import org.junit.After;

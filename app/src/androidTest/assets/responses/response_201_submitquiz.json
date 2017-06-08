@@ -1,0 +1,17 @@
+{
+  "agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
+  "attempt_date": "2017-05-31T13:05:21",
+  "badges": 2,
+  "id": 137239,
+  "instance_id": "43d8240b-0444-42e6-91fc-69db211724fc",
+  "ip": "213.182.28.119",
+  "maxscore": "8",
+  "points": 10793,
+  "quiz": "/api/v1/quiz/3309/",
+  "quiz_id": 3309,
+  "resource_uri": "/api/v1/quizattempt/137239/",
+  "score": "2",
+  "submitted_date": "2017-05-31T13:07:37.996524",
+  "user": "/api/v1/user/1872/",
+  "uuid": null
+}

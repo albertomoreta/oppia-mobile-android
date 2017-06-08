@@ -1,7 +1,8 @@
+package InstrumentedUnitTests;
+
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.InstrumentationTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
 
 import org.digitalcampus.mobile.learning.R;
