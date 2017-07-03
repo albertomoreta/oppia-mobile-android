@@ -1,9 +1,13 @@
+package InstrumentedUnitTests;
+
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.digitalcampus.mobile.learning.R;
 import org.digitalcampus.oppia.api.MockApiEndpoint;
+import org.digitalcampus.oppia.application.DbHelper;
+import org.digitalcampus.oppia.application.SessionManager;
 import org.digitalcampus.oppia.listener.APIRequestListener;
 import org.digitalcampus.oppia.model.User;
 import org.digitalcampus.oppia.task.APIUserRequestTask;
@@ -25,7 +29,7 @@ import okhttp3.mockwebserver.MockWebServer;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
-/*
+
 @RunWith(AndroidJUnit4.class)
 public class APIUserRequestTest {
 
@@ -51,6 +55,13 @@ public class APIUserRequestTest {
         mockServer.shutdown();
     }
 
+    private User getTestUser(){
+        User u = new User();
+        u.setUsername("bbbbbbb");
+        u.setPassword("bbbbbbb");
+        return u;
+    }
+
     @Test
     public void apiUserRequest_ResponseSuccess()throws Exception {
         try {
@@ -67,13 +78,21 @@ public class APIUserRequestTest {
             e.printStackTrace();
         }
 
+        SessionManager.logoutCurrentUser(context);
+        DbHelper db = DbHelper.getInstance(context);
+        //Simulate user logged in
+        User testUser = getTestUser();
+        db.addOrUpdateUser(testUser);
+
+        User u = db.getUser(testUser.getUsername());
+        SessionManager.loginUser(context, u);
+
         ArrayList<Object> users = new ArrayList<>();
-        User u = new User();
-        u.setUsername("");
-        u.setPassword("");
         users.add(u);
 
         Payload p = new Payload(users);
+        p.setUrl("/api/v1/quizattempt/");
+
         try {
             APIUserRequestTask task = new APIUserRequestTask(context, new MockApiEndpoint(mockServer));
             task.setAPIRequestListener(new APIRequestListener() {
@@ -101,4 +120,3 @@ public class APIUserRequestTest {
     }
 
 }
-*/
